@@ -27,9 +27,12 @@ public class TowerUpgrade : MonoBehaviour
             Vector3 pos = _towerLevel1.transform.position;
             Quaternion rot = _towerLevel1.transform.rotation;
 
-            // Destroy level 1 prefab, and spawn level 2
-            Destroy(_towerLevel1);
-            _towerLevel1 = Instantiate(_towerLevel2, pos, rot);
+            if (_upgraded == false)
+            {
+                // Destroy level 1 prefab, and spawn level 2 (upgrade)
+                Destroy(_towerLevel1);
+                _towerLevel1 = Instantiate(_towerLevel2, pos, rot);
+            }
         }
     }
 }
