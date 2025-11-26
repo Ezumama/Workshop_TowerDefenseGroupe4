@@ -5,6 +5,11 @@ public class TowerSpawner : MonoBehaviour
     [SerializeField] private GameObject[] _towers;
     [SerializeField] private GameObject _towerChoicePanel;
 
+    [Header("Tower Cost")]
+    [SerializeField] private int _gatlingCost;
+    [SerializeField] private int _teslaCost;
+    [SerializeField] private int _airCost;
+
     private TowerChoiceUI _choiceUIScript;
 
     private void Start()
@@ -24,13 +29,16 @@ public class TowerSpawner : MonoBehaviour
     public void GatlingChoice()
     {
         SpawnTower(0);
+        GameManager.Instance.LoseMoney(_gatlingCost);
     }
     //public void TeslaChoice()
     //{
     //    SpawnTower(1);
+    //    GameManager.Instance.LoseMoney(_teslaCost);
     //}
     //public void AirChoice()
     //{
     //    SpawnTower(2);
+    //    GameManager.Instance.LoseMoney(_airCost);
     //}
 }
