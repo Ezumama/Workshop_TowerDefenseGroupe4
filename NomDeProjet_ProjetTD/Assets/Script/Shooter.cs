@@ -32,14 +32,13 @@ public class Shooter : MonoBehaviour
 
     private void Update()
     {
-        FindClosestTarget();
+        FindTarget();
 
         Debug.DrawRay(_shootingPoint.position, _shootingPoint.forward * 2f, Color.green);
 
         if (_target != null)
         {
             Vector3 dir = _target.transform.position - _towerShootingHead.transform.position;
-            dir.y = 0f; // Remove vertical tilt
 
             if (dir.sqrMagnitude > 0.0001f)
             {
@@ -49,8 +48,8 @@ public class Shooter : MonoBehaviour
         }
     }
 
-    // Find the closest bot with given tag(s)
-    private void FindClosestTarget()
+    // Find bots with given tag(s)
+    private void FindTarget()
     {
         GameObject closestBot = null;
         float closestDistance = Mathf.Infinity;
