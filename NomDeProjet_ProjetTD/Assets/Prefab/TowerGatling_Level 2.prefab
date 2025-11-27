@@ -442,15 +442,17 @@ MonoBehaviour:
   Cannons:
   - ShootingPoint: {fileID: 8813730422479239183}
     ShootingHead: {fileID: 4070387977093087973}
-    _modelForwardOffset: {x: 90, y: 0, z: 0}
+    ModelForwardOffset: {x: 90, y: 0, z: 0}
     Target: {fileID: 0}
     IsLeftSide: 0
   - ShootingPoint: {fileID: 4387309805074232957}
     ShootingHead: {fileID: 4239139545851855498}
-    _modelForwardOffset: {x: 90, y: 0, z: 0}
+    ModelForwardOffset: {x: 90, y: 0, z: 0}
     Target: {fileID: 0}
     IsLeftSide: 1
-  ShootingDistance: 20
-  ShootingCooldown: 0.5
-  Tag1: Test_Ground
-  Tag2: Test_Air
+  _shootingDistance: 0
+  _shootingCooldown: 0
+  _damageAmount: 0
+  SideDeadZone: 0
+  Tag1: EnemyAir
+  Tag2: EnemyGround

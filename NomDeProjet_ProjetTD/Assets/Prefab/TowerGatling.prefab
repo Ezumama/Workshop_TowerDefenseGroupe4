@@ -305,8 +305,8 @@ MonoBehaviour:
   _modelForwardOffset: {x: 90, y: 0, z: 0}
   _damageAmount: 0
   _shootingCooldown: 0.2
-  _tag1: Enemy
-  _tag2: 
+  _tag1: EnemyAir
+  _tag2: EnemyGround
 --- !u!114 &-2289962580265201952
 MonoBehaviour:
   m_ObjectHideFlags: 0

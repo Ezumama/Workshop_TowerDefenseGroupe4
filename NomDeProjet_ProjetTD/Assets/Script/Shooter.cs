@@ -1,14 +1,15 @@
 using System.Collections;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class Shooter : MonoBehaviour
 {
     [Header("TowerSpecifications")]
     [SerializeField] private Transform _shootingPoint;
     [SerializeField] private float _shootingDistance;
-    [SerializeField] private GameObject _feedbackFXOut;
-    [SerializeField] private GameObject _feedbackFXHitEnemy;
+    [SerializeField] private VisualEffect _feedbackFXOut;
+    //[SerializeField] private ParticleSystem _feedbackFXHitEnemy;
     [SerializeField] private GameObject _towerShootingHead;
 
     // Making sure the tower canon is facing forward for LookAt
@@ -94,11 +95,11 @@ public class Shooter : MonoBehaviour
                 enemy.TakeDamage(_damageAmount);       
             }
 
-            //// Instantiate FX feedback at the end of canon / On the enemy
-            GameObject a = Instantiate(_feedbackFXOut, _shootingPoint.position, Quaternion.identity);
-            GameObject b = Instantiate(_feedbackFXHitEnemy, hit.point, Quaternion.identity);
-            Destroy(a, 1);
-            Destroy(b, 1);
+            // Instantiate FX feedback at the end of canon / On the enemy
+            VisualEffect newMuzzleFlash = Instantiate(_feedbackFXOut, _shootingPoint.position, Quaternion.identity);
+            //GameObject b = Instantiate(_feedbackFXHitEnemy, hit.point, Quaternion.identity);
+            Destroy(newMuzzleFlash.gameObject, 1);
+            //Destroy(b, 1);
         }
     }
 

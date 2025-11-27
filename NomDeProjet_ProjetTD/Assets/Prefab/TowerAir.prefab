@@ -298,8 +298,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shootingPoint: {fileID: 2527863746773033323}
   _shootingDistance: 0
-  _shootingFeedback: {fileID: 0}
-  _towerShootingHead: {fileID: 0}
+  _feedbackFXOut: {fileID: 0}
+  _feedbackFXHitEnemy: {fileID: 0}
+  _towerShootingHead: {fileID: 747889321319471831}
+  _modelForwardOffset: {x: 90, y: 0, z: 0}
+  _damageAmount: 0
   _shootingCooldown: 0
-  _tag1: 
+  _tag1: EnemyAir
   _tag2: 

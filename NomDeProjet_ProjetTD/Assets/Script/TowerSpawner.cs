@@ -60,6 +60,7 @@ public class TowerSpawner : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit) && hit.collider.gameObject.layer == LayerMask.NameToLayer("TowerSpawner"))
         {
+            Debug.Log("Pressed Tower Spawner");
             // OPEN THE UI MENU
         }
     }
