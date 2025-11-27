@@ -95,10 +95,10 @@ public class Shooter : MonoBehaviour
             }
 
             //// Instantiate FX feedback at the end of canon / On the enemy
-            //GameObject a = Instantiate(_feedbackFXOut, _shootingPoint.position, Quaternion.identity);
-            //GameObject b = Instantiate(_feedbackFXHitEnemy, hit.point, Quaternion.identity);
-            //Destroy(a, 1);
-            //Destroy(b, 1);
+            GameObject a = Instantiate(_feedbackFXOut, _shootingPoint.position, Quaternion.identity);
+            GameObject b = Instantiate(_feedbackFXHitEnemy, hit.point, Quaternion.identity);
+            Destroy(a, 1);
+            Destroy(b, 1);
         }
     }
 
