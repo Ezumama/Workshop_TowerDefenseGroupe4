@@ -304,8 +304,9 @@ MonoBehaviour:
   _towerShootingHead: {fileID: 4070387977093087973}
   _modelForwardOffset: {x: 90, y: 0, z: 0}
   _shootingCooldown: 0.2
-  _tag1: Test_Ground
-  _tag2: Test_Air
+  _damageAmount: 0
+  _tag1: Enemy
+  _tag2: 
 --- !u!114 &-2289962580265201952
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -321,4 +322,3 @@ MonoBehaviour:
   _towerLevel1: {fileID: 7941172316868332899}
   _towerLevel2: {fileID: 7941172316868332899, guid: 6efac18760be7d741947b1ecf546529b, type: 3}
   _upgraded: 0
-  _hasChangedPrefab: 0

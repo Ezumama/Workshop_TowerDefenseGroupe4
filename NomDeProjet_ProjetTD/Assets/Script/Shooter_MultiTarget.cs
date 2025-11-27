@@ -18,19 +18,20 @@ public class Shooter_MultiTarget : MonoBehaviour
     }
 
     [Header("Cannons")]
-    public Cannon[] Cannons;
+    [SerializeField] private Cannon[] Cannons;
 
     [Header("Tower Specs")]
-    public float ShootingDistance = 10f;
-    public float ShootingCooldown = 0.5f;
+    [SerializeField] private float _shootingDistance;
+    [SerializeField] private float _shootingCooldown;
+    [SerializeField] private float _damageAmount;
 
     [Header("Side Lock Settings")]
     [Tooltip("Prevents cannons from swapping targets when enemies get near the center.")]
-    public float SideDeadZone = 0.7f;
+    [SerializeField] private float SideDeadZone;
 
     [Header("Tags")]
-    public string Tag1;
-    public string Tag2;
+    [SerializeField] private string Tag1;
+    [SerializeField] private string Tag2;
 
     private void Start()
     {
@@ -62,7 +63,7 @@ public class Shooter_MultiTarget : MonoBehaviour
         {
             // Lose target if too far
             if (cannon.Target != null &&
-                Vector3.Distance(transform.position, cannon.Target.transform.position) > ShootingDistance)
+                Vector3.Distance(transform.position, cannon.Target.transform.position) > _shootingDistance)
             {
                 cannon.Target = null;
             }
@@ -127,9 +128,14 @@ public class Shooter_MultiTarget : MonoBehaviour
         RaycastHit hit;
         Vector3 forward = cannon.ShootingPoint.forward;
 
-        if (Physics.Raycast(cannon.ShootingPoint.position, forward, out hit, ShootingDistance))
+        if (Physics.Raycast(cannon.ShootingPoint.position, forward, out hit, _shootingDistance))
         {
             Debug.DrawRay(cannon.ShootingPoint.position, forward * hit.distance, Color.red, 0.2f);
+            Enemy enemy = hit.transform.GetComponent<Enemy>();
+            if (enemy != null)
+            {
+                enemy.TakeDamage(_damageAmount);
+            }
         }
     }
 
@@ -141,7 +147,7 @@ public class Shooter_MultiTarget : MonoBehaviour
             {
                 if (cannon.Target != null) Shoot(cannon);
             }
-            yield return new WaitForSeconds(ShootingCooldown);
+            yield return new WaitForSeconds(_shootingCooldown);
         }
     }
 }

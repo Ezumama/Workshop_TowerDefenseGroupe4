@@ -5,7 +5,6 @@ public class TowerUpgrade : MonoBehaviour
     [SerializeField] private GameObject _towerLevel1;
     [SerializeField] private GameObject _towerLevel2;
     [SerializeField] private bool _upgraded = false;
-    [SerializeField] private bool _hasChangedPrefab = false;
 
     private void Update()
     {

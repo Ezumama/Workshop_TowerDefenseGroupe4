@@ -15,7 +15,7 @@ public class TowerSpawner : MonoBehaviour
     private void Start()
     {
         // Get TowerChoiceUI script from UI Panel and assign Spawner to this tower spawner
-        _choiceUIScript = _towerChoicePanel.GetComponent<TowerChoiceUI>();
+        _choiceUIScript = _towerChoicePanel.GetComponent<TowerChoiceUI>();  
         _choiceUIScript.SetSpawner(this);
     }
 

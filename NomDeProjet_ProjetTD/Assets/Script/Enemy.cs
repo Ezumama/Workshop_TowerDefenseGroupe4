@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public float moveSpeed = 2f;          
-    public Transform targetPoint;          
+    [SerializeField] private float moveSpeed = 2f;
+    [SerializeField] private Transform targetPoint;
 
     private Health health;
 
@@ -41,7 +41,6 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(float amount)
     {
-        if (health != null)
             health.TakeDamage(amount);
     }
 }

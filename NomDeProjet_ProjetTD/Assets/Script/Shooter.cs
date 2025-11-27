@@ -15,7 +15,8 @@ public class Shooter : MonoBehaviour
     [Header("Face forward correction")]
     [SerializeField] private Vector3 _modelForwardOffset = new Vector3(90f, 0f, 0f);
 
-    [Header("Cooldown between shoots")]
+    [Header("Tower Specs")]
+    [SerializeField] private float _damageAmount;
     [SerializeField] private float _shootingCooldown;
 
     [Header("Tag(s) for targets")]
@@ -36,6 +37,7 @@ public class Shooter : MonoBehaviour
 
         Debug.DrawRay(_shootingPoint.position, _shootingPoint.forward * 2f, Color.green);
 
+        // LookAt
         if (_target != null)
         {
             Vector3 dir = _target.transform.position - _towerShootingHead.transform.position;
@@ -85,10 +87,18 @@ public class Shooter : MonoBehaviour
         if (Physics.Raycast(_shootingPoint.position, forward, out hit, _shootingDistance))
         {
             Debug.DrawRay(_shootingPoint.position, forward * hit.distance, Color.red, 0.2f);
+            
+            Enemy enemy = hit.transform.GetComponent<Enemy>();
+            if (enemy != null)
+            {
+                enemy.TakeDamage(_damageAmount);       
+            }
 
             //// Instantiate FX feedback at the end of canon / On the enemy
-            //Instantiate(_feedbackFXOut, _shootingPoint.position, Quaternion.identity);
-            //Instantiate(_feedbackFXHitEnemy, hit.point, Quaternion.identity);
+            //GameObject a = Instantiate(_feedbackFXOut, _shootingPoint.position, Quaternion.identity);
+            //GameObject b = Instantiate(_feedbackFXHitEnemy, hit.point, Quaternion.identity);
+            //Destroy(a, 1);
+            //Destroy(b, 1);
         }
     }
 
