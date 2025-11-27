@@ -12,11 +12,14 @@ public class TowerSpawner : MonoBehaviour
 
     private TowerChoiceUI _choiceUIScript;
 
+    private Camera _camera;
+
     private void Start()
     {
         // Get TowerChoiceUI script from UI Panel and assign Spawner to this tower spawner
-        _choiceUIScript = _towerChoicePanel.GetComponent<TowerChoiceUI>();  
-        _choiceUIScript.SetSpawner(this);
+        //_choiceUIScript = _towerChoicePanel.GetComponent<TowerChoiceUI>();  
+        //_choiceUIScript.SetSpawner(this);
+        _camera = Camera.main;
     }
 
     public void SpawnTower(int index)
@@ -41,4 +44,23 @@ public class TowerSpawner : MonoBehaviour
     //    SpawnTower(2);
     //    GameManager.Instance.LoseMoney(_airCost);
     //}
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            OnClick();
+        }
+    }
+
+    public void OnClick()
+    {
+        Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit) && hit.collider.gameObject.layer == LayerMask.NameToLayer("TowerSpawner"))
+        {
+            // OPEN THE UI MENU
+        }
+    }
 }
