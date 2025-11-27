@@ -6,15 +6,22 @@ public class WaveManager : MonoBehaviour
     public static WaveManager instance;
 
     [System.Serializable]
-    public class Wave
+    public class EnemySpawn
     {
         public GameObject enemyPrefab;
         public int count = 5;
         public float spawnInterval = 1f;
     }
 
+    [System.Serializable]
+    public class Wave
+    {
+        public EnemySpawn[] enemies;
+    }
+    
     public Wave[] waves;
     public Transform[] spawnPoints;
+    public Transform[] airSpawnPoint;
     public float timeBetweenWaves = 2f;
 
     private int currentWave = 0;
@@ -23,7 +30,7 @@ public class WaveManager : MonoBehaviour
     void Awake()
     {
         if (instance == null) instance = this;
-        else Destroy(gameObject);
+        //else Destroy(gameObject);
     }
 
     void Start()
@@ -34,13 +41,13 @@ public class WaveManager : MonoBehaviour
     public void RegisterEnemy()
     {
         aliveEnemies++;
-        Debug.Log("Enemy spawned. Alive: " + aliveEnemies);
+        Debug.Log("Spawn → Alive: " + aliveEnemies);
     }
 
     public void UnregisterEnemy()
     {
         aliveEnemies--;
-        Debug.Log("Enemy died. Alive: " + aliveEnemies);
+        Debug.Log("Death → Alive: " + aliveEnemies);
     }
 
     IEnumerator StartWaves()
@@ -49,8 +56,9 @@ public class WaveManager : MonoBehaviour
         {
             yield return StartCoroutine(SpawnWave(waves[currentWave]));
 
-            // Attendre que tous les ennemis meurent avant la prochaine vague
-            yield return new WaitUntil(() => aliveEnemies <= 0);
+            // Attendre la fin des ennemis
+
+            //yield return new WaitUntil(() => aliveEnemies <= 0);
 
             currentWave++;
             yield return new WaitForSeconds(timeBetweenWaves);
@@ -61,12 +69,34 @@ public class WaveManager : MonoBehaviour
 
     IEnumerator SpawnWave(Wave wave)
     {
-        for (int i = 0; i < wave.count; i++)
+        foreach (var group in wave.enemies)
         {
-            Transform spawn = spawnPoints[Random.Range(0, spawnPoints.Length)];
-            Instantiate(wave.enemyPrefab, spawn.position, spawn.rotation);
-            yield return new WaitForSeconds(wave.spawnInterval);
+            for (int i = 0; i < group.count; i++)
+            {
+                // On regarde si c'est un ennemi volant
+                bool isFlying = group.enemyPrefab.GetComponent<EnemyFly>() != null;
+
+                Transform spawn;
+
+                if (isFlying)
+                {
+                    // Spawn dans les AirSpawnPoint
+                    spawn = airSpawnPoint[Random.Range(0, airSpawnPoint.Length)];
+                }
+                else
+                {
+                    // Spawn dans les SpawnPoint classiques
+                    spawn = spawnPoints[Random.Range(0, spawnPoints.Length)];
+                }
+
+                Instantiate(group.enemyPrefab, spawn.position, spawn.rotation);
+                RegisterEnemy();
+
+                yield return new WaitForSeconds(group.spawnInterval);
+            }
         }
     }
+
 }
+
 
