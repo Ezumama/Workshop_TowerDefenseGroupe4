@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2134515421559630769}
   - component: {fileID: 4240147549427368634}
   - component: {fileID: 8734564337450852680}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -120,7 +120,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2527863746773033323}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ShootingPoint
   m_TagString: Untagged
   m_Icon: {fileID: -5938655980376293919, guid: 0000000000000000d000000000000000, type: 0}
@@ -154,7 +154,7 @@ GameObject:
   - component: {fileID: 8811901280313545578}
   - component: {fileID: 1398786983486985402}
   - component: {fileID: 1766428380286591097}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -260,7 +260,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7893318185658762925}
   - component: {fileID: 5341004506988188206}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TowerAir
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -299,7 +299,6 @@ MonoBehaviour:
   _shootingPoint: {fileID: 2527863746773033323}
   _shootingDistance: 0
   _feedbackFXOut: {fileID: 0}
-  _feedbackFXHitEnemy: {fileID: 0}
   _towerShootingHead: {fileID: 747889321319471831}
   _modelForwardOffset: {x: 90, y: 0, z: 0}
   _damageAmount: 0

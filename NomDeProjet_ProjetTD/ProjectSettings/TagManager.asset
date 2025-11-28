@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - EnemyGround
+  - EnemyAir
   layers:
   - Default
   - TransparentFX
@@ -14,7 +15,7 @@ TagManager:
   - Water
   - UI
   - TowerSpawner
-  - 
+  - Enemy
   - 
   - 
   - 

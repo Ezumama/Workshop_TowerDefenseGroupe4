@@ -1,2 +1,15 @@
 fileFormatVersion: 2
 guid: 25bc2246f30e2bf41846867890608d05
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - _towerLevel1: {fileID: 7941172316868332899, guid: af1c0c7f3ddacc54491ed2ab7b368f92, type: 3}
+  - _towerLevel2: {fileID: 7941172316868332899, guid: 6efac18760be7d741947b1ecf546529b, type: 3}
+  - _towerLevel3: {instanceID: 0}
+  - _towerChoicePanelPrefab: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

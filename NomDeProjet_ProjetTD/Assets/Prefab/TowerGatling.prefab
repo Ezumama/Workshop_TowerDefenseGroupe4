@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1245076411739594872}
   - component: {fileID: 1410532834281893703}
   - component: {fileID: 1818217416606113636}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -117,7 +117,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8813730422479239183}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ShootingPoint
   m_TagString: Untagged
   m_Icon: {fileID: -5938655980376293919, guid: 0000000000000000d000000000000000, type: 0}
@@ -151,7 +151,7 @@ GameObject:
   - component: {fileID: 7582561802225368224}
   - component: {fileID: 2827017393213080432}
   - component: {fileID: 8397389600531338452}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Shoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -261,7 +261,7 @@ GameObject:
   - component: {fileID: 8438746311166357411}
   - component: {fileID: -8788080621794032040}
   - component: {fileID: -2289962580265201952}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TowerGatling
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -320,4 +320,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _towerLevel1: {fileID: 7941172316868332899}
   _towerLevel2: {fileID: 7941172316868332899, guid: 6efac18760be7d741947b1ecf546529b, type: 3}
+  _towerLevel3: {fileID: 0}
+  _towerChoicePanelPrefab: {fileID: 4820201920367666653, guid: 11da8eb951b677d43b91b0dfdd811592, type: 3}
   _upgraded: 0
+  _blueprintCost: 0

@@ -61,11 +61,14 @@ public class TowerSpawner : MonoBehaviour
         Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
+        int mask = ~LayerMask.GetMask("Default");
+
         // What did we click?
-        if (!Physics.Raycast(ray, out hit))
+        if (!Physics.Raycast(ray, out hit, 100, mask))
         {
             return;
         }
+
 
         // Did we click this spawner?
         TowerSpawner spawnerHit = hit.collider.GetComponentInParent<TowerSpawner>();

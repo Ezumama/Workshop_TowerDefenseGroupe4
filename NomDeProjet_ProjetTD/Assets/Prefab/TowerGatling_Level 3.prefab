@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8362405992219934923}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ShootingPoint
   m_TagString: Untagged
   m_Icon: {fileID: -5938655980376293919, guid: 0000000000000000d000000000000000, type: 0}
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 1245076411739594872}
   - component: {fileID: 1410532834281893703}
   - component: {fileID: 1818217416606113636}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -148,7 +148,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8813730422479239183}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ShootingPoint
   m_TagString: Untagged
   m_Icon: {fileID: -5938655980376293919, guid: 0000000000000000d000000000000000, type: 0}
@@ -179,7 +179,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4387309805074232957}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ShootingPoint
   m_TagString: Untagged
   m_Icon: {fileID: -5938655980376293919, guid: 0000000000000000d000000000000000, type: 0}
@@ -213,7 +213,7 @@ GameObject:
   - component: {fileID: 303419798374886665}
   - component: {fileID: 5192803617764258269}
   - component: {fileID: 1880324515835296640}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Shoot_Middle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -324,7 +324,7 @@ GameObject:
   - component: {fileID: 7582561802225368224}
   - component: {fileID: 2827017393213080432}
   - component: {fileID: 8397389600531338452}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Shoot_Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -435,7 +435,7 @@ GameObject:
   - component: {fileID: 1185620982886049622}
   - component: {fileID: 5873662876659585363}
   - component: {fileID: 2023432113745837706}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Shoot_Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -543,7 +543,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8438746311166357411}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TowerGatling_Level 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}

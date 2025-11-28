@@ -159,7 +159,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3622049908311787987}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -170,8 +170,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 608, y: 6}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 304, y: 3}
+  m_SizeDelta: {x: 608, y: -6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4784050056639820323
 CanvasRenderer:
@@ -248,7 +248,7 @@ GameObject:
   - component: {fileID: 2307106950694851612}
   - component: {fileID: 4648893870702061719}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: TowerChoice_Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -262,7 +262,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4820201920367666653}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -5.66}
+  m_LocalPosition: {x: 0, y: 0, z: 5.55}
   m_LocalScale: {x: 0.02, y: 0.02, z: 0.02}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -271,7 +271,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -9.579987, y: 2.869995}
+  m_AnchoredPosition: {x: -8.559998, y: 3.130005}
   m_SizeDelta: {x: 1024, y: 512}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &7259088752407753413
@@ -402,7 +402,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 5c309be3db58750468d70a383eab686c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5f57035beab6de5479a6121fa3d534e0, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
