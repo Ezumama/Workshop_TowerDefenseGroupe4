@@ -27,8 +27,11 @@ public class EnemyNav : MonoBehaviour
             return;
         }
 
-        // Récupère tous les WaypointNode de la scène
-        var nodes = GameObject.FindObjectsOfType<WaypointNode>();
+        // Replace this line:
+        // var nodes = GameObject.FindObjectsOfType<WaypointNode>();
+
+        // With this line:
+        var nodes = GameObject.FindObjectsByType<WaypointNode>(FindObjectsSortMode.None);
         if (nodes == null || nodes.Length == 0)
         {
             Debug.LogError("[EnemyNav] Aucun WaypointNode trouvé dans la scène !");
