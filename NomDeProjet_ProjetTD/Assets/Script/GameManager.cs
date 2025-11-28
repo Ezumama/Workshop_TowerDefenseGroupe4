@@ -15,10 +15,13 @@ public class GameManager : MonoBehaviour
     [Header("Ressources")]
     public int CurrentMoneyAmount;
     public int BaseMoneyAmount;
+    public int CurrentBlueprintAmount;
+    public int BaseBlueprintAmount;
 
     private void Start()
     {
         CurrentMoneyAmount = BaseMoneyAmount;
+        CurrentBlueprintAmount = BaseBlueprintAmount;
     }
 
     public void GainMoney(int amount)
@@ -29,5 +32,15 @@ public class GameManager : MonoBehaviour
     public void LoseMoney(int amount)
     {
         CurrentMoneyAmount -= amount;
+    }
+
+    public void GainBlueprint(int amount)
+    {
+        CurrentBlueprintAmount += amount;
+    }
+
+    public void LoseBlueprint(int amount)
+    {
+        CurrentBlueprintAmount -= amount;
     }
 }

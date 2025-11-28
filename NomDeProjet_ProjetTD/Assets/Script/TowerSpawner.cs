@@ -11,7 +11,6 @@ public class TowerSpawner : MonoBehaviour
     [SerializeField] private int _airCost;
 
     private TowerChoiceUI _choiceUIScript;
-
     private Camera _camera;
 
     private void Start()

@@ -4,6 +4,7 @@ public class TowerUpgrade : MonoBehaviour
 {
     [SerializeField] private GameObject _towerLevel1;
     [SerializeField] private GameObject _towerLevel2;
+    [SerializeField] private GameObject _towerLevel3;
     [SerializeField] private bool _upgraded = false;
 
     private void Update()
@@ -12,6 +13,7 @@ public class TowerUpgrade : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.T))
         {
             Replace();
+            GameManager.Instance.LoseBlueprint(1);
         }
 
         //// UI BUTTON VERSION
@@ -31,6 +33,7 @@ public class TowerUpgrade : MonoBehaviour
                 // Destroy level 1 prefab, and spawn level 2 (upgrade)
                 Destroy(_towerLevel1);
                 _towerLevel1 = Instantiate(_towerLevel2, pos, rot);
+                _upgraded = true;
             }
         }
     }
