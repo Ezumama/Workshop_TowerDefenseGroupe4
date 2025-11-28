@@ -1,9 +1,9 @@
-using UnityEngine;
+    using UnityEngine;
 
 public class TowerSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject[] _towers;
-    [SerializeField] private GameObject _towerChoicePanel;
+    [SerializeField] private GameObject towerChoicePanelPrefab;
 
     [Header("Tower Cost")]
     [SerializeField] private int _gatlingCost;
@@ -11,14 +11,17 @@ public class TowerSpawner : MonoBehaviour
     [SerializeField] private int _airCost;
 
     private TowerChoiceUI _choiceUIScript;
+    private GameObject _towerChoicePanel;
     private Camera _camera;
 
     private void Start()
     {
         // Get TowerChoiceUI script from UI Panel and assign Spawner to this tower spawner
-        _choiceUIScript = _towerChoicePanel.GetComponent<TowerChoiceUI>();  
-        _choiceUIScript.SetSpawner(this);
+        _towerChoicePanel = Instantiate(towerChoicePanelPrefab, transform);
         _towerChoicePanel.SetActive(false);
+
+        _choiceUIScript = _towerChoicePanel.GetComponentInChildren<TowerChoiceUI>();
+        _choiceUIScript.SetSpawner(this);
         _camera = Camera.main;
     }
 
@@ -58,10 +61,32 @@ public class TowerSpawner : MonoBehaviour
         Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit) && hit.collider.gameObject.layer == LayerMask.NameToLayer("TowerSpawner"))
+        // What did we click?
+        if (!Physics.Raycast(ray, out hit))
         {
-            Debug.Log("Pressed Tower Spawner");
-            _towerChoicePanel.SetActive(true);
+            // Hide panel when clicking on empty ground
+            if (_towerChoicePanel.activeSelf)
+            {
+                _towerChoicePanel.SetActive(false);
+            }
+            return;
         }
+
+        // Did we click this spawner?
+        TowerSpawner spawnerHit = hit.collider.GetComponentInParent<TowerSpawner>();
+
+        // If we clicked something else, then close panel
+        if (spawnerHit != this)
+        {
+            if (_towerChoicePanel.activeSelf)
+            {
+                _towerChoicePanel.SetActive(false);
+            }
+
+            return;
+        }
+
+        // If we clicked THIS spawner, then open panel
+        _towerChoicePanel.SetActive(true);
     }
 }
