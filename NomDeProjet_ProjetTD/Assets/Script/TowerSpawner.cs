@@ -64,11 +64,6 @@ public class TowerSpawner : MonoBehaviour
         // What did we click?
         if (!Physics.Raycast(ray, out hit))
         {
-            // Hide panel when clicking on empty ground
-            if (_towerChoicePanel.activeSelf)
-            {
-                _towerChoicePanel.SetActive(false);
-            }
             return;
         }
 

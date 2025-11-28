@@ -11,6 +11,7 @@ public class TowerChoiceUI : MonoBehaviour
 
     public void GatlingClicked()
     {
+        Debug.Log("feur.");
         _towerSpawnerScript.GatlingChoice();
     }
 
