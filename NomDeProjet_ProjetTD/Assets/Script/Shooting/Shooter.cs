@@ -60,6 +60,7 @@ public class Shooter : MonoBehaviour
             Vector3 localDirection = _towerBody.transform.InverseTransformPoint(_target.transform.position);
 
             float angleX = Mathf.Atan2(localDirection.y, localDirection.z) * Mathf.Rad2Deg;
+            angleX = -angleX;
             _towerShootingHead.transform.localRotation = Quaternion.Euler(angleX, 0f, 0f);
         }
     }
