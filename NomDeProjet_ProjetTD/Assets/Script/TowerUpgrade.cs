@@ -6,10 +6,12 @@ public class TowerUpgrade : MonoBehaviour
     [SerializeField] private GameObject _towerLevel2;
     [SerializeField] private GameObject _towerLevel3;
     [SerializeField] private GameObject _towerChoicePanelPrefab;
-    [SerializeField] private bool _upgraded = false;
+    [SerializeField] private bool _upgradedToLevel2 = false;
+    [SerializeField] private bool _upgradedToLevel3 = false;
 
     [Header("Upgrade Cost")]
-    [SerializeField] private int _blueprintCost;
+    [SerializeField] private int _blueprintCostLvl2;
+    [SerializeField] private int _blueprintCostLvl3;
 
     private GameObject _towerUpgradePanel;
     private TowerUpgradeUI _towerUpgradeUIScript;
@@ -27,12 +29,6 @@ public class TowerUpgrade : MonoBehaviour
 
     private void Update()
     {
-        //// Debug : press T to upgrade tower. LATER ON : UI
-        //if (Input.GetKeyDown(KeyCode.T))
-        //{
-        //    Replace();
-        //    GameManager.Instance.LoseBlueprint(1);
-        //}
 
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
@@ -43,23 +39,37 @@ public class TowerUpgrade : MonoBehaviour
         // UI BUTTON VERSION
     public void UpgradeTowerLevel2()
     {
-        Replace();
-        Debug.Log("tuesuncaca");
-        GameManager.Instance.LoseBlueprint(_blueprintCost);
+        ReplaceLvl2();
+        GameManager.Instance.LoseBlueprint(_blueprintCostLvl2);
     }
 
-    void Replace()
+    void ReplaceLvl2()
     {
         // Saving Level 1 position and rotation
         Vector3 pos = _towerLevel1.transform.position;
         Quaternion rot = _towerLevel1.transform.rotation;
 
-        if (_upgraded == false)
+        if (_upgradedToLevel2 == false)
         {
             // Destroy level 1 prefab, and spawn level 2 (upgrade)
             Destroy(_towerLevel1);
             _towerLevel1 = Instantiate(_towerLevel2, pos, rot);
-            _upgraded = true;
+            _upgradedToLevel2 = true;
+        }
+    }
+
+    void ReplaceLvl3()
+    {
+        // Saving Level 2 position and rotation
+        Vector3 pos = _towerLevel2.transform.position;
+        Quaternion rot = _towerLevel2.transform.rotation;
+
+        if (_upgradedToLevel3 == false)
+        {
+            // Destroy level 2 prefab, and spawn level 3 (upgrade)
+            Destroy(_towerLevel2);
+            _towerLevel2 = Instantiate(_towerLevel3, pos, rot);
+            _upgradedToLevel3 = true;
         }
     }
 
