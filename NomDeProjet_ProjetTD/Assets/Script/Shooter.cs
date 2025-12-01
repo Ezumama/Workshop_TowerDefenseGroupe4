@@ -9,12 +9,11 @@ public class Shooter : MonoBehaviour
     [SerializeField] private Transform _shootingPoint;
     [SerializeField] private float _shootingDistance;
     [SerializeField] private GameObject _feedbackFXOut;
-    //[SerializeField] private ParticleSystem _feedbackFXHitEnemy;
     [SerializeField] private GameObject _towerShootingHead;
 
-    // Making sure the tower canon is facing forward for LookAt
-    [Header("Face forward correction")]
-    [SerializeField] private Vector3 _modelForwardOffset = new Vector3(90f, 0f, 0f);
+    //// Making sure the tower canon is facing forward for LookAt
+    //[Header("Face forward correction")]
+    //[SerializeField] private Vector3 _modelForwardOffset = new Vector3(90f, 0f, 0f);
 
     [Header("Tower Specs")]
     [SerializeField] private float _damageAmount;
@@ -36,18 +35,12 @@ public class Shooter : MonoBehaviour
     {
         FindTarget();
 
-        Debug.DrawRay(_shootingPoint.position, _shootingPoint.forward * 2f, Color.green);
+        Debug.DrawRay(_shootingPoint.position, _shootingPoint.forward * 2f, Color.red);
 
-        // LookAt
+        
         if (_target != null)
         {
-            Vector3 dir = _target.transform.position - _towerShootingHead.transform.position;
-
-            if (dir.sqrMagnitude > 0.0001f)
-            {
-                Quaternion look = Quaternion.LookRotation(dir.normalized);
-                _towerShootingHead.transform.rotation = look * Quaternion.Euler(_modelForwardOffset);
-            }
+            _towerShootingHead.transform.LookAt(_target.transform.position);
         }
     }
 
@@ -95,11 +88,9 @@ public class Shooter : MonoBehaviour
                 enemy.TakeDamage(_damageAmount);       
             }
 
-            // Instantiate FX feedback at the end of canon / On the enemy
+            // Instantiate FX feedback at the end of canon
             GameObject newMuzzleFlash = Instantiate(_feedbackFXOut, _shootingPoint.position, _shootingPoint.rotation);
-            //GameObject b = Instantiate(_feedbackFXHitEnemy, hit.point, Quaternion.identity);
             Destroy(newMuzzleFlash, 1);
-            //Destroy(b, 1);
         }
     }
 

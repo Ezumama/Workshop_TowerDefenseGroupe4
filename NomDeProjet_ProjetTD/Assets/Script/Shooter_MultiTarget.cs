@@ -25,6 +25,9 @@ public class Shooter_MultiTarget : MonoBehaviour
     [SerializeField] private float _shootingCooldown;
     [SerializeField] private float _damageAmount;
 
+    [Header("Feedback FX")]
+    [SerializeField] private GameObject _feedbackFXOut;
+
     [Header("Side Lock Settings")]
     [Tooltip("Prevents cannons from swapping targets when enemies get near the center.")]
     [SerializeField] private float SideDeadZone;
@@ -121,7 +124,7 @@ public class Shooter_MultiTarget : MonoBehaviour
         }
     }
 
-    private void Shoot(Cannon cannon)
+    private void Shoot(Cannon cannon)   
     {
         if (cannon.Target == null || cannon.ShootingPoint == null) return;
 
@@ -136,6 +139,11 @@ public class Shooter_MultiTarget : MonoBehaviour
             {
                 enemy.TakeDamage(_damageAmount);
             }
+
+            // Instantiate FX feedback at the end of canon / On the enemy
+            GameObject newMuzzleFlash = Instantiate(_feedbackFXOut, cannon.ShootingPoint.position, cannon.ShootingPoint.rotation);
+            //GameObject b = Instantiate(_feedbackFXHitEnemy, hit.point, Quaternion.identity);
+            Destroy(newMuzzleFlash, 1);
         }
     }
 
