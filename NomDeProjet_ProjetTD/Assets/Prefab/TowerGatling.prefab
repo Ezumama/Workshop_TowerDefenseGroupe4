@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1133837285026874227
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1694526799587505355}
+  m_Layer: 0
+  m_Name: Body
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1694526799587505355
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1133837285026874227}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8438746311166357411}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7941172316868332899
 GameObject:
   m_ObjectHideFlags: 0
@@ -33,6 +64,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4734531120928388451}
+  - {fileID: 1694526799587505355}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &-8788080621794032040
@@ -51,8 +83,10 @@ MonoBehaviour:
   _shootingDistance: 30
   _feedbackFXOut: {fileID: 1376696033527059834, guid: 88108968e5b7c5d4b8820ffca0d86646, type: 3}
   _towerShootingHead: {fileID: 6866022131903933936}
+  _towerBody: {fileID: 1133837285026874227}
   _damageAmount: 0
   _shootingCooldown: 0.2
+  _isBigBetty: 0
   _tag1: EnemyAir
   _tag2: EnemyGround
 --- !u!114 &-2289962580265201952
@@ -69,10 +103,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _towerLevel1: {fileID: 7941172316868332899}
   _towerLevel2: {fileID: 7941172316868332899, guid: 6efac18760be7d741947b1ecf546529b, type: 3}
-  _towerLevel3: {fileID: 0}
-  _towerChoicePanelPrefab: {fileID: 4820201920367666653, guid: 11da8eb951b677d43b91b0dfdd811592, type: 3}
-  _upgraded: 0
-  _blueprintCost: 0
+  _towerLevel3: {fileID: 7941172316868332899, guid: f5f4f46c81828bd4493ef9f758a3cd2d, type: 3}
+  _towerChoicePanelPrefabLvl2: {fileID: 4820201920367666653, guid: 11da8eb951b677d43b91b0dfdd811592, type: 3}
+  _towerChoicePanelPrefabLvl3: {fileID: 4820201920367666653, guid: 8d57706b2918b2b44bffbdbdc04d93d7, type: 3}
+  _upgradedToLevel2: 0
+  _upgradedToLevel3: 0
+  _blueprintCostLvl2: 0
+  _blueprintCostLvl3: 0
 --- !u!65 &2300425805478187301
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -248,7 +248,7 @@ GameObject:
   - component: {fileID: 2307106950694851612}
   - component: {fileID: 4648893870702061719}
   m_Layer: 5
-  m_Name: TowerUpgrade_Canvas
+  m_Name: TowerUpgradeLvl2_Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -319,7 +319,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &4648893870702061719
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -5,7 +5,8 @@ public class TowerUpgrade : MonoBehaviour
     [SerializeField] private GameObject _towerLevel1;
     [SerializeField] private GameObject _towerLevel2;
     [SerializeField] private GameObject _towerLevel3;
-    [SerializeField] private GameObject _towerChoicePanelPrefab;
+    [SerializeField] private GameObject _towerChoicePanelPrefabLvl2;
+    [SerializeField] private GameObject _towerChoicePanelPrefabLvl3;
     [SerializeField] private bool _upgradedToLevel2 = false;
     [SerializeField] private bool _upgradedToLevel3 = false;
 
@@ -13,16 +14,17 @@ public class TowerUpgrade : MonoBehaviour
     [SerializeField] private int _blueprintCostLvl2;
     [SerializeField] private int _blueprintCostLvl3;
 
-    private GameObject _towerUpgradePanel;
+    private GameObject _towerUpgradePanelLvl2;
+    private GameObject _towerUpgradePanelLvl3;
     private TowerUpgradeUI _towerUpgradeUIScript;
     private Camera _camera;
 
     private void Start()
     {
-        _towerUpgradePanel = Instantiate(_towerChoicePanelPrefab, transform);
-        _towerUpgradePanel.SetActive(false);
+        _towerUpgradePanelLvl2 = Instantiate(_towerChoicePanelPrefabLvl2, transform);
+        _towerUpgradePanelLvl2.SetActive(false);
 
-        _towerUpgradeUIScript = _towerUpgradePanel.GetComponentInChildren<TowerUpgradeUI>();
+        _towerUpgradeUIScript = _towerUpgradePanelLvl2.GetComponentInChildren<TowerUpgradeUI>();
         _towerUpgradeUIScript.SetUpgrade(this);
         _camera = Camera.main;
     }
@@ -69,6 +71,7 @@ public class TowerUpgrade : MonoBehaviour
             // Destroy level 2 prefab, and spawn level 3 (upgrade)
             Destroy(_towerLevel2);
             _towerLevel2 = Instantiate(_towerLevel3, pos, rot);
+            _upgradedToLevel2 = false;
             _upgradedToLevel3 = true;
         }
     }
@@ -92,16 +95,28 @@ public class TowerUpgrade : MonoBehaviour
         // If we clicked something else, then close panel
         if (towerHit != this)
         {
-            if (_towerUpgradePanel.activeSelf)
+            if (_towerUpgradePanelLvl2.activeSelf)
             {
-                _towerUpgradePanel.SetActive(false);
+                _towerUpgradePanelLvl2.SetActive(false);
+            }
+
+            if (_towerUpgradePanelLvl3.activeSelf)
+            {
+                _towerUpgradePanelLvl3.SetActive(false);
             }
 
             return;
         }
 
-        // If we clicked THIS tower, then open panel
-        _towerUpgradePanel.SetActive(true);
+        // If we clicked THIS tower, then check what level it is at
+        if (_upgradedToLevel2 == false)
+        {
+            _towerUpgradePanelLvl2.SetActive(true);
+        }
+        else if (_upgradedToLevel2 == true && _upgradedToLevel3 == false)
+        {
+            _towerUpgradePanelLvl3.SetActive(true);
+        }
     }
 }
 
