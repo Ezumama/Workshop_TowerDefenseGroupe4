@@ -87,6 +87,7 @@ MonoBehaviour:
   _damageAmount: 0
   _shootingCooldown: 0.2
   _isBigBetty: 0
+  _rotationSpeed: 180
   _tag1: EnemyAir
   _tag2: EnemyGround
 --- !u!114 &-2289962580265201952

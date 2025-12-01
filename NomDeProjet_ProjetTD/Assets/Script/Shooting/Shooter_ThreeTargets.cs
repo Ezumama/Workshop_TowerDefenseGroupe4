@@ -23,6 +23,7 @@ public class Shooter_ThreeTargets : MonoBehaviour
     [SerializeField] private float _shootingDistance;
     [SerializeField] private float _shootingCooldown;
     [SerializeField] private float _damageAmount;
+    [SerializeField] private float _rotationSpeed = 180f; // Speed for smooth rotation
 
     [Header("FX")]
     [SerializeField] private GameObject _feedbackFXOut;
@@ -85,8 +86,8 @@ public class Shooter_ThreeTargets : MonoBehaviour
             if (dir.sqrMagnitude > 0.01f)
             {
                 Quaternion look = Quaternion.LookRotation(dir);
-                cannon.ShootingHead.transform.rotation =
-                    look * Quaternion.Euler(cannon.ModelForwardOffset);
+                Quaternion targetRotation = look * Quaternion.Euler(cannon.ModelForwardOffset);
+                cannon.ShootingHead.transform.rotation = Quaternion.RotateTowards(cannon.ShootingHead.transform.rotation, targetRotation, _rotationSpeed * Time.deltaTime);
             }
         }
     }

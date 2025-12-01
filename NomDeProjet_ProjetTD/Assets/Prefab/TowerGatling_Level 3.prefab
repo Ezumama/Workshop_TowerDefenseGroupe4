@@ -83,6 +83,7 @@ MonoBehaviour:
   _shootingDistance: 20
   _shootingCooldown: 0.2
   _damageAmount: 0
+  _rotationSpeed: 180
   _feedbackFXOut: {fileID: 1376696033527059834, guid: 88108968e5b7c5d4b8820ffca0d86646, type: 3}
   _targetTag1: EnemyAir
   _targetTag2: EnemyGround

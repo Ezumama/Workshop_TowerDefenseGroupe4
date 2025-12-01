@@ -20,6 +20,7 @@ public class Shooter : MonoBehaviour
     [SerializeField] private float _damageAmount;
     [SerializeField] private float _shootingCooldown;
     [SerializeField] private bool _isBigBetty;
+    [SerializeField] private float _rotationSpeed = 180f; // Speed for smooth rotation
 
     [Header("Tag(s) for targets")]
     [SerializeField] private string _tag1;
@@ -42,7 +43,8 @@ public class Shooter : MonoBehaviour
         
         if (_target != null && _isBigBetty == false)
         {
-            _towerShootingHead.transform.LookAt(_target.transform.position);
+            Quaternion targetRotation = Quaternion.LookRotation(_target.transform.position - _towerShootingHead.transform.position);
+            _towerShootingHead.transform.rotation = Quaternion.RotateTowards(_towerShootingHead.transform.rotation, targetRotation, _rotationSpeed * Time.deltaTime);
         }
 
         else if (_target != null && _isBigBetty == true)
@@ -53,7 +55,8 @@ public class Shooter : MonoBehaviour
 
             if (directionToTarget != Vector3.zero)
             {
-                _towerBody.transform.rotation = Quaternion.LookRotation(directionToTarget);
+                Quaternion targetBodyRotation = Quaternion.LookRotation(directionToTarget);
+                _towerBody.transform.rotation = Quaternion.RotateTowards(_towerBody.transform.rotation, targetBodyRotation, _rotationSpeed * Time.deltaTime);
             }
 
             // Cannon looking up and down
@@ -61,7 +64,8 @@ public class Shooter : MonoBehaviour
 
             float angleX = Mathf.Atan2(localDirection.y, localDirection.z) * Mathf.Rad2Deg;
             angleX = -angleX;
-            _towerShootingHead.transform.localRotation = Quaternion.Euler(angleX, 0f, 0f);
+            Quaternion targetHeadRotation = Quaternion.Euler(angleX, 0f, 0f);
+            _towerShootingHead.transform.localRotation = Quaternion.RotateTowards(_towerShootingHead.transform.localRotation, targetHeadRotation, _rotationSpeed * Time.deltaTime);
         }
     }
 
