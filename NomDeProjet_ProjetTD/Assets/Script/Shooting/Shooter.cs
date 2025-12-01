@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Linq;
 using UnityEngine;
@@ -5,12 +6,12 @@ using UnityEngine.VFX;
 
 public class Shooter : MonoBehaviour
 {
-    [Header("TowerSpecifications")]
+    [Header("Tower Parts")]
     [SerializeField] private Transform _shootingPoint;
     [SerializeField] private float _shootingDistance;
     [SerializeField] private GameObject _feedbackFXOut;
     [SerializeField] private GameObject _towerShootingHead;
-
+    [SerializeField] private GameObject _towerBody;
     //// Making sure the tower canon is facing forward for LookAt
     //[Header("Face forward correction")]
     //[SerializeField] private Vector3 _modelForwardOffset = new Vector3(90f, 0f, 0f);
@@ -18,6 +19,7 @@ public class Shooter : MonoBehaviour
     [Header("Tower Specs")]
     [SerializeField] private float _damageAmount;
     [SerializeField] private float _shootingCooldown;
+    [SerializeField] private bool _isBigBetty;
 
     [Header("Tag(s) for targets")]
     [SerializeField] private string _tag1;
@@ -38,9 +40,27 @@ public class Shooter : MonoBehaviour
         Debug.DrawRay(_shootingPoint.position, _shootingPoint.forward * 2f, Color.red);
 
         
-        if (_target != null)
+        if (_target != null && _isBigBetty == false)
         {
             _towerShootingHead.transform.LookAt(_target.transform.position);
+        }
+
+        else if (_target != null && _isBigBetty == true)
+        {
+            // Body rotating left and right
+            Vector3 directionToTarget = _target.transform.position - _towerBody.transform.position;
+            directionToTarget.y = 0;
+
+            if (directionToTarget != Vector3.zero)
+            {
+                _towerBody.transform.rotation = Quaternion.LookRotation(directionToTarget);
+            }
+
+            // Cannon looking up and down
+            Vector3 localDirection = _towerBody.transform.InverseTransformPoint(_target.transform.position);
+
+            float angleX = Mathf.Atan2(localDirection.y, localDirection.z) * Mathf.Rad2Deg;
+            _towerShootingHead.transform.localRotation = Quaternion.Euler(angleX, 0f, 0f);
         }
     }
 
