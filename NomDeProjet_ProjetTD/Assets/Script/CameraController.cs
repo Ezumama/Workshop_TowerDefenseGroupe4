@@ -9,7 +9,7 @@ public class CameraController : MonoBehaviour
     [Range(0f, 360f)] public float rotationY = 45f;
 
     [Header("Panning (drag)")]
-    public int mouseButtonToDrag = 0;
+    public int mouseButtonToDrag = 1;
     public float dragSpeed = 1f;
     public float dragSmoothTime = 0.08f;
     public bool invertDrag = false;

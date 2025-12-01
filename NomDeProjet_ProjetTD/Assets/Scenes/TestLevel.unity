@@ -799,7 +799,7 @@ MonoBehaviour:
   usePresetAngle: 1
   tilt: 50
   rotationY: 45
-  mouseButtonToDrag: 0
+  mouseButtonToDrag: 1
   dragSpeed: 5
   dragSmoothTime: 0.08
   invertDrag: 0
