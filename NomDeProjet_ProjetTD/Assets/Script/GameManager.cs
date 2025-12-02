@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class GameManager : MonoBehaviour
 {
@@ -15,32 +16,64 @@ public class GameManager : MonoBehaviour
     [Header("Ressources")]
     public int CurrentMoneyAmount;
     public int BaseMoneyAmount;
-    public int CurrentBlueprintAmount;
-    public int BaseBlueprintAmount;
+    public int CurrentRedBlueprintAmount;
+    public int CurrentYellowBlueprintAmount;
+    public int CurrentGreenBlueprintAmount;
+    public int BaseRedBlueprintAmount;
+    public int BaseYellowBlueprintAmount;
+    public int BaseGreenBlueprintAmount;
 
     private void Start()
     {
         CurrentMoneyAmount = BaseMoneyAmount;
-        CurrentBlueprintAmount = BaseBlueprintAmount;
+        CurrentRedBlueprintAmount = BaseRedBlueprintAmount;
+        CurrentYellowBlueprintAmount = BaseYellowBlueprintAmount;
+        CurrentGreenBlueprintAmount = BaseGreenBlueprintAmount;
     }
+
+    #region money
 
     public void GainMoney(int amount)
     {
         CurrentMoneyAmount += amount;
     }
-    
+
     public void LoseMoney(int amount)
     {
         CurrentMoneyAmount -= amount;
     }
 
-    public void GainBlueprint(int amount)
+    #endregion
+
+    #region blueprints
+    public void GainRedBlueprint(int amount)
     {
-        CurrentBlueprintAmount += amount;
+        CurrentRedBlueprintAmount += amount;
     }
 
-    public void LoseBlueprint(int amount)
+    public void LoseRedBlueprint(int amount)
     {
-        CurrentBlueprintAmount -= amount;
+        CurrentRedBlueprintAmount -= amount;
     }
+
+    public void GainYellowBlueprint(int amount)
+    {
+        CurrentYellowBlueprintAmount += amount;
+    }
+
+    public void LoseYellowBlueprint(int amount)
+    {
+        CurrentYellowBlueprintAmount -= amount;
+    }
+
+    public void GainGreenBlueprint(int amount)
+    {
+        CurrentGreenBlueprintAmount += amount;
+    }
+
+    public void LoseGreenBlueprint(int amount)
+    {
+        CurrentGreenBlueprintAmount -= amount;
+    }
+    #endregion
 }
