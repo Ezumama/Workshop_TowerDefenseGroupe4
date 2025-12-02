@@ -18,6 +18,10 @@ public class TowerUpgrade : MonoBehaviour
     [SerializeField] private bool _upgradedToLevel2;
     [SerializeField] private bool _upgradedToLevel3;
 
+    [Header ("FX")]
+    [SerializeField] private GameObject _upgradeFXLvl2;
+    [SerializeField] private GameObject _upgradeFXLvl3;
+
     private GameObject _towerUpgradePanelLvl2;
     private GameObject _towerUpgradePanelLvl3;
     private TowerUpgradeUI _towerUpgradeUIScript;
@@ -69,6 +73,7 @@ public class TowerUpgrade : MonoBehaviour
             // Destroy level 1 prefab, and spawn level 2 (upgrade)
             Destroy(_currentTower);
             _currentTower = Instantiate(_towerLevel2, pos, rot);
+            Instantiate(_upgradeFXLvl2, pos, rot);
 
             _upgradedToLevel2 = true;
         }
@@ -90,6 +95,7 @@ public class TowerUpgrade : MonoBehaviour
         {
             Destroy(_currentTower);
             _currentTower = Instantiate(_towerLevel3, pos1, rot1);
+            Instantiate(_upgradeFXLvl3, pos1, rot1);
 
 
             _upgradedToLevel3 = true;
