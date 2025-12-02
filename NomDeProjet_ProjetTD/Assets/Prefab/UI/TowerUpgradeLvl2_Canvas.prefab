@@ -122,7 +122,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 8247042232726079814}
         m_TargetAssemblyTypeName: TowerUpgradeUI, Assembly-CSharp
-        m_MethodName: UpgradeClicked
+        m_MethodName: UpgradeLvl2Clicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

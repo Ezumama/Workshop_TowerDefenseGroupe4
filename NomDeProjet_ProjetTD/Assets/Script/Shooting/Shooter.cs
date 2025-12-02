@@ -39,7 +39,16 @@ public class Shooter : MonoBehaviour
 
         Debug.DrawRay(_shootingPoint.position, _shootingPoint.forward * 2f, Color.red);
 
-        
+        if (_target == null)
+        {
+            Debug.Log("NO TARGET FOUND");
+        }
+        else
+        {
+            Debug.Log("TARGET FOUND: " + _target.name);
+        }
+
+
         if (_target != null && _isBigBetty == false)
         {
             _towerShootingHead.transform.LookAt(_target.transform.position);
@@ -102,7 +111,8 @@ public class Shooter : MonoBehaviour
         if (Physics.Raycast(_shootingPoint.position, forward, out hit, _shootingDistance))
         {
             Debug.DrawRay(_shootingPoint.position, forward * hit.distance, Color.red, 0.2f);
-            
+
+
             Enemy enemy = hit.transform.GetComponent<Enemy>();
             if (enemy != null)
             {
