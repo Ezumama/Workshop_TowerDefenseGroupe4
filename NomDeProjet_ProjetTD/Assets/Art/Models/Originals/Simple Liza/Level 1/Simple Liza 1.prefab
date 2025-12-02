@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6415607530930580846
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5204137926274310880}
+  m_Layer: 0
+  m_Name: ShootingPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5204137926274310880
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6415607530930580846}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.915, z: 1.726}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3834936635411598586}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &3907472644273440601
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -138,12 +169,20 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 2f9945b014cdf4448a78150f631f6125, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: -9006549272062162013, guid: 7282a6cd65d59ee4a89b1abc4a70ec2d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5204137926274310880}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 7282a6cd65d59ee4a89b1abc4a70ec2d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 9106269151105462683}
   m_SourcePrefab: {fileID: 100100000, guid: 7282a6cd65d59ee4a89b1abc4a70ec2d, type: 3}
+--- !u!4 &3834936635411598586 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -9006549272062162013, guid: 7282a6cd65d59ee4a89b1abc4a70ec2d, type: 3}
+  m_PrefabInstance: {fileID: 3907472644273440601}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &4250070367402768904 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 7282a6cd65d59ee4a89b1abc4a70ec2d, type: 3}
