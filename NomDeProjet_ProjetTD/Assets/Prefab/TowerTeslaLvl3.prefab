@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8154879876776164503}
   - component: {fileID: -8922688226633113807}
   m_Layer: 7
-  m_Name: TowerTesla
+  m_Name: TowerTeslaLvl3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -50,7 +50,7 @@ MonoBehaviour:
   _feedbackFXOut: {fileID: 1376696033527059834, guid: 88108968e5b7c5d4b8820ffca0d86646, type: 3}
   _towerShootingHead: {fileID: 2531494821004561738}
   _towerBody: {fileID: 8965703380967816733}
-  _damageAmount: 10
+  _damageAmount: 30
   _shootingCooldown: 0.5
   _isBigBetty: 1
   _tag1: EnemyGround

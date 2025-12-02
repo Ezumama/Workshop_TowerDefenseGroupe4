@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: -2289962580265201952}
   - component: {fileID: 2300425805478187301}
   m_Layer: 7
-  m_Name: TowerGatling
+  m_Name: TripleMel_Lvl1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -106,10 +106,15 @@ MonoBehaviour:
   _towerLevel3: {fileID: 7941172316868332899, guid: f5f4f46c81828bd4493ef9f758a3cd2d, type: 3}
   _towerChoicePanelPrefabLvl2: {fileID: 4820201920367666653, guid: 11da8eb951b677d43b91b0dfdd811592, type: 3}
   _towerChoicePanelPrefabLvl3: {fileID: 4820201920367666653, guid: bbd20797619bc3d40951dc4cd7d7385a, type: 3}
+  _isTripleMelTower: 1
+  _isBigBettyTower: 0
+  _isSimpleLizaTower: 0
   _blueprintCostLvl2: 0
   _blueprintCostLvl3: 0
   _upgradedToLevel2: 0
   _upgradedToLevel3: 0
+  _upgradeFXLvl2: {fileID: 0}
+  _upgradeFXLvl3: {fileID: 0}
 --- !u!65 &2300425805478187301
 BoxCollider:
   m_ObjectHideFlags: 0
