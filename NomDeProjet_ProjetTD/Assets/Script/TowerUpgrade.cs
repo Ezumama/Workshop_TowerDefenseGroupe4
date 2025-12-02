@@ -8,7 +8,10 @@ public class TowerUpgrade : MonoBehaviour
     [SerializeField] private GameObject _towerChoicePanelPrefabLvl2;
     [SerializeField] private GameObject _towerChoicePanelPrefabLvl3;
 
-
+    [Header("Boolean to know which tower it is")]
+    [SerializeField] private bool _isTripleMelTower;
+    [SerializeField] private bool _isBigBettyTower;
+    [SerializeField] private bool _isSimpleLizaTower;
 
     [Header("Upgrade Cost")]
     [SerializeField] private int _blueprintCostLvl2;
@@ -55,11 +58,23 @@ public class TowerUpgrade : MonoBehaviour
         }
     }
 
-    // UI BUTTON VERSION
+    #region Level 2 Upgrade
     public void UpgradeTowerLevel2()
     {
         ReplaceLvl2();
-        GameManager.Instance.LoseRedBlueprint(_blueprintCostLvl2);
+        if (_isTripleMelTower == true)
+        {
+            GameManager.Instance.LoseRedBlueprint(_blueprintCostLvl2);
+        }
+
+        else if (_isBigBettyTower == true)
+        {
+            GameManager.Instance.LoseGreenBlueprint(_blueprintCostLvl2);
+        }
+        else if (_isSimpleLizaTower == true)
+        {
+            GameManager.Instance.LoseYellowBlueprint(_blueprintCostLvl2);
+        }
     }
 
     void ReplaceLvl2()
@@ -78,7 +93,9 @@ public class TowerUpgrade : MonoBehaviour
             _upgradedToLevel2 = true;
         }
     }
+    #endregion 
 
+    #region Level 3 Upgrade
     public void UpgradeTowerLevel3()
     {
         ReplaceLvl3();
@@ -101,6 +118,7 @@ public class TowerUpgrade : MonoBehaviour
             _upgradedToLevel3 = true;
         }
     }
+    #endregion
 
     public void OnClick()
     {
