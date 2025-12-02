@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8438746311166357411}
   - component: {fileID: 6600923094619560150}
   - component: {fileID: 3818128567321569568}
+  - component: {fileID: 5052975743220664116}
   m_Layer: 7
   m_Name: TowerGatling_Level 3
   m_TagString: Untagged
@@ -86,6 +87,27 @@ MonoBehaviour:
   _feedbackFXOut: {fileID: 1376696033527059834, guid: 88108968e5b7c5d4b8820ffca0d86646, type: 3}
   _targetTag1: EnemyAir
   _targetTag2: EnemyGround
+--- !u!114 &5052975743220664116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7941172316868332899}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25bc2246f30e2bf41846867890608d05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _towerLevel1: {fileID: 7941172316868332899, guid: af1c0c7f3ddacc54491ed2ab7b368f92, type: 3}
+  _towerLevel2: {fileID: 7941172316868332899, guid: 6efac18760be7d741947b1ecf546529b, type: 3}
+  _towerLevel3: {fileID: 7941172316868332899}
+  _towerChoicePanelPrefabLvl2: {fileID: 4820201920367666653, guid: 11da8eb951b677d43b91b0dfdd811592, type: 3}
+  _towerChoicePanelPrefabLvl3: {fileID: 4820201920367666653, guid: bbd20797619bc3d40951dc4cd7d7385a, type: 3}
+  _blueprintCostLvl2: 0
+  _blueprintCostLvl3: 0
+  _upgradedToLevel2: 1
+  _upgradedToLevel3: 1
 --- !u!1001 &1799309131837513319
 PrefabInstance:
   m_ObjectHideFlags: 0

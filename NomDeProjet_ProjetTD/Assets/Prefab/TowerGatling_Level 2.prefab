@@ -102,11 +102,11 @@ MonoBehaviour:
   _towerLevel2: {fileID: 7941172316868332899}
   _towerLevel3: {fileID: 7941172316868332899, guid: f5f4f46c81828bd4493ef9f758a3cd2d, type: 3}
   _towerChoicePanelPrefabLvl2: {fileID: 4820201920367666653, guid: 11da8eb951b677d43b91b0dfdd811592, type: 3}
-  _towerChoicePanelPrefabLvl3: {fileID: 4820201920367666653, guid: 8d57706b2918b2b44bffbdbdc04d93d7, type: 3}
-  _upgradedToLevel2: 0
-  _upgradedToLevel3: 0
+  _towerChoicePanelPrefabLvl3: {fileID: 4820201920367666653, guid: bbd20797619bc3d40951dc4cd7d7385a, type: 3}
   _blueprintCostLvl2: 0
   _blueprintCostLvl3: 0
+  _upgradedToLevel2: 1
+  _upgradedToLevel3: 0
 --- !u!1001 &1952187487389320562
 PrefabInstance:
   m_ObjectHideFlags: 0
