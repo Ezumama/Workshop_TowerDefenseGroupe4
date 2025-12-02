@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 7081999416396789214}
   m_Layer: 0
   m_Name: GundamEnemy
-  m_TagString: EnemyGround
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31,11 +31,11 @@ Transform:
   m_GameObject: {fileID: 2927193264793797084}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1, z: 2.5859308}
+  m_LocalPosition: {x: 0, y: -0.71551895, z: 2.5859308}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 6351923595603300900}
+  - {fileID: 476289291525559313}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &5274005389529726581
@@ -58,7 +58,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 2, z: 0.5}
-  m_Center: {x: 0, y: 1, z: 0.1}
+  m_Center: {x: 0, y: 1.03, z: 0}
 --- !u!54 &8815659026268160381
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   randomStartNode: 1
---- !u!1001 &6893930923795297743
+--- !u!1001 &78434672107418618
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -163,7 +163,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e2cdb9a0efe4be941be4aa92c7af51ef, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e2cdb9a0efe4be941be4aa92c7af51ef, type: 3}
       propertyPath: m_LocalPosition.z
@@ -171,19 +171,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e2cdb9a0efe4be941be4aa92c7af51ef, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.70710653
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e2cdb9a0efe4be941be4aa92c7af51ef, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e2cdb9a0efe4be941be4aa92c7af51ef, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.70710707
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e2cdb9a0efe4be941be4aa92c7af51ef, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e2cdb9a0efe4be941be4aa92c7af51ef, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -206,8 +206,8 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e2cdb9a0efe4be941be4aa92c7af51ef, type: 3}
---- !u!4 &6351923595603300900 stripped
+--- !u!4 &476289291525559313 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: e2cdb9a0efe4be941be4aa92c7af51ef, type: 3}
-  m_PrefabInstance: {fileID: 6893930923795297743}
+  m_PrefabInstance: {fileID: 78434672107418618}
   m_PrefabAsset: {fileID: 0}
