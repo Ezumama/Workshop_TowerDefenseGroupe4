@@ -73,29 +73,44 @@ public class WaveManager : MonoBehaviour
         {
             for (int i = 0; i < group.count; i++)
             {
-                // On regarde si c'est un ennemi volant
                 bool isFlying = group.enemyPrefab.GetComponent<EnemyFly>() != null;
 
                 Transform spawn;
 
                 if (isFlying)
-                {
-                    // Spawn dans les AirSpawnPoint
                     spawn = airSpawnPoint[Random.Range(0, airSpawnPoint.Length)];
-                }
                 else
-                {
-                    // Spawn dans les SpawnPoint classiques
                     spawn = spawnPoints[Random.Range(0, spawnPoints.Length)];
+
+                GameObject enemyObj = Instantiate(group.enemyPrefab, spawn.position, spawn.rotation);
+
+                // 🔥 RÉCUPÉRER LE PATH ASSOCIÉ AU SPAWNPOINT 🔥
+                SpawnPointData spData = spawn.GetComponent<SpawnPointData>();
+
+                if (!isFlying && spData != null)
+                {
+                    EnemyNav nav = enemyObj.GetComponent<EnemyNav>();
+
+                    if (nav != null)
+                    {
+                        // On choisit Node1A ou Node1B aléatoirement
+                        Transform selectedNode = spData.nodes[Random.Range(0, spData.nodes.Length)];
+
+                        // On récupère tous les points enfant
+                        Transform[] points = new Transform[selectedNode.childCount];
+                        for (int p = 0; p < points.Length; p++)
+                            points[p] = selectedNode.GetChild(p);
+
+                        nav.SetPath(points);
+                    }
                 }
 
-                Instantiate(group.enemyPrefab, spawn.position, spawn.rotation);
                 RegisterEnemy();
-
                 yield return new WaitForSeconds(group.spawnInterval);
             }
         }
     }
+
 
 }
 

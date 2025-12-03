@@ -1484,8 +1484,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CurrentMoneyAmount: 0
   BaseMoneyAmount: 100
-  CurrentBlueprintAmount: 0
-  BaseBlueprintAmount: 100
+  CurrentRedBlueprintAmount: 0
+  CurrentYellowBlueprintAmount: 0
+  CurrentGreenBlueprintAmount: 0
+  BaseRedBlueprintAmount: 0
+  BaseYellowBlueprintAmount: 0
+  BaseGreenBlueprintAmount: 0
 --- !u!4 &846758759
 Transform:
   m_ObjectHideFlags: 0
@@ -2129,7 +2133,7 @@ MonoBehaviour:
       count: 2
       spawnInterval: 1
     - enemyPrefab: {fileID: 3418461052415056223, guid: 4a658da82cdbdbb4d9453fa6e251de89, type: 3}
-      count: 0
+      count: 3
       spawnInterval: 1.5
     - enemyPrefab: {fileID: 2927193264793797084, guid: d8e097389fe584942ba3903819cc5fe6, type: 3}
       count: 2

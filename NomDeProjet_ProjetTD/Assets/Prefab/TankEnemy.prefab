@@ -149,6 +149,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   randomStartNode: 1
+  pathPoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1001 &7241858716352843371
 PrefabInstance:
   m_ObjectHideFlags: 0

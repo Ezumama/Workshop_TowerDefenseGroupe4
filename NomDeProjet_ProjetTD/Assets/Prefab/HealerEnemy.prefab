@@ -215,6 +215,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   randomStartNode: 1
+  pathPoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!195 &2061298622695236203
 NavMeshAgent:
   m_ObjectHideFlags: 0

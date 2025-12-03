@@ -7,13 +7,12 @@ public class EnemyNav : MonoBehaviour
     private NavMeshAgent agent;
     private Health health;
 
-    // Current "node" (container qui référence un segment / chemin)
-    private WaypointNode currentNode;
-    private Transform[] currentPath;    // waypoints du segment choisi
+    private Transform[] currentPath;
     private int currentIndex = 0;
 
-    [Tooltip("Si true, le spawn choisira un WaypointNode de départ aléatoire.")]
-    public bool randomStartNode = true;
+    private bool pathAssigned = false;
+
+    public Transform[] pathPoints; // utilisé par SetPath()
 
     void Start()
     {
@@ -27,39 +26,28 @@ public class EnemyNav : MonoBehaviour
             return;
         }
 
-        // Replace this line:
-        // var nodes = GameObject.FindObjectsOfType<WaypointNode>();
-
-        // With this line:
-        var nodes = GameObject.FindObjectsByType<WaypointNode>(FindObjectsSortMode.None);
-        if (nodes == null || nodes.Length == 0)
+        // 🚨 SI AUCUN PATH N’A ÉTÉ DONNÉ PAR LE SPAWNPOINT 🚨
+        if (!pathAssigned || pathPoints == null || pathPoints.Length == 0)
         {
-            Debug.LogError("[EnemyNav] Aucun WaypointNode trouvé dans la scène !");
+            Debug.LogError($"[EnemyNav] Aucun path assigné au spawn !", this);
             enabled = false;
             return;
         }
 
-        // Choisir le node de départ (aléatoire ou le premier)
-        currentNode = randomStartNode ? nodes[Random.Range(0, nodes.Length)] : nodes[0];
-        if (currentNode == null)
-        {
-            Debug.LogError("[EnemyNav] currentNode null après choix !");
-            enabled = false;
-            return;
-        }
+        // sinon on utilise le path donné par le SpawnPoint
+        currentPath = pathPoints;
+        currentIndex = 0;
 
-        // Choisir un chemin initial dans ce node (gère si node.nextPaths vide)
-        ChooseNewPathFromNode(currentNode);
+        agent.SetDestination(currentPath[0].position);
+
+        Debug.Log($"[EnemyNav] {name} utilise un path assigné via SetPath(), longueur = {currentPath.Length}");
     }
 
     void Update()
     {
         if (!agent || currentPath == null || currentPath.Length == 0) return;
-
-        // si le chemin est en attente, ne rien faire
         if (agent.pathPending) return;
 
-        // si on est proche de la cible actuelle
         if (agent.remainingDistance <= agent.stoppingDistance)
         {
             currentIndex++;
@@ -70,83 +58,23 @@ public class EnemyNav : MonoBehaviour
             }
             else
             {
-                // fin du segment : choisir nouvel embranchement à partir du node courant (si possible)
-                ChooseNewNodeAndPath();
-            }
-        }
-    }
-
-    void ChooseNewNodeAndPath()
-    {
-        // Si le node courant a des embranchements, on en choisit un aléatoirement
-        if (currentNode != null && currentNode.nextPaths != null && currentNode.nextPaths.Length > 0)
-        {
-            Transform chosen = currentNode.nextPaths[Random.Range(0, currentNode.nextPaths.Length)];
-            if (chosen == null)
-            {
-                Debug.LogWarning("[EnemyNav] chosen nextPath était null, tentative de rester sur le même node.");
                 ReachDestination();
-                return;
             }
-
-            // si l'élément choisi contient un WaypointNode (ex: point vers un autre node), on le récupère
-            WaypointNode nextNode = chosen.GetComponent<WaypointNode>();
-            if (nextNode != null)
-            {
-                currentNode = nextNode;
-            }
-            else
-            {
-                // sinon on crée un faux node temporaire (conteneur de chemin)
-                currentNode = chosen.gameObject.AddComponent<WaypointNodeMarker>();
-            }
-
-            ChooseNewPathFromNode(currentNode);
-        }
-        else
-        {
-            // pas d'embranchement : fin de chemin
-            ReachDestination();
         }
     }
 
-    void ChooseNewPathFromNode(WaypointNode node)
+    public void SetPath(Transform[] points)
     {
-        if (node == null)
-        {
-            Debug.LogError("[EnemyNav] Node null dans ChooseNewPathFromNode");
-            ReachDestination();
-            return;
-        }
-
-        // Récupère la liste des waypoints enfants du node choisi (skip parent)
-        currentPath = node.GetComponentsInChildren<Transform>()
-                          .Where(t => t != node.transform)
-                          .ToArray();
-
-        if (currentPath.Length == 0)
-        {
-            Debug.LogWarning("[EnemyNav] Le node '" + node.name + "' n'a pas de waypoints enfants -> fin de chemin.");
-            ReachDestination();
-            return;
-        }
-
-        currentIndex = 0;
-        agent.SetDestination(currentPath[0].position);
-
-        Debug.Log($"[EnemyNav] {gameObject.name} démarre sur node '{node.name}', path len={currentPath.Length}");
+        pathPoints = points;
+        pathAssigned = true; // important ! sinon Start() override tout
     }
 
     void ReachDestination()
     {
-        // arriver à la fin : notifier et détruire
         if (WaveManager.instance != null)
             WaveManager.instance.UnregisterEnemy();
-        //Destroy(gameObject);
+        Destroy(gameObject);
     }
-
-    // marqueur minimal (utilisé si un transform ne contient pas WaypointNode)
-    private class WaypointNodeMarker : WaypointNode { }
 }
 
 

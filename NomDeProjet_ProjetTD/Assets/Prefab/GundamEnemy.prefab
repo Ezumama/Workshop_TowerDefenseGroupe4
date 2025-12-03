@@ -148,7 +148,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c75cab9957d4d8d469d33b71b65c0dae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  randomStartNode: 1
+  pathPoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1001 &78434672107418618
 PrefabInstance:
   m_ObjectHideFlags: 0
