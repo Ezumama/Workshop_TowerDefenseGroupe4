@@ -6522,7 +6522,7 @@
     "m_ObjectId": "7942513335a1436fb7a102f48327aaed",
     "m_Title": "Alpha",
     "m_Position": {
-        "x": -279.0000305175781,
+        "x": -279.0,
         "y": 1303.0
     }
 }
@@ -7986,7 +7986,7 @@
         "m_Id": "f65bc57210244d989932c8fd350b7868"
     },
     "m_AllowMaterialOverride": false,
-    "m_SurfaceType": 1,
+    "m_SurfaceType": 0,
     "m_ZTestMode": 4,
     "m_ZWriteControl": 0,
     "m_AlphaMode": 0,

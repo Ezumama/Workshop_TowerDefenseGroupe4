@@ -37,6 +37,10 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _AlphaText:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _BaseMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -129,6 +133,7 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _DstBlendAlpha: 0
+    - _Emmissive_Colored: 0
     - _Emmissive_Intensity: 100
     - _EnvironmentReflections: 1
     - _GlossMapScale: 0
@@ -151,6 +156,7 @@ Material:
     - _Step2: 0.511
     - _Step3: 0.511
     - _Surface: 0
+    - _UseAlphaText: 0
     - _UseEmmissive: 1
     - _UseFlatColor: 0
     - _UseMetallic: 0
