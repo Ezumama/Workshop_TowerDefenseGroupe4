@@ -1,4 +1,7 @@
+using NUnit.Framework;
+using System.Security.Cryptography;
 using UnityEngine;
+using static UnityEngine.Rendering.DebugUI.Table;
 
 public class TowerActivateDeactivate : MonoBehaviour
 {
@@ -6,6 +9,8 @@ public class TowerActivateDeactivate : MonoBehaviour
     [SerializeField] private bool _isActivated = true;
 
     private bool _previousState;
+
+    private GameObject _tower; 
 
     private TowerSpawner _towerSpawner;
     private int _tripleMelCost;
@@ -22,6 +27,8 @@ public class TowerActivateDeactivate : MonoBehaviour
         _previousState = _isActivated;
 
         _towerSpawner = GetComponent<TowerSpawner>();
+        _tower = gameObject;
+
 
         _tripleMelCost = GameManager.Instance.GatlingEnergyCost;
         _bigBettyCost = GameManager.Instance.TeslaEnergyCost;
@@ -30,7 +37,7 @@ public class TowerActivateDeactivate : MonoBehaviour
 
     private void Update()
     {
-        // Only run when the value changes
+        
         if (_isActivated != _previousState)
         {
             if (_isActivated)
@@ -59,6 +66,11 @@ public class TowerActivateDeactivate : MonoBehaviour
 
         else if (_isSimpleLiza)
             GameManager.Instance.GainEnergy(_simpleLizaCost);
+
+        foreach (Renderer r in _tower.GetComponentsInChildren<Renderer>())
+        {
+            r.material.SetInt("_UseEmmissive", 0);
+        }
     }
 
     private void ActivateTower()
@@ -71,5 +83,11 @@ public class TowerActivateDeactivate : MonoBehaviour
 
         else if (_isSimpleLiza)
             GameManager.Instance.LoseEnergy(_simpleLizaCost);
+        
+        foreach (Renderer r in _tower.GetComponentsInChildren<Renderer>())
+        {
+            r.material.SetInt("_UseEmmissive", 1);
+        }
+
     }
 }
