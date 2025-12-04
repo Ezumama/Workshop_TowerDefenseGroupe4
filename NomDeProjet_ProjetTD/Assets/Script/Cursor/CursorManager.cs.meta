@@ -1,2 +1,13 @@
 fileFormatVersion: 2
 guid: 2fb27afb0a7709645a3651dcd679c2d8
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - _defaultCursorTexture: {fileID: 2800000, guid: baec606b36f7d1f4d94984b9cfa963c6, type: 3}
+  - _highlightCursorTexture: {fileID: 2800000, guid: 60135c6394c2bde409388f2cf64c62b1, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
