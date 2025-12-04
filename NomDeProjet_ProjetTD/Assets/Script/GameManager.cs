@@ -16,12 +16,17 @@ public class GameManager : MonoBehaviour
     [Header("Ressources")]
     public int CurrentMoneyAmount;
     public int BaseMoneyAmount;
+
     public int CurrentRedBlueprintAmount;
     public int CurrentYellowBlueprintAmount;
     public int CurrentGreenBlueprintAmount;
+
     public int BaseRedBlueprintAmount;
     public int BaseYellowBlueprintAmount;
     public int BaseGreenBlueprintAmount;
+
+    public int CurrentEnergyAmount;
+    public int BaseEnergyAmount;
 
     private void Start()
     {
@@ -29,6 +34,7 @@ public class GameManager : MonoBehaviour
         CurrentRedBlueprintAmount = BaseRedBlueprintAmount;
         CurrentYellowBlueprintAmount = BaseYellowBlueprintAmount;
         CurrentGreenBlueprintAmount = BaseGreenBlueprintAmount;
+        CurrentEnergyAmount = BaseEnergyAmount;
     }
 
     private int ClampToZero(int value)
@@ -81,5 +87,19 @@ public class GameManager : MonoBehaviour
     {
         CurrentGreenBlueprintAmount = ClampToZero(CurrentGreenBlueprintAmount - amount);
     }
+    #endregion
+
+    #region energy
+
+    public void GainEnergy(int amount)
+    {
+        CurrentEnergyAmount += amount;
+    }
+
+    public void LoseEnergy(int amount)
+    {
+        CurrentEnergyAmount = ClampToZero(CurrentEnergyAmount - amount);
+    }
+
     #endregion
 }

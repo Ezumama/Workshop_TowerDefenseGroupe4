@@ -52,7 +52,16 @@ MonoBehaviour:
   towerChoicePanelPrefab: {fileID: 4820201920367666653, guid: 0b675531a6193d04bba134e43cb1e5e3, type: 3}
   _gatlingCost: 50
   _teslaCost: 50
-  _airCost: 50
+  _groundCost: 0
+  _gatlingEnergyCost: 0
+  _teslaEnergyCost: 0
+  _groundEnergyCost: 0
+  _gatlingCostText: {fileID: 0}
+  _teslaCostText: {fileID: 0}
+  _groundCostText: {fileID: 0}
+  _gatlingEnergyCostText: {fileID: 0}
+  _teslaEnergyCostText: {fileID: 0}
+  _groundEnergyCostText: {fileID: 0}
 --- !u!114 &3508742159765835672
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -65,8 +74,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fb27afb0a7709645a3651dcd679c2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _defaultCursorTexture: {fileID: 2800000, guid: 60135c6394c2bde409388f2cf64c62b1, type: 3}
-  _highlightCursorTexture: {fileID: 2800000, guid: baec606b36f7d1f4d94984b9cfa963c6, type: 3}
+  _defaultCursorTexture: {fileID: 2800000, guid: a77d2288d88e1654490785b83f9a8193, type: 3}
+  _highlightCursorTexture: {fileID: 2800000, guid: 4330e5b812f445c43a2bbf92cd619dbd, type: 3}
   CursorMode: 0
   HotSpotMouse: {x: 0, y: 0}
 --- !u!65 &4795617354901745288

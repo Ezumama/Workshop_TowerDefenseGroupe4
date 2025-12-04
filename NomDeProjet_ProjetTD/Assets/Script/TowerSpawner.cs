@@ -6,15 +6,23 @@ public class TowerSpawner : MonoBehaviour
     [SerializeField] private GameObject[] _towers;
     [SerializeField] private GameObject towerChoicePanelPrefab;
 
-    [Header("Tower Cost")]
+    [Header("Tower Cost Money")]
     [SerializeField] private int _gatlingCost;
     [SerializeField] private int _teslaCost;
     [SerializeField] private int _groundCost;
+
+    [Header("Tower Cost Energy")]
+    [SerializeField] private int _gatlingEnergyCost;
+    [SerializeField] private int _teslaEnergyCost;
+    [SerializeField] private int _groundEnergyCost;
 
     [Header("Tower Cost UI Text")]
     [SerializeField] private TextMeshProUGUI _gatlingCostText;
     [SerializeField] private TextMeshProUGUI _teslaCostText;
     [SerializeField] private TextMeshProUGUI _groundCostText;
+    [SerializeField] private TextMeshProUGUI _gatlingEnergyCostText;
+    [SerializeField] private TextMeshProUGUI _teslaEnergyCostText;
+    [SerializeField] private TextMeshProUGUI _groundEnergyCostText;
 
     private TowerChoiceUI _choiceUIScript;
     private GameObject _towerChoicePanel;
@@ -40,42 +48,60 @@ public class TowerSpawner : MonoBehaviour
 
     public void GatlingChoice()
     {
-        if (GameManager.Instance.CurrentMoneyAmount >= _gatlingCost)
+        if (GameManager.Instance.CurrentMoneyAmount >= _gatlingCost && GameManager.Instance.CurrentEnergyAmount >= _gatlingEnergyCost)
         {
             SpawnTower(0);
             GameManager.Instance.LoseMoney(_gatlingCost);
+            GameManager.Instance.LoseEnergy(_gatlingEnergyCost);
         }
         //else if (GameManager.Instance.CurrentMoneyAmount < _gatlingCost)
         //{
         //    Debug.Log("Not enough money to build Gatling Tower!");
         //    _gatlingCostText.color = Color.red;
         //}
+        //else if (GameManager.Instance.CurrentEnergyAmount < _gatlingEnergyCost)
+        //{
+        //    Debug.Log("Not enough energy to build Gatling Tower!");
+        //    _gatlingEnergyCostText.color = Color.red;
+        // }
 
     }
     //public void TeslaChoice()
     //{
-    //    if(GameManager.Instance.CurrentMoneyAmount >= __teslaCost)
+    //    if (GameManager.Instance.CurrentMoneyAmount >= __teslaCost && GameManager.Instance.CurrentEnergyAmount >= _teslaEnergyCost)
     //    {
-    //    SpawnTower(1);
-    //    GameManager.Instance.LoseMoney(_teslaCost);
+    //      SpawnTower(1);
+    //      GameManager.Instance.LoseMoney(_teslaCost);
+    //      GameManager.Instance.LoseEnergy(_teslaEnergyCost);
     //    }
     //    else if (GameManager.Instance.CurrentMoneyAmount < _teslaCost)
     //    {
     //        Debug.Log("Not enough money to build Tesla Tower!");
     //        _teslaCostText.color = Color.red;
     //    }
+    //    else if (GameManager.Instance.CurrentEnergyAmount < _teslaEnergyCost)
+    //    {
+    //        Debug.Log("Not enough energy to build Tesla Tower!");
+    //       _teslaEnergyCostText.color = Color.red;
+    //    }
     //}
     //public void GroundChoice()
     //{
-    //    if(GameManager.Instance.CurrentMoneyAmount >= _groundCost)
+    //    if (GameManager.Instance.CurrentMoneyAmount >= _groundCost && GameManager.Instance.CurrentEnergyAmount >= _groundEnergyCost)
     //    {
     //      SpawnTower(2);
     //      GameManager.Instance.LoseMoney(_groundCost);
+    //      GameManager.Instance.LoseEnergy(_groundEnergyCost);
     //    }
     //    else if (GameManager.Instance.CurrentMoneyAmount < _groundCost)
     //    {
     //        Debug.Log("Not enough money to build Ground Tower!");
     //        _groundCostText.color = Color.red;
+    //    }
+    //    else if (GameManager.Instance.CurrentEnergyAmount < _groundEnergyCost)
+    //    {
+    //        Debug.Log("Not enough energy to build Ground Tower!");
+    //       _groundEnergyCostText.color = Color.red;
     //    }
     //}
 
