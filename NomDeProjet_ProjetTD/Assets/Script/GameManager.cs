@@ -31,6 +31,12 @@ public class GameManager : MonoBehaviour
         CurrentGreenBlueprintAmount = BaseGreenBlueprintAmount;
     }
 
+    private int ClampToZero(int value)
+    {
+        return Mathf.Max(value, 0);
+    }
+
+
     #region money
 
     public void GainMoney(int amount)
@@ -40,7 +46,7 @@ public class GameManager : MonoBehaviour
 
     public void LoseMoney(int amount)
     {
-        CurrentMoneyAmount -= amount;
+        CurrentMoneyAmount = ClampToZero(CurrentMoneyAmount - amount);
     }
 
     #endregion
@@ -53,7 +59,7 @@ public class GameManager : MonoBehaviour
 
     public void LoseRedBlueprint(int amount)
     {
-        CurrentRedBlueprintAmount -= amount;
+        CurrentRedBlueprintAmount = ClampToZero(CurrentRedBlueprintAmount - amount);
     }
 
     public void GainYellowBlueprint(int amount)
@@ -63,7 +69,7 @@ public class GameManager : MonoBehaviour
 
     public void LoseYellowBlueprint(int amount)
     {
-        CurrentYellowBlueprintAmount -= amount;
+        CurrentYellowBlueprintAmount = ClampToZero(CurrentYellowBlueprintAmount - amount);
     }
 
     public void GainGreenBlueprint(int amount)
@@ -73,7 +79,7 @@ public class GameManager : MonoBehaviour
 
     public void LoseGreenBlueprint(int amount)
     {
-        CurrentGreenBlueprintAmount -= amount;
+        CurrentGreenBlueprintAmount = ClampToZero(CurrentGreenBlueprintAmount - amount);
     }
     #endregion
 }

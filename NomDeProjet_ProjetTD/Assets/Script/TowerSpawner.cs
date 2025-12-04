@@ -34,16 +34,22 @@ public class TowerSpawner : MonoBehaviour
 
     public void GatlingChoice()
     {
-        SpawnTower(0);
-        GameManager.Instance.LoseMoney(_gatlingCost);
+        if(GameManager.Instance.CurrentMoneyAmount > _gatlingCost)
+        {
+            SpawnTower(0);
+            GameManager.Instance.LoseMoney(_gatlingCost);
+        }
+
     }
     //public void TeslaChoice()
     //{
+    //    if(GameManager.Instance.CurrentMoneyAmount > __teslaCost)
     //    SpawnTower(1);
     //    GameManager.Instance.LoseMoney(_teslaCost);
     //}
     //public void GroundChoice()
     //{
+    //    if(GameManager.Instance.CurrentMoneyAmount > _groundCost)
     //    SpawnTower(2);
     //    GameManager.Instance.LoseMoney(_groundCost);
     //}
