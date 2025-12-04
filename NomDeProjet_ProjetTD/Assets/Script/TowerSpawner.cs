@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 
@@ -22,9 +23,14 @@ public class TowerSpawner : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _teslaEnergyCostText;
     [SerializeField] private TextMeshProUGUI _groundEnergyCostText;
 
+    [Header("Tower Animation")]
+    [SerializeField] private Animator _towerAnimator;
+    [SerializeField] private float _openAnimationDuration = 1.0f; // Time to wait before spawning tower after opening animation
+
     private TowerChoiceUI _choiceUIScript;
     private GameObject _towerChoicePanel;
     private Camera _camera;
+    private bool _isBuilding = false;
 
     private void Start()
     {
@@ -48,8 +54,30 @@ public class TowerSpawner : MonoBehaviour
     public void SpawnTower(int index)
     {
         // Spawn specific tower and destroy spawner
-        GameObject tower = Instantiate(_towers[index], transform.position, Quaternion.identity);
-        Destroy(gameObject);
+        if (!_isBuilding)
+        {
+            StartCoroutine(BuildSequence(index));
+        }
+    }
+
+    private IEnumerator BuildSequence(int index)
+    {
+        _isBuilding = true;
+        
+        // Hide the UI
+        _towerChoicePanel.SetActive(false);
+
+        // Play the Opening Animation
+        _towerAnimator.SetTrigger("Open");
+
+        // Set The status to open
+        _towerAnimator.SetBool("IsOpen", true);
+
+        // Wait for the animation to finish
+        yield return new WaitForSeconds(_openAnimationDuration);
+
+        // Spawn specific tower
+        Instantiate(_towers[index], transform.position, Quaternion.identity);
     }
 
     public void GatlingChoice()
