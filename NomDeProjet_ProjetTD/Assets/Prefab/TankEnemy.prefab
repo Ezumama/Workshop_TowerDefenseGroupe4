@@ -35,7 +35,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 7147990669491069030}
+  - {fileID: 7996613209513514552}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!65 &5274005389529726581
@@ -148,13 +148,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c75cab9957d4d8d469d33b71b65c0dae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  randomStartNode: 1
   pathPoints:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
---- !u!1001 &7241858716352843371
+--- !u!1001 &7587209531913582645
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -206,13 +205,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gundam_Tank
       objectReference: {fileID: 0}
+    - target: {fileID: 7107761335719160054, guid: fce329c7c68271447b837352f4bcdfc0, type: 3}
+      propertyPath: cloneMesh
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7107761335719160054, guid: fce329c7c68271447b837352f4bcdfc0, type: 3}
+      propertyPath: runOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fce329c7c68271447b837352f4bcdfc0, type: 3}
---- !u!4 &7147990669491069030 stripped
+--- !u!4 &7996613209513514552 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 554650316827880973, guid: fce329c7c68271447b837352f4bcdfc0, type: 3}
-  m_PrefabInstance: {fileID: 7241858716352843371}
+  m_PrefabInstance: {fileID: 7587209531913582645}
   m_PrefabAsset: {fileID: 0}

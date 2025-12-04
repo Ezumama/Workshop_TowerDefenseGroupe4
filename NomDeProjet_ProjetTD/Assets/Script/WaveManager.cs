@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Linq;
 
 public class WaveManager : MonoBehaviour
 {
@@ -17,20 +18,22 @@ public class WaveManager : MonoBehaviour
     public class Wave
     {
         public EnemySpawn[] enemies;
+        public int[] allowedSpawnPoints; // indices des SpawnPoints autorisés pour cette wave
     }
-    
+
     public Wave[] waves;
-    public Transform[] spawnPoints;
-    public Transform[] airSpawnPoint;
+    public Transform[] airSpawnPoints;
     public float timeBetweenWaves = 2f;
+
+    [Header("Référence au PathManager")]
+    public PathManager pathManager;
 
     private int currentWave = 0;
     private int aliveEnemies = 0;
 
     void Awake()
     {
-        if (instance == null) instance = this;
-        //else Destroy(gameObject);
+        instance = this;
     }
 
     void Start()
@@ -41,13 +44,11 @@ public class WaveManager : MonoBehaviour
     public void RegisterEnemy()
     {
         aliveEnemies++;
-        Debug.Log("Spawn → Alive: " + aliveEnemies);
     }
 
     public void UnregisterEnemy()
     {
         aliveEnemies--;
-        Debug.Log("Death → Alive: " + aliveEnemies);
     }
 
     IEnumerator StartWaves()
@@ -55,11 +56,6 @@ public class WaveManager : MonoBehaviour
         while (currentWave < waves.Length)
         {
             yield return StartCoroutine(SpawnWave(waves[currentWave]));
-
-            // Attendre la fin des ennemis
-
-            //yield return new WaitUntil(() => aliveEnemies <= 0);
-
             currentWave++;
             yield return new WaitForSeconds(timeBetweenWaves);
         }
@@ -69,39 +65,44 @@ public class WaveManager : MonoBehaviour
 
     IEnumerator SpawnWave(Wave wave)
     {
+        // Si la wave ne spécifie rien, on utilise tous les spawn points
+        int[] usableSpawnPoints = wave.allowedSpawnPoints.Length > 0
+            ? wave.allowedSpawnPoints
+            : Enumerable.Range(0, pathManager.spawnPointsData.Length).ToArray();
+
         foreach (var group in wave.enemies)
         {
             for (int i = 0; i < group.count; i++)
             {
                 bool isFlying = group.enemyPrefab.GetComponent<EnemyFly>() != null;
-
                 Transform spawn;
+                GameObject obj;
 
                 if (isFlying)
-                    spawn = airSpawnPoint[Random.Range(0, airSpawnPoint.Length)];
-                else
-                    spawn = spawnPoints[Random.Range(0, spawnPoints.Length)];
-
-                GameObject enemyObj = Instantiate(group.enemyPrefab, spawn.position, spawn.rotation);
-
-                // 🔥 RÉCUPÉRER LE PATH ASSOCIÉ AU SPAWNPOINT 🔥
-                SpawnPointData spData = spawn.GetComponent<SpawnPointData>();
-
-                if (!isFlying && spData != null)
                 {
-                    EnemyNav nav = enemyObj.GetComponent<EnemyNav>();
+                    // Ennemi volant → spawn aléatoire
+                    spawn = airSpawnPoints[Random.Range(0, airSpawnPoints.Length)];
+                    obj = Instantiate(group.enemyPrefab, spawn.position, spawn.rotation);
+                }
+                else
+                {
+                    // Choisir un SpawnPoint autorisé
+                    int index = usableSpawnPoints[Random.Range(0, usableSpawnPoints.Length)];
+                    PathManager.SpawnPointData spData = pathManager.spawnPointsData[index];
 
-                    if (nav != null)
+                    spawn = spData.spawnPointTransform;
+
+                    obj = Instantiate(group.enemyPrefab, spawn.position, spawn.rotation);
+
+                    // Passer le path au EnemyNav
+                    EnemyNav nav = obj.GetComponent<EnemyNav>();
+                    if (nav != null && spData.waypoints != null && spData.waypoints.Length > 0)
                     {
-                        // On choisit Node1A ou Node1B aléatoirement
-                        Transform selectedNode = spData.nodes[Random.Range(0, spData.nodes.Length)];
-
-                        // On récupère tous les points enfant
-                        Transform[] points = new Transform[selectedNode.childCount];
-                        for (int p = 0; p < points.Length; p++)
-                            points[p] = selectedNode.GetChild(p);
-
-                        nav.SetPath(points);
+                        nav.SetPath(spData.waypoints);
+                    }
+                    else if (nav != null)
+                    {
+                        Debug.LogWarning($"[WaveManager] SpawnPoint {spawn.name} n'a pas de waypoints assignés !");
                     }
                 }
 
@@ -110,8 +111,8 @@ public class WaveManager : MonoBehaviour
             }
         }
     }
-
-
 }
+
+
 
 

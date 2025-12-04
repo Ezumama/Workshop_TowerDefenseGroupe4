@@ -5567,6 +5567,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 671930206}
+  - component: {fileID: 671930207}
   m_Layer: 0
   m_Name: SpawnPoint4
   m_TagString: Untagged
@@ -5589,6 +5590,27 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1702891966}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &671930207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 671930205}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db4014d50d55f9146b8eb34561ba0534, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nodes:
+  - {fileID: 1672419922}
+  - {fileID: 481423220}
+  - {fileID: 1026736901}
+  - {fileID: 1122474374}
+  - {fileID: 1122846179}
+  - {fileID: 247260541}
+  - {fileID: 1170387390}
+  - {fileID: 1519526261}
 --- !u!1 &681571524
 GameObject:
   m_ObjectHideFlags: 0
@@ -6589,17 +6611,14 @@ MonoBehaviour:
     - enemyPrefab: {fileID: 1023944232699115017, guid: 14396f458bf4b584ba9ea845d626d35f, type: 3}
       count: 1
       spawnInterval: 2
-  spawnPoints:
-  - {fileID: 940026983}
-  - {fileID: 949697936}
-  - {fileID: 1920362382}
-  - {fileID: 671930206}
-  airSpawnPoint:
+    allowedSpawnPoints: 03000000
+  airSpawnPoints:
   - {fileID: 1373767294}
   - {fileID: 1423492567}
   - {fileID: 15086165}
   - {fileID: 2119504182}
   timeBetweenWaves: 10
+  pathManager: {fileID: 1778680043}
 --- !u!4 &791461462
 Transform:
   m_ObjectHideFlags: 0
@@ -7743,6 +7762,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 940026983}
+  - component: {fileID: 940026984}
   m_Layer: 0
   m_Name: SpawnPoint1
   m_TagString: Untagged
@@ -7765,6 +7785,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1702891966}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &940026984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 940026982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db4014d50d55f9146b8eb34561ba0534, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nodes:
+  - {fileID: 1627809632}
+  - {fileID: 1006012467}
 --- !u!1 &949697935
 GameObject:
   m_ObjectHideFlags: 0
@@ -7774,6 +7809,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 949697936}
+  - component: {fileID: 949697937}
   m_Layer: 0
   m_Name: SpawnPoint2
   m_TagString: Untagged
@@ -7796,6 +7832,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1702891966}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &949697937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 949697935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db4014d50d55f9146b8eb34561ba0534, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nodes:
+  - {fileID: 127950729}
+  - {fileID: 776344459}
+  - {fileID: 1519099841}
+  - {fileID: 1348859334}
 --- !u!1 &969101218
 GameObject:
   m_ObjectHideFlags: 0
@@ -14465,6 +14518,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1778680042}
+  - component: {fileID: 1778680043}
   m_Layer: 0
   m_Name: PathManager
   m_TagString: Untagged
@@ -14491,6 +14545,47 @@ Transform:
   - {fileID: 296427215}
   m_Father: {fileID: 217452260}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1778680043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1778680041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45f994dd76e18204a8d944428ae2d094, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnPointsData:
+  - spawnPointTransform: {fileID: 940026983}
+    waypoints:
+    - {fileID: 1627809632}
+    - {fileID: 1006012467}
+  - spawnPointTransform: {fileID: 949697936}
+    waypoints:
+    - {fileID: 127950729}
+    - {fileID: 776344459}
+    - {fileID: 1519099841}
+    - {fileID: 671930206}
+  - spawnPointTransform: {fileID: 1920362382}
+    waypoints:
+    - {fileID: 1377948069}
+    - {fileID: 1256307060}
+    - {fileID: 1616351497}
+    - {fileID: 744363917}
+    - {fileID: 844857321}
+    - {fileID: 197559912}
+  - spawnPointTransform: {fileID: 671930206}
+    waypoints:
+    - {fileID: 1672419922}
+    - {fileID: 481423220}
+    - {fileID: 1026736901}
+    - {fileID: 1122474374}
+    - {fileID: 1122846179}
+    - {fileID: 247260541}
+    - {fileID: 1170387390}
+    - {fileID: 1519526261}
 --- !u!1 &1783032603
 GameObject:
   m_ObjectHideFlags: 0
@@ -15932,6 +16027,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1920362382}
+  - component: {fileID: 1920362383}
   m_Layer: 0
   m_Name: SpawnPoint3
   m_TagString: Untagged
@@ -15954,6 +16050,25 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1702891966}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1920362383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1920362381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db4014d50d55f9146b8eb34561ba0534, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nodes:
+  - {fileID: 1377948069}
+  - {fileID: 1256307060}
+  - {fileID: 1616351497}
+  - {fileID: 744363917}
+  - {fileID: 844857321}
+  - {fileID: 197559912}
 --- !u!1 &1921823289
 GameObject:
   m_ObjectHideFlags: 0

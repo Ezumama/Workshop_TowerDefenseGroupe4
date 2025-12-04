@@ -26,22 +26,16 @@ public class EnemyNav : MonoBehaviour
             return;
         }
 
-        // 🚨 SI AUCUN PATH N’A ÉTÉ DONNÉ PAR LE SPAWNPOINT 🚨
-        if (!pathAssigned || pathPoints == null || pathPoints.Length == 0)
+        // Si path déjà assigné avant Start(), on initialise
+        if (pathAssigned && pathPoints != null && pathPoints.Length > 0)
         {
-            Debug.LogError($"[EnemyNav] Aucun path assigné au spawn !", this);
-            enabled = false;
-            return;
+            currentPath = pathPoints;
+            currentIndex = 0;
+            agent.SetDestination(currentPath[0].position);
+            Debug.Log($"[EnemyNav] {name} utilise un path assigné via SetPath(), longueur = {currentPath.Length}");
         }
-
-        // sinon on utilise le path donné par le SpawnPoint
-        currentPath = pathPoints;
-        currentIndex = 0;
-
-        agent.SetDestination(currentPath[0].position);
-
-        Debug.Log($"[EnemyNav] {name} utilise un path assigné via SetPath(), longueur = {currentPath.Length}");
     }
+
 
     void Update()
     {
@@ -63,11 +57,19 @@ public class EnemyNav : MonoBehaviour
         }
     }
 
-    public void SetPath(Transform[] points)
+public void SetPath(Transform[] points)
+{
+    pathPoints = points;
+    pathAssigned = true;
+
+    // Si Start() est déjà passé, on initialise le chemin maintenant
+    if (agent != null && pathPoints.Length > 0)
     {
-        pathPoints = points;
-        pathAssigned = true; // important ! sinon Start() override tout
+        currentPath = pathPoints;
+        currentIndex = 0;
+        agent.SetDestination(currentPath[0].position);
     }
+}
 
     void ReachDestination()
     {
