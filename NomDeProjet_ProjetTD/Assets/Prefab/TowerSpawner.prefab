@@ -71,8 +71,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fb27afb0a7709645a3651dcd679c2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _defaultCursorTexture: {fileID: 2800000, guid: a77d2288d88e1654490785b83f9a8193, type: 3}
-  _highlightCursorTexture: {fileID: 2800000, guid: 4330e5b812f445c43a2bbf92cd619dbd, type: 3}
+  _defaultCursorTexture: {fileID: 2800000, guid: fe492e7b3986a154fa5dfb2980b9f4dc, type: 3}
+  _highlightCursorTexture: {fileID: 2800000, guid: 28f3fcee45342f347966c2b405cb0571, type: 3}
   CursorMode: 0
   HotSpotMouse: {x: 0, y: 0}
 --- !u!65 &4795617354901745288
