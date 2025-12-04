@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7029893399616217953}
   - component: {fileID: 7149822321505555176}
   - component: {fileID: 4106743482397363941}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: ButtonChoiceGatling
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -145,7 +145,7 @@ GameObject:
   - component: {fileID: 2060228172971119313}
   - component: {fileID: 370044677803509571}
   - component: {fileID: 8247042232726079814}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: TowerChoicePanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -247,7 +247,7 @@ GameObject:
   - component: {fileID: 7259088752407753413}
   - component: {fileID: 2307106950694851612}
   - component: {fileID: 4648893870702061719}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: TowerUpgradeLvl2_Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -348,7 +348,7 @@ GameObject:
   - component: {fileID: 5754568407569754461}
   - component: {fileID: 2654540842189062805}
   - component: {fileID: 5271723830161760029}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: TowerChoiceImageBG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
