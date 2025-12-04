@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1832421708625997949}
   - component: {fileID: 1235766008152034316}
   - component: {fileID: 7191180693376155803}
+  - component: {fileID: -4734686508610255139}
   m_Layer: 7
   m_Name: TripleMel_Lvl2
   m_TagString: Untagged
@@ -112,6 +113,22 @@ MonoBehaviour:
   _upgradedToLevel3: 0
   _upgradeFXLvl2: {fileID: 0}
   _upgradeFXLvl3: {fileID: 0}
+--- !u!114 &-4734686508610255139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7941172316868332899}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6c17205321ee7b4e97362c05f9e5dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isActivated: 1
+  _isTripleMel: 1
+  _isBigBetty: 0
+  _isSimpleLiza: 0
 --- !u!1001 &1952187487389320562
 PrefabInstance:
   m_ObjectHideFlags: 0

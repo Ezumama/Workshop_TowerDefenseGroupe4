@@ -6,15 +6,13 @@ public class TowerSpawner : MonoBehaviour
     [SerializeField] private GameObject[] _towers;
     [SerializeField] private GameObject towerChoicePanelPrefab;
 
-    [Header("Tower Cost Money")]
-    [SerializeField] private int _gatlingCost;
-    [SerializeField] private int _teslaCost;
-    [SerializeField] private int _groundCost;
+    private int _gatlingCost;
+    private int _teslaCost;
+    private int _groundCost;
 
-    [Header("Tower Cost Energy")]
-    [SerializeField] private int _gatlingEnergyCost;
-    [SerializeField] private int _teslaEnergyCost;
-    [SerializeField] private int _groundEnergyCost;
+    private int _gatlingEnergyCost;
+    private int _teslaEnergyCost;
+    private int _groundEnergyCost;
 
     [Header("Tower Cost UI Text")]
     [SerializeField] private TextMeshProUGUI _gatlingCostText;
@@ -37,6 +35,14 @@ public class TowerSpawner : MonoBehaviour
         _choiceUIScript = _towerChoicePanel.GetComponentInChildren<TowerChoiceUI>();
         _choiceUIScript.SetSpawner(this);
         _camera = Camera.main;
+
+        // Set cost
+        _gatlingCost = GameManager.Instance.GatlingCost;
+        _teslaCost = GameManager.Instance.TeslaCost;
+        _groundCost = GameManager.Instance.GroundCost;
+        _gatlingEnergyCost = GameManager.Instance.GatlingEnergyCost;
+        _teslaEnergyCost = GameManager.Instance.TeslaEnergyCost;
+        _groundEnergyCost = GameManager.Instance.GroundEnergyCost;
     }
 
     public void SpawnTower(int index)
@@ -85,6 +91,7 @@ public class TowerSpawner : MonoBehaviour
     //       _teslaEnergyCostText.color = Color.red;
     //    }
     //}
+    
     //public void GroundChoice()
     //{
     //    if (GameManager.Instance.CurrentMoneyAmount >= _groundCost && GameManager.Instance.CurrentEnergyAmount >= _groundEnergyCost)

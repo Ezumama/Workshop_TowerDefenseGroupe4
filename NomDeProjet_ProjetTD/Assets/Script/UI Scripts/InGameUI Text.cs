@@ -8,7 +8,7 @@ public class InGameUIText : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _redBlueprintCountTxt;
     [SerializeField] private TextMeshProUGUI _greenBlueprintCountTxt;
     [SerializeField] private TextMeshProUGUI _yellowBlueprintCountTxt;
-    //[SerializeField] private TextMeshProUGUI _energyCountTxt;
+    [SerializeField] private TextMeshProUGUI _energyCountTxt;
 
     void Update()
     {
@@ -16,6 +16,6 @@ public class InGameUIText : MonoBehaviour
         _redBlueprintCountTxt.text = GameManager.Instance.CurrentRedBlueprintAmount.ToString();
         _greenBlueprintCountTxt.text = GameManager.Instance.CurrentGreenBlueprintAmount.ToString();
         _yellowBlueprintCountTxt.text = GameManager.Instance.CurrentYellowBlueprintAmount.ToString();
-        //_energyCountTxt.text = EnergyManager.Instance.CurrentEnergyAmount.ToString();
+        _energyCountTxt.text = GameManager.Instance.CurrentEnergyAmount.ToString();
     }
 }

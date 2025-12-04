@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7893318185658762925}
   - component: {fileID: 5341004506988188206}
   - component: {fileID: 6434812764346965531}
+  - component: {fileID: 1822675180007319192}
   m_Layer: 7
   m_Name: SimpleLiza_Lvl2
   m_TagString: Untagged
@@ -82,6 +83,22 @@ MonoBehaviour:
   _upgradedToLevel3: 0
   _upgradeFXLvl2: {fileID: 0}
   _upgradeFXLvl3: {fileID: 0}
+--- !u!114 &1822675180007319192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7395371565769671855}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6c17205321ee7b4e97362c05f9e5dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isActivated: 1
+  _isTripleMel: 0
+  _isBigBetty: 0
+  _isSimpleLiza: 1
 --- !u!1001 &7956648431389936091
 PrefabInstance:
   m_ObjectHideFlags: 0

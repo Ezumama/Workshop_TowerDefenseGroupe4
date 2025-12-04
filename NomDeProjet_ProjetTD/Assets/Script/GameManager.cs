@@ -28,6 +28,16 @@ public class GameManager : MonoBehaviour
     public int CurrentEnergyAmount;
     public int BaseEnergyAmount;
 
+    [Header("Tower Cost Money")]
+    public int GatlingCost;
+    public int TeslaCost;
+    public int GroundCost;
+
+    [Header("Tower Cost Energy")]
+    public int GatlingEnergyCost;
+    public int TeslaEnergyCost;
+    public int GroundEnergyCost;
+
     private void Start()
     {
         CurrentMoneyAmount = BaseMoneyAmount;
