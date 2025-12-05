@@ -1,11 +1,17 @@
+using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class TowerSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject[] _towers;
     [SerializeField] private GameObject towerChoicePanelPrefab;
+
+    [SerializeField] private GraphicRaycaster _uiRaycaster;
+    [SerializeField] private EventSystem _eventSystem;
 
     #region int costs
     private int _gatlingCost;
@@ -138,8 +144,17 @@ public class TowerSpawner : MonoBehaviour
 
     private void Update()
     {
+        // Check if the left mouse button was clicked
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
+            // 1. Check if the mouse is hovering over a UI element
+            if (EventSystem.current.IsPointerOverGameObject())
+            {
+                // If we are clicking UI, do NOT fire the raycast.
+                return;
+            }
+
+            // 2. If not clicking UI, proceed with world logic
             OnClick();
         }
     }
@@ -218,6 +233,7 @@ public class TowerSpawner : MonoBehaviour
 
     public void OnClick()
     {
+
         Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
@@ -226,6 +242,7 @@ public class TowerSpawner : MonoBehaviour
         // What did we click?
         if (!Physics.Raycast(ray, out hit, 100, mask))
         {
+            CloseAllPanels();
             return;
         }
 
@@ -233,34 +250,44 @@ public class TowerSpawner : MonoBehaviour
         // Did we click this spawner?
         TowerSpawner spawnerHit = hit.collider.GetComponentInParent<TowerSpawner>();
 
-        // If we clicked something else, then close panel
+        // Clicked something that is NOT this spawner
         if (spawnerHit != this)
         {
-            if (_towerChoicePanel.activeSelf)
+            CloseAllPanels();
+            return;
+        }
+
+        // Did we click THIS spawner?
+        if (spawnerHit == this)
+        {
+            // If we clicked THIS spawner, then see if there's already a tower
+            if (_levelUpgrade == 0)
             {
-                _towerChoicePanel.SetActive(false);
+                _towerChoicePanel.SetActive(true);
+            }
+
+            // if there's a tower, then spawn upgrade panel (lvl 2)
+            else if (_levelUpgrade == 1)
+            {
+                _towerChoicePanelPrefabLvl2.SetActive(true);
+            }
+
+            // if there's a tower, then spawn upgrade panel (lvl 3)
+            else if (_levelUpgrade == 2)
+            {
+                _towerChoicePanelPrefabLvl3.SetActive(true);
             }
 
             return;
         }
 
-        // If we clicked THIS spawner, then see if there's already a tower
-        if (_levelUpgrade == 0)
-        {
-            _towerChoicePanel.SetActive(true);
-        }
+    }
 
-        // if there's a tower, then spawn upgrade panel (lvl 2)
-        else if (_levelUpgrade == 1)
-        {
-            _towerChoicePanelPrefabLvl2.SetActive(true);
-        }
-
-        // if there's a tower, then spawn upgrade panel (lvl 3)
-        else if ( _levelUpgrade == 2)
-        {
-            _towerChoicePanelPrefabLvl3.SetActive(true);
-        }
+    private void CloseAllPanels()
+    {
+        _towerChoicePanel.SetActive(false);
+        _towerUpgradePanelLvl2.SetActive(false);
+        _towerUpgradePanelLvl3.SetActive(false);
     }
 
    #region Level 2 Upgrade

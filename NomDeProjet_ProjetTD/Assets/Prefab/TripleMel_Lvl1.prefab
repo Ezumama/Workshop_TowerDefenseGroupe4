@@ -1,36 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1133837285026874227
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1694526799587505355}
-  m_Layer: 0
-  m_Name: Body
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1694526799587505355
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1133837285026874227}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 8438746311166357411}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7941172316868332899
 GameObject:
   m_ObjectHideFlags: 0
@@ -43,7 +12,7 @@ GameObject:
   - component: {fileID: -8788080621794032040}
   - component: {fileID: 2300425805478187301}
   - component: {fileID: 2762337637665708253}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: TripleMel_Lvl1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -64,7 +33,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4734531120928388451}
-  - {fileID: 1694526799587505355}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &-8788080621794032040
@@ -83,7 +51,7 @@ MonoBehaviour:
   _shootingDistance: 30
   _feedbackFXOut: {fileID: 1376696033527059834, guid: 88108968e5b7c5d4b8820ffca0d86646, type: 3}
   _towerShootingHead: {fileID: 6866022131903933936}
-  _towerBody: {fileID: 1133837285026874227}
+  _towerBody: {fileID: 1403812752534179323}
   _damageAmount: 10
   _shootingCooldown: 0.2
   _isBigBetty: 0
@@ -146,6 +114,26 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1314518219655021273, guid: e03d2210a38b7814fa681304569acd5b, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2355468433453894848, guid: e03d2210a38b7814fa681304569acd5b, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2610996267883732675, guid: e03d2210a38b7814fa681304569acd5b, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3661897105342896385, guid: e03d2210a38b7814fa681304569acd5b, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4652385562427672985, guid: e03d2210a38b7814fa681304569acd5b, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 4679571935834700353, guid: e03d2210a38b7814fa681304569acd5b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -190,6 +178,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Turret_Ground_Air_Lvl_01
       objectReference: {fileID: 0}
+    - target: {fileID: 5456952406789071099, guid: e03d2210a38b7814fa681304569acd5b, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 6597627773614746514, guid: e03d2210a38b7814fa681304569acd5b, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0
@@ -202,11 +194,36 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0.3
       objectReference: {fileID: 0}
+    - target: {fileID: 6625766251222839377, guid: e03d2210a38b7814fa681304569acd5b, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6776863942783083218, guid: e03d2210a38b7814fa681304569acd5b, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6895881043310160608, guid: e03d2210a38b7814fa681304569acd5b, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7204372792832342352, guid: e03d2210a38b7814fa681304569acd5b, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7398020971491535323, guid: e03d2210a38b7814fa681304569acd5b, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e03d2210a38b7814fa681304569acd5b, type: 3}
+--- !u!1 &1403812752534179323 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1314518219655021273, guid: e03d2210a38b7814fa681304569acd5b, type: 3}
+  m_PrefabInstance: {fileID: 91553144511106850}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4734531120928388451 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4679571935834700353, guid: e03d2210a38b7814fa681304569acd5b, type: 3}
