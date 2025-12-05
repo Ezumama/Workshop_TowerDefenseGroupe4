@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Mi_Simple_Liza
+  m_Name: Mi Simple Liza 2
   m_Shader: {fileID: -6465566751694194690, guid: 13dac1883c566434b84272dd937f2052, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -37,6 +37,10 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _AlphaText:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _BaseMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -46,7 +50,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Color_Texture:
-        m_Texture: {fileID: 2800000, guid: b2404374167fb11468b248b467456703, type: 3}
+        m_Texture: {fileID: 2800000, guid: dda211ace80853f4885d72231abb75da, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
@@ -66,7 +70,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Emmissive:
-        m_Texture: {fileID: 2800000, guid: 8ea54af3f26e577429591430d0ce2372, type: 3}
+        m_Texture: {fileID: 2800000, guid: bee4408c7dae69e41bafe9fe1abd50f0, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
@@ -129,7 +133,8 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _DstBlendAlpha: 0
-    - _Emmissive_Intensity: 50
+    - _Emmissive_Colored: 0
+    - _Emmissive_Intensity: 80
     - _EnvironmentReflections: 1
     - _GlossMapScale: 0
     - _Glossiness: 0
@@ -150,6 +155,7 @@ Material:
     - _Step2: 0.511
     - _Step3: 0.511
     - _Surface: 0
+    - _UseAlphaText: 0
     - _UseEmmissive: 1
     - _UseFlatColor: 0
     - _UseMetallic: 0
@@ -161,7 +167,7 @@ Material:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _Emmissive_Color: {r: 0.9716981, g: 0.9671146, b: 0.9671146, a: 0}
+    - _Emmissive_Color: {r: 1, g: 0, b: 0, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
