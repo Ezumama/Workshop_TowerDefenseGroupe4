@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8438746311166357411}
   - component: {fileID: 1832421708625997949}
-  - component: {fileID: 1235766008152034316}
   - component: {fileID: -4734686508610255139}
   m_Layer: 6
   m_Name: TripleMel_Lvl2
@@ -65,27 +64,6 @@ MonoBehaviour:
   SideDeadZone: 0
   Tag1: EnemyAir
   Tag2: EnemyGround
---- !u!65 &1235766008152034316
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7941172316868332899}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 2.0820699, y: 2.327727, z: 2.6195462}
-  m_Center: {x: -0.014764607, y: 1.1164602, z: 0.03357947}
 --- !u!114 &-4734686508610255139
 MonoBehaviour:
   m_ObjectHideFlags: 0

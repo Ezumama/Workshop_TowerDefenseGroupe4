@@ -171,16 +171,16 @@ public class TowerSpawner : MonoBehaviour
             _towerLevel2 = _towers[3];
             _towerLevel3 = _towers[4];
         }
-        //else if (GameManager.Instance.CurrentMoneyAmount < _gatlingCost)
-        //{
-        //    Debug.Log("Not enough money to build Gatling Tower!");
-        //    _gatlingCostText.color = Color.red;
-        //}
-        //else if (GameManager.Instance.CurrentEnergyAmount < _gatlingEnergyCost)
-        //{
-        //    Debug.Log("Not enough energy to build Gatling Tower!");
-        //    _gatlingEnergyCostText.color = Color.red;
-        //}
+        else if (GameManager.Instance.CurrentMoneyAmount < _gatlingCost)
+        {
+            Debug.Log("Not enough money to build Gatling Tower!");
+            _gatlingCostText.color = Color.red;
+        }
+        else if (GameManager.Instance.CurrentEnergyAmount < _gatlingEnergyCost)
+        {
+            Debug.Log("Not enough energy to build Gatling Tower!");
+            _gatlingEnergyCostText.color = Color.red;
+        }
 
     }
     public void TeslaChoice()
@@ -269,13 +269,13 @@ public class TowerSpawner : MonoBehaviour
             // if there's a tower, then spawn upgrade panel (lvl 2)
             else if (_levelUpgrade == 1)
             {
-                _towerChoicePanelPrefabLvl2.SetActive(true);
+                _towerUpgradePanelLvl2.SetActive(true);
             }
 
             // if there's a tower, then spawn upgrade panel (lvl 3)
             else if (_levelUpgrade == 2)
             {
-                _towerChoicePanelPrefabLvl3.SetActive(true);
+                _towerUpgradePanelLvl3.SetActive(true);
             }
 
             return;
