@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7893318185658762925}
   - component: {fileID: 5341004506988188206}
-  - component: {fileID: -9082473728297121626}
   - component: {fileID: 4717660978250164643}
   m_Layer: 7
   m_Name: SimpleLiza_Lvl1
@@ -57,32 +56,6 @@ MonoBehaviour:
   _isBigBetty: 0
   _tag1: EnemyGround
   _tag2: 
---- !u!114 &-9082473728297121626
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7395371565769671855}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 25bc2246f30e2bf41846867890608d05, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _towerLevel1: {fileID: 7395371565769671855}
-  _towerLevel2: {fileID: 7395371565769671855, guid: f47306a88abff2d49b045d00898050fb, type: 3}
-  _towerLevel3: {fileID: 7395371565769671855, guid: b3d4c8596d1495149a5f2b8a550e37f9, type: 3}
-  _towerChoicePanelPrefabLvl2: {fileID: 4820201920367666653, guid: 11da8eb951b677d43b91b0dfdd811592, type: 3}
-  _towerChoicePanelPrefabLvl3: {fileID: 4820201920367666653, guid: bbd20797619bc3d40951dc4cd7d7385a, type: 3}
-  _isTripleMelTower: 0
-  _isBigBettyTower: 0
-  _isSimpleLizaTower: 1
-  _blueprintCostLvl2: 0
-  _blueprintCostLvl3: 0
-  _upgradedToLevel2: 0
-  _upgradedToLevel3: 0
-  _upgradeFXLvl2: {fileID: 0}
-  _upgradeFXLvl3: {fileID: 0}
 --- !u!114 &4717660978250164643
 MonoBehaviour:
   m_ObjectHideFlags: 0

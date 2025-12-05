@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class TowerUpgradeUI : MonoBehaviour
 {
-    private TowerUpgrade _towerUpgradeScript;
+    private TowerSpawner _towerUpgradeScript;
 
-    public void SetUpgrade(TowerUpgrade _upgradeScript)
+    public void SetUpgrade(TowerSpawner _upgradeScript)
     {
         Debug.Log("SetUpgrade CALLED on: " + gameObject.name);
         _towerUpgradeScript = _upgradeScript;

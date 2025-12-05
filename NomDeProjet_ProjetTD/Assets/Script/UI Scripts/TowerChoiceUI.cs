@@ -15,10 +15,10 @@ public class TowerChoiceUI : MonoBehaviour
         _towerSpawnerScript.GatlingChoice();
     }
 
-    //public void TeslaClicked()
-    //{
-    //    _towerSpawnerScript.TeslaChoice();
-    //}
+    public void TeslaClicked()
+    {
+        _towerSpawnerScript.TeslaChoice();
+    }
 
     //public void AirClicked()
     //{

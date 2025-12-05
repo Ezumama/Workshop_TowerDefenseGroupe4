@@ -50,6 +50,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _towers:
   - {fileID: 7941172316868332899, guid: af1c0c7f3ddacc54491ed2ab7b368f92, type: 3}
+  - {fileID: 4054113880313410571, guid: 2dcc5cf829912574e8fdf341fcbf2584, type: 3}
+  - {fileID: 7395371565769671855, guid: 96c300d75eee8f24dafc5a72349e9637, type: 3}
+  - {fileID: 7941172316868332899, guid: 6efac18760be7d741947b1ecf546529b, type: 3}
+  - {fileID: 7941172316868332899, guid: f5f4f46c81828bd4493ef9f758a3cd2d, type: 3}
+  - {fileID: 4054113880313410571, guid: e272e112b9ce312468dc2e905b029cdc, type: 3}
+  - {fileID: 4054113880313410571, guid: 90fc2929368889844b587633fcb53b34, type: 3}
+  - {fileID: 7395371565769671855, guid: f47306a88abff2d49b045d00898050fb, type: 3}
+  - {fileID: 7395371565769671855, guid: b3d4c8596d1495149a5f2b8a550e37f9, type: 3}
   towerChoicePanelPrefab: {fileID: 4820201920367666653, guid: 0b675531a6193d04bba134e43cb1e5e3, type: 3}
   _gatlingCostText: {fileID: 0}
   _teslaCostText: {fileID: 0}
@@ -59,6 +67,15 @@ MonoBehaviour:
   _groundEnergyCostText: {fileID: 0}
   _towerAnimator: {fileID: 8556041265001350233}
   _openAnimationDuration: 4.5
+  _towerChoicePanelPrefabLvl2: {fileID: 4820201920367666653, guid: 11da8eb951b677d43b91b0dfdd811592, type: 3}
+  _towerChoicePanelPrefabLvl3: {fileID: 4820201920367666653, guid: bbd20797619bc3d40951dc4cd7d7385a, type: 3}
+  _levelUpgrade: 0
+  _blueprintCostLvl2: 0
+  _blueprintCostLvl3: 0
+  _upgradedToLevel2: 0
+  _upgradedToLevel3: 0
+  _upgradeFXLvl2: {fileID: 0}
+  _upgradeFXLvl3: {fileID: 0}
 --- !u!114 &3508742159765835672
 MonoBehaviour:
   m_ObjectHideFlags: 0
