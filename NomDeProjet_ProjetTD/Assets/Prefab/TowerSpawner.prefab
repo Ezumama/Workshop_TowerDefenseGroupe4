@@ -69,11 +69,8 @@ MonoBehaviour:
   _openAnimationDuration: 4.5
   _towerChoicePanelPrefabLvl2: {fileID: 4820201920367666653, guid: 11da8eb951b677d43b91b0dfdd811592, type: 3}
   _towerChoicePanelPrefabLvl3: {fileID: 4820201920367666653, guid: bbd20797619bc3d40951dc4cd7d7385a, type: 3}
-  _levelUpgrade: 0
   _blueprintCostLvl2: 0
   _blueprintCostLvl3: 0
-  _upgradedToLevel2: 0
-  _upgradedToLevel3: 0
   _upgradeFXLvl2: {fileID: 0}
   _upgradeFXLvl3: {fileID: 0}
 --- !u!114 &3508742159765835672
@@ -162,7 +159,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9004597233795566886}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
