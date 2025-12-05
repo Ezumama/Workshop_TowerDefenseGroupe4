@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8154879876776164503}
   - component: {fileID: -8922688226633113807}
   - component: {fileID: 6925073394534792717}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: TowerTesla
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -80,9 +80,37 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8154879876776164503}
     m_Modifications:
+    - target: {fileID: 248878066504588189, guid: a228a32aa8950ff44b00f265792d67b3, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 403733905809518234, guid: a228a32aa8950ff44b00f265792d67b3, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 725229215015879070, guid: a228a32aa8950ff44b00f265792d67b3, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3824121958740215181, guid: a228a32aa8950ff44b00f265792d67b3, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4437333365597423641, guid: a228a32aa8950ff44b00f265792d67b3, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 7120444115695891386, guid: a228a32aa8950ff44b00f265792d67b3, type: 3}
       propertyPath: m_Name
       value: SM_Tower_AA_LV1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7120444115695891386, guid: a228a32aa8950ff44b00f265792d67b3, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7529590758784223643, guid: a228a32aa8950ff44b00f265792d67b3, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7609736047968299264, guid: a228a32aa8950ff44b00f265792d67b3, type: 3}
       propertyPath: m_LocalPosition.x

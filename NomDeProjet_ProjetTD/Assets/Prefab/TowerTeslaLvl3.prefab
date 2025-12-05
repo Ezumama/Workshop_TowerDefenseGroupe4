@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8154879876776164503}
   - component: {fileID: -8922688226633113807}
   - component: {fileID: -3852587650844385020}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: TowerTeslaLvl3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -104,9 +104,29 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0.47
       objectReference: {fileID: 0}
+    - target: {fileID: 269728077579122581, guid: 4c12db0c82ae5ff42845a78d21122730, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1667145353976726923, guid: 4c12db0c82ae5ff42845a78d21122730, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2059367622505223191, guid: 4c12db0c82ae5ff42845a78d21122730, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 3774408033911188802, guid: 4c12db0c82ae5ff42845a78d21122730, type: 3}
       propertyPath: m_Name
       value: SM_Tower_AA_LV3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3774408033911188802, guid: 4c12db0c82ae5ff42845a78d21122730, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4193457654999257457, guid: 4c12db0c82ae5ff42845a78d21122730, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4551649073229756408, guid: 4c12db0c82ae5ff42845a78d21122730, type: 3}
       propertyPath: m_LocalPosition.x
@@ -147,6 +167,22 @@ PrefabInstance:
     - target: {fileID: 4551649073229756408, guid: 4c12db0c82ae5ff42845a78d21122730, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4953876421329933160, guid: 4c12db0c82ae5ff42845a78d21122730, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5260649594379777560, guid: 4c12db0c82ae5ff42845a78d21122730, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6940532327452864039, guid: 4c12db0c82ae5ff42845a78d21122730, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7524306511633357858, guid: 4c12db0c82ae5ff42845a78d21122730, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8298114895583447628, guid: 4c12db0c82ae5ff42845a78d21122730, type: 3}
       propertyPath: m_LocalPosition.x
