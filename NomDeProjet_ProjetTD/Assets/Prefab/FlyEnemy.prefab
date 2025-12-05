@@ -181,5 +181,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e35d7f38e2931ee4ca0d22ee60a838b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  airWaypoints:
-  - {fileID: 0}
+  waypoints: []
+  speed: 5
