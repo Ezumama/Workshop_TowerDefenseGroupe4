@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InGameUIText : MonoBehaviour
 {
@@ -16,6 +17,6 @@ public class InGameUIText : MonoBehaviour
         _redBlueprintCountTxt.text = GameManager.Instance.CurrentRedBlueprintAmount.ToString();
         _greenBlueprintCountTxt.text = GameManager.Instance.CurrentGreenBlueprintAmount.ToString();
         _yellowBlueprintCountTxt.text = GameManager.Instance.CurrentYellowBlueprintAmount.ToString();
-        _energyCountTxt.text = GameManager.Instance.CurrentEnergyAmount.ToString();
+        //_energyCountTxt.text = GameManager.Instance.CurrentEnergyAmount.ToString();
     }
 }
