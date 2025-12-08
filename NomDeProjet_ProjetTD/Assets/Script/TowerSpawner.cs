@@ -62,9 +62,9 @@ public class TowerSpawner : MonoBehaviour
     #endregion
 
     #region FX
-    [Header("FX")]
-    [SerializeField] private GameObject _upgradeFXLvl2;
-    [SerializeField] private GameObject _upgradeFXLvl3;
+    //[Header("FX")]
+    //[SerializeField] private GameObject _upgradeFXLvl2;
+    //[SerializeField] private GameObject _upgradeFXLvl3;
     #endregion
 
     #region private variables
@@ -95,8 +95,6 @@ public class TowerSpawner : MonoBehaviour
         _gatlingEnergyCost = GameManager.Instance.GatlingEnergyCost;
         _teslaEnergyCost = GameManager.Instance.TeslaEnergyCost;
         _groundEnergyCost = GameManager.Instance.GroundEnergyCost;
-
-        _currentTower = this.gameObject;
 
         _towerUpgradePanelLvl2 = Instantiate(_towerChoicePanelPrefabLvl2, transform);
         _towerUpgradePanelLvl2.SetActive(false);
@@ -138,23 +136,22 @@ public class TowerSpawner : MonoBehaviour
         yield return new WaitForSeconds(_openAnimationDuration);
 
         // Spawn specific tower
-        Instantiate(_towers[index], transform.position, Quaternion.identity);
+        _currentTower = Instantiate(_towers[index], transform.position, Quaternion.identity, transform);
         _levelUpgrade = 1;
     }
 
     private void Update()
     {
-        // Check if the left mouse button was clicked
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            // 1. Check if the mouse is hovering over a UI element
+            // mouse hovering over a UI element?
             if (EventSystem.current.IsPointerOverGameObject())
             {
-                // If we are clicking UI, do NOT fire the raycast.
+                // if yes then don't do raycast.
                 return;
             }
 
-            // 2. If not clicking UI, proceed with world logic
+            // if not then proceed with click logic
             OnClick();
         }
     }
@@ -167,7 +164,6 @@ public class TowerSpawner : MonoBehaviour
             SpawnTower(0);
             GameManager.Instance.LoseMoney(_gatlingCost);
             GameManager.Instance.LoseEnergy(_gatlingEnergyCost);
-            _isTripleMelTower = true;
             _towerLevel2 = _towers[3];
             _towerLevel3 = _towers[4];
         }
@@ -194,16 +190,16 @@ public class TowerSpawner : MonoBehaviour
             _towerLevel2 = _towers[5];
             _towerLevel3 = _towers[6];
         }
-        //else if (GameManager.Instance.CurrentMoneyAmount < _teslaCost)
-        //{
-        //    Debug.Log("Not enough money to build Tesla Tower!");
-        //    _teslaCostText.color = Color.red;
-        //}
-        //else if (GameManager.Instance.CurrentEnergyAmount < _teslaEnergyCost)
-        //{
-        //    Debug.Log("Not enough energy to build Tesla Tower!");
-        //    _teslaEnergyCostText.color = Color.red;
-        //}
+        else if (GameManager.Instance.CurrentMoneyAmount < _teslaCost)
+        {
+            Debug.Log("Not enough money to build Tesla Tower!");
+            _teslaCostText.color = Color.red;
+        }
+        else if (GameManager.Instance.CurrentEnergyAmount < _teslaEnergyCost)
+        {
+            Debug.Log("Not enough energy to build Tesla Tower!");
+            _teslaEnergyCostText.color = Color.red;
+        }
     }
 
     //public void GroundChoice()
@@ -276,7 +272,7 @@ public class TowerSpawner : MonoBehaviour
             else if (_levelUpgrade == 2)
             {
                 _towerUpgradePanelLvl3.SetActive(true);
-            }
+            }   
 
             return;
         }
@@ -317,10 +313,14 @@ public class TowerSpawner : MonoBehaviour
 
         if (_levelUpgrade == 1)
         {
-            // Destroy level 1 prefab, and spawn level 2 (upgrade)
-            Destroy(_currentTower);
-            _currentTower = Instantiate(_towerLevel2, pos, rot);
-            Instantiate(_upgradeFXLvl2, pos, rot);
+            if (_currentTower != null)
+            {
+                Destroy(_currentTower);
+            }
+
+            _currentTower = Instantiate(_towerLevel2, pos, rot, transform);
+
+            //Instantiate(_upgradeFXLvl2, pos, rot);
 
             _levelUpgrade = 2;
         }
@@ -331,7 +331,19 @@ public class TowerSpawner : MonoBehaviour
     public void UpgradeTowerLevel3()
     {
         ReplaceLvl3();
-        GameManager.Instance.LoseRedBlueprint(_blueprintCostLvl3);
+        if (_isTripleMelTower == true)
+        {
+            GameManager.Instance.LoseRedBlueprint(_blueprintCostLvl3);
+        }
+
+        else if (_isBigBettyTower == true)
+        {
+            GameManager.Instance.LoseGreenBlueprint(_blueprintCostLvl3);
+        }
+        else if (_isSimpleLizaTower == true)
+        {
+            GameManager.Instance.LoseYellowBlueprint(_blueprintCostLvl3);
+        }
     }
 
     void ReplaceLvl3()
@@ -342,9 +354,14 @@ public class TowerSpawner : MonoBehaviour
 
         if (_levelUpgrade == 2)
         {
-            Destroy(_currentTower);
-            _currentTower = Instantiate(_towerLevel3, pos1, rot1);
-            Instantiate(_upgradeFXLvl3, pos1, rot1);
+            if (_currentTower != null)
+            {
+                Destroy(_currentTower);
+            }
+            
+            _currentTower = Instantiate(_towerLevel3, pos1, rot1, transform);
+            
+            //Instantiate(_upgradeFXLvl3, pos1, rot1);
 
 
             _levelUpgrade = 3;

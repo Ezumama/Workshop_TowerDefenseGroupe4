@@ -2409,13 +2409,13 @@ MonoBehaviour:
   BaseYellowBlueprintAmount: 100
   BaseGreenBlueprintAmount: 100
   CurrentEnergyAmount: 0
-  BaseEnergyAmount: 0
-  GatlingCost: 0
-  TeslaCost: 0
-  GroundCost: 0
-  GatlingEnergyCost: 0
-  TeslaEnergyCost: 0
-  GroundEnergyCost: 0
+  BaseEnergyAmount: 7
+  GatlingCost: 10
+  TeslaCost: 10
+  GroundCost: 10
+  GatlingEnergyCost: 1
+  TeslaEnergyCost: 1
+  GroundEnergyCost: 1
 --- !u!4 &846758759
 Transform:
   m_ObjectHideFlags: 0

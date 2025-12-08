@@ -12,10 +12,12 @@ public class TowerUpgradeUI : MonoBehaviour
     public void UpgradeLvl2Clicked()
     {
         _towerUpgradeScript.UpgradeTowerLevel2();
+        gameObject.SetActive(false);
     }
 
     public void UpgradeLvl3Clicked()
     {
         _towerUpgradeScript.UpgradeTowerLevel3();
+        gameObject.SetActive(false);
     }
 }
