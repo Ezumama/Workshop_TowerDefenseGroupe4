@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e645d213da3e4a49895853aa89440f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _shootingPoint: {fileID: 3636399801578683916}
+  _shootingPoint: {fileID: 1081003614081381678}
   _shootingDistance: 20
   _feedbackFXOut: {fileID: 1376696033527059834, guid: 88108968e5b7c5d4b8820ffca0d86646, type: 3}
   _towerShootingHead: {fileID: 7825960095001789809}
@@ -181,9 +181,9 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4a9b173ba0bcffc428d7a2041fcf0708, type: 3}
---- !u!4 &3636399801578683916 stripped
+--- !u!4 &1081003614081381678 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 4028612601616074248, guid: 4a9b173ba0bcffc428d7a2041fcf0708, type: 3}
+  m_CorrespondingSourceObject: {fileID: 765586116125592874, guid: 4a9b173ba0bcffc428d7a2041fcf0708, type: 3}
   m_PrefabInstance: {fileID: 405209116665509892}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &4538459349130224141 stripped
