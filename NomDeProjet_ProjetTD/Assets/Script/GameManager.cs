@@ -38,6 +38,10 @@ public class GameManager : MonoBehaviour
     public int TeslaEnergyCost;
     public int GroundEnergyCost;
 
+    [Header("Workers")]
+    public int MaxWorkerAmount;
+    public int CurrentWorkerAmount;
+
     private void Start()
     {
         CurrentMoneyAmount = BaseMoneyAmount;
@@ -45,6 +49,8 @@ public class GameManager : MonoBehaviour
         CurrentYellowBlueprintAmount = BaseYellowBlueprintAmount;
         CurrentGreenBlueprintAmount = BaseGreenBlueprintAmount;
         CurrentEnergyAmount = BaseEnergyAmount;
+
+        CurrentWorkerAmount = MaxWorkerAmount;
     }
 
     private int ClampToZero(int value)
@@ -52,6 +58,19 @@ public class GameManager : MonoBehaviour
         return Mathf.Max(value, 0);
     }
 
+    #region workers
+    public void HireWorker(int amount)
+    {
+            CurrentWorkerAmount += amount;
+    }
+    public void FireWorker(int amount)
+    {
+        if (CurrentWorkerAmount >= amount)
+        {
+            ClampToZero(CurrentWorkerAmount - amount);
+        }
+    }
+    #endregion
 
     #region money
 
