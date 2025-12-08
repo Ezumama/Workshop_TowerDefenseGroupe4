@@ -101,6 +101,8 @@ Material:
     - _Blend: 0
     - _BlendModePreserveSpecular: 1
     - _BumpScale: 1
+    - _CameraScale: 0
+    - _CameraScaleFactor: 8.8
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
     - _Cull: 2
@@ -116,7 +118,7 @@ Material:
     - _GlossyReflections: 0
     - _Metallic: 0
     - _OcclusionStrength: 1
-    - _Outline_Thickness: 0.081
+    - _Outline_Thickness: 0.1
     - _Parallax: 0.005
     - _QueueControl: 0
     - _QueueOffset: 0

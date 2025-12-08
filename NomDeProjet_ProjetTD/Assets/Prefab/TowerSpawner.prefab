@@ -67,7 +67,7 @@ MonoBehaviour:
   _gatlingEnergyCostText: {fileID: 0}
   _teslaEnergyCostText: {fileID: 0}
   _groundEnergyCostText: {fileID: 0}
-  _towerAnimator: {fileID: 8556041265001350233}
+  _towerAnimator: {fileID: 1831384163924356541}
   _openAnimationDuration: 4.5
   _towerChoicePanelPrefabLvl2: {fileID: 4820201920367666653, guid: 11da8eb951b677d43b91b0dfdd811592, type: 3}
   _towerChoicePanelPrefabLvl3: {fileID: 4820201920367666653, guid: bbd20797619bc3d40951dc4cd7d7385a, type: 3}
@@ -291,9 +291,9 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f3384ac8c59bac44f91f81090cc51268, type: 3}
---- !u!95 &8556041265001350233 stripped
+--- !u!95 &1831384163924356541 stripped
 Animator:
-  m_CorrespondingSourceObject: {fileID: 4273608451046363796, guid: f3384ac8c59bac44f91f81090cc51268, type: 3}
+  m_CorrespondingSourceObject: {fileID: 6096079754806967152, guid: f3384ac8c59bac44f91f81090cc51268, type: 3}
   m_PrefabInstance: {fileID: 5617046520181593805}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &9047975983846497199 stripped
