@@ -40,6 +40,11 @@ public class TowerSpawner : MonoBehaviour
     [SerializeField] private Transform _spawnStartPosition; // Where tower spawns from
     [SerializeField] private Transform _spawnEndPosition; // Where tower pops to
     [SerializeField] private float _spawnPopDuration = 0.5f; // Duration of the pop animation
+    [Header("Ground / Vertical Animations")]
+    [SerializeField] private float _sinkDepth = 1.0f; // How far the level1 sinks under ground
+    [SerializeField] private float _sinkDuration = 0.6f; // How long it takes to sink
+    [SerializeField] private float _riseDelay = 0.5f; // Delay before level2 rises
+    [SerializeField] private float _riseDuration = 0.6f; // How long it takes to rise up
     #endregion
 
     #region prefabs
@@ -160,6 +165,8 @@ public class TowerSpawner : MonoBehaviour
         if (_currentTower != null)
         {
             _currentTower.transform.position = endPos;
+            // Start sinking animation so level1 appears to enter the ground
+            StartCoroutine(SinkTower(_currentTower, endPos));
         }
     }
     #endregion
@@ -188,6 +195,7 @@ public class TowerSpawner : MonoBehaviour
             SpawnTower(0);
             GameManager.Instance.LoseMoney(_gatlingCost);
             GameManager.Instance.LoseEnergy(_gatlingEnergyCost);
+            _isTripleMelTower = true;
             _towerLevel2 = _towers[3];
             _towerLevel3 = _towers[4];
         }
@@ -310,6 +318,59 @@ public class TowerSpawner : MonoBehaviour
         _towerUpgradePanelLvl3.SetActive(false);
     }
 
+    // Coroutine: sink a tower downward so it appears to enter the ground
+    private IEnumerator SinkTower(GameObject tower, Vector3 groundPos)
+    {
+        if (tower == null) yield break;
+
+        Vector3 start = groundPos;
+        Vector3 end = groundPos - Vector3.up * _sinkDepth;
+        float elapsed = 0f;
+        while (elapsed < _sinkDuration && tower != null)
+        {
+            elapsed += Time.deltaTime;
+            float t = Mathf.Clamp01(elapsed / _sinkDuration);
+            tower.transform.position = Vector3.Lerp(start, end, t);
+            yield return null;
+        }
+
+        if (tower != null)
+        {
+            tower.transform.position = end;
+        }
+    }
+
+    // Coroutine: wait then raise a tower from below to the target position
+    private IEnumerator RiseTower(GameObject tower, Vector3 targetPos, float delay, float duration)
+    {
+        if (tower == null) yield break;
+
+        // initial is below by _sinkDepth (caller should have placed it there already)
+        Vector3 start = tower.transform.position;
+        Vector3 end = targetPos;
+
+        float waited = 0f;
+        while (waited < delay)
+        {
+            waited += Time.deltaTime;
+            yield return null;
+        }
+
+        float elapsed = 0f;
+        while (elapsed < duration && tower != null)
+        {
+            elapsed += Time.deltaTime;
+            float t = Mathf.Clamp01(elapsed / duration);
+            tower.transform.position = Vector3.Lerp(start, end, t);
+            yield return null;
+        }
+
+        if (tower != null)
+        {
+            tower.transform.position = end;
+        }
+    }
+
    #region Level 2 Upgrade
     public void UpgradeTowerLevel2()
     {
@@ -342,9 +403,12 @@ public class TowerSpawner : MonoBehaviour
                 Destroy(_currentTower);
             }
 
-            _currentTower = Instantiate(_towerLevel2, pos, rot, transform);
+            // Instantiate the level2 tower slightly below the ground and make it rise into place
+            Vector3 belowPos = pos - Vector3.up * _sinkDepth;
+            _currentTower = Instantiate(_towerLevel2, belowPos, rot, transform);
 
-            //Instantiate(_upgradeFXLvl2, pos, rot);
+            // Start the rising coroutine which waits then moves tower up to original position
+            StartCoroutine(RiseTower(_currentTower, pos, _riseDelay, _riseDuration));
 
             _levelUpgrade = 2;
         }
