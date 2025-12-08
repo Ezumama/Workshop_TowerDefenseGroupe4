@@ -50,7 +50,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Color_Texture:
-        m_Texture: {fileID: 2800000, guid: dda211ace80853f4885d72231abb75da, type: 3}
+        m_Texture: {fileID: 2800000, guid: de82e9d4722abc64a81b73bf1c81621a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
@@ -70,7 +70,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Emmissive:
-        m_Texture: {fileID: 2800000, guid: bee4408c7dae69e41bafe9fe1abd50f0, type: 3}
+        m_Texture: {fileID: 2800000, guid: b55476007d616274880b9121b86ccbca, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
