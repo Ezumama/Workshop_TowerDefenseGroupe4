@@ -37,9 +37,6 @@ public class TowerSpawner : MonoBehaviour
     [Header("Tower Animation")]
     [SerializeField] private Animator _towerAnimator;
     [SerializeField] private float _openAnimationDuration = 1.0f; // Time to wait before spawning tower after opening animation
-    [SerializeField] private Transform _spawnStartPosition; // Where tower spawns from
-    [SerializeField] private Transform _spawnEndPosition; // Where tower pops to
-    [SerializeField] private float _spawnPopDuration = 0.5f; // Duration of the pop animation
     #endregion
 
     #region prefabs
@@ -122,7 +119,6 @@ public class TowerSpawner : MonoBehaviour
         }
     }
 
-    #region Tower Build Sequence
     private IEnumerator BuildSequence(int index)
     {
         _isBuilding = true;
@@ -139,31 +135,11 @@ public class TowerSpawner : MonoBehaviour
         // Wait for the animation to finish
         yield return new WaitForSeconds(_openAnimationDuration);
 
-        // Spawn specific tower at start position
-        Vector3 startPos = _spawnStartPosition != null ? _spawnStartPosition.position : transform.position;
-        Vector3 endPos = _spawnEndPosition != null ? _spawnEndPosition.position : transform.position;
-        
-        _currentTower = Instantiate(_towers[index], startPos, Quaternion.identity, transform);
+        // Spawn specific tower
+        _currentTower = Instantiate(_towers[index], transform.position, Quaternion.identity, transform);
         _levelUpgrade = 1;
-
-        // Pop animation: lerp from start to end position
-        float elapsedTime = 0f;
-        while (elapsedTime < _spawnPopDuration && _currentTower != null)
-        {
-            elapsedTime += Time.deltaTime;
-            float t = elapsedTime / _spawnPopDuration;
-            _currentTower.transform.position = Vector3.Lerp(startPos, endPos, t);
-            yield return null;
-        }
-
-        // Ensure final position is exact
-        if (_currentTower != null)
-        {
-            _currentTower.transform.position = endPos;
-        }
     }
-    #endregion
-    
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Mouse0))
