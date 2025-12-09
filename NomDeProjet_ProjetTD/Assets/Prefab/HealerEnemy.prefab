@@ -200,7 +200,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e834015b6b937b749aefe573dad851be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 50
+  maxHealth: 20
   currentHealth: 0
 --- !u!114 &3712181613244487598
 MonoBehaviour:
@@ -214,12 +214,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c75cab9957d4d8d469d33b71b65c0dae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  randomStartNode: 1
-  pathPoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!195 &2061298622695236203
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -230,7 +224,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 6
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
