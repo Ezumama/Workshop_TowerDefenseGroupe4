@@ -70,7 +70,7 @@ MonoBehaviour:
   _teslaEnergyCostText: {fileID: 0}
   _groundEnergyCostText: {fileID: 0}
   _towerAnimator: {fileID: 1831384163924356541}
-  _openAnimationDuration: 4
+  _openAnimationDuration: 3
   _spawnStartPosition: {fileID: 1010744715311191262}
   _spawnEndPosition: {fileID: 5451268515354726703}
   _spawnPopDuration: 0.5
@@ -78,6 +78,8 @@ MonoBehaviour:
   _towerChoicePanelPrefabLvl3: {fileID: 4820201920367666653, guid: bbd20797619bc3d40951dc4cd7d7385a, type: 3}
   _blueprintCostLvl2: 0
   _blueprintCostLvl3: 0
+  _currentTower: {fileID: 0}
+  _isBuilding: 0
 --- !u!114 &3508742159765835672
 MonoBehaviour:
   m_ObjectHideFlags: 0

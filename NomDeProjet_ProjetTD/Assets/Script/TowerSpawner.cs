@@ -65,20 +65,21 @@ public class TowerSpawner : MonoBehaviour
     #endregion
 
     #region FX
-    //[Header("FX")]
-    //[SerializeField] private GameObject _upgradeFXLvl2;
-    //[SerializeField] private GameObject _upgradeFXLvl3;
+    // [Header("FX")]
+    // [SerializeField] private GameObject _upgradeFXLvl2;
+    // [SerializeField] private GameObject _upgradeFXLvl3;
     #endregion
 
     #region private variables
+    [Header("Private Variables")]
     private GameObject _towerUpgradePanelLvl2;
     private GameObject _towerUpgradePanelLvl3;
     private TowerUpgradeUI _towerUpgradeUIScript;
     private Camera _camera;
-    private GameObject _currentTower;
+    [SerializeField] private GameObject _currentTower;
     private TowerChoiceUI _choiceUIScript;
     private GameObject _towerChoicePanel;
-    private bool _isBuilding = false;
+    [SerializeField] private bool _isBuilding = false;
     #endregion
 
     private void Start()
@@ -161,9 +162,58 @@ public class TowerSpawner : MonoBehaviour
         {
             _currentTower.transform.position = endPos;
         }
+
+        _isBuilding = false;
+
     }
     #endregion
     
+    #region Upgrade Sequence Logic
+    private IEnumerator UpgradeSequence(GameObject newTowerPrefab, int newLevelIndex)
+    {
+        _isBuilding = true;
+        CloseAllPanels();
+        // Calculate positions
+        Vector3 downPos = _spawnStartPosition != null ? _spawnStartPosition.position : transform.position;
+        Vector3 upPos = _spawnEndPosition != null ? _spawnEndPosition.position : transform.position;
+
+        //Move old tower down
+        float elapsedTime = 0f;
+        while (elapsedTime < _spawnPopDuration && _currentTower != null)
+        {
+            elapsedTime += Time.deltaTime;
+            float t = elapsedTime / _spawnPopDuration;
+            _currentTower.transform.position = Vector3.Lerp(upPos, downPos, t);
+            yield return null;
+        }
+
+        // Destroy old tower
+        if (_currentTower != null) Destroy(_currentTower);
+
+        _towerAnimator.Play("Closing");
+        yield return new WaitForSeconds(_openAnimationDuration);
+        _towerAnimator.Play("Opening");
+        yield return new WaitForSeconds(_openAnimationDuration);
+
+        //Move new tower up
+        _currentTower = Instantiate(newTowerPrefab, downPos, Quaternion.identity, transform);
+        _levelUpgrade = newLevelIndex;
+
+        elapsedTime = 0f;
+        while (elapsedTime < _spawnPopDuration && _currentTower != null)
+        {
+            elapsedTime += Time.deltaTime;
+            float t = elapsedTime / _spawnPopDuration;
+            _currentTower.transform.position = Vector3.Lerp(downPos, upPos, t);
+            yield return null;
+        }
+
+        if (_currentTower != null) _currentTower.transform.position = upPos;
+
+        _isBuilding = false;
+    }
+    #endregion
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Mouse0))
@@ -310,86 +360,41 @@ public class TowerSpawner : MonoBehaviour
         _towerUpgradePanelLvl3.SetActive(false);
     }
 
-   #region Level 2 Upgrade
+#region Level 2 Upgrade
     public void UpgradeTowerLevel2()
     {
-        ReplaceLvl2();
-        if (_isTripleMelTower == true)
-        {
+        // Don't upgrade if already building
+        if(_isBuilding) return; 
+
+        // Pay the cost
+        if (_isTripleMelTower)
             GameManager.Instance.LoseRedBlueprint(_blueprintCostLvl2);
-        }
-
-        else if (_isBigBettyTower == true)
-        {
+        else if (_isBigBettyTower)
             GameManager.Instance.LoseGreenBlueprint(_blueprintCostLvl2);
-        }
-        else if (_isSimpleLizaTower == true)
-        {
+        else if (_isSimpleLizaTower)
             GameManager.Instance.LoseYellowBlueprint(_blueprintCostLvl2);
-        }
-    }
 
-    void ReplaceLvl2()
-    {
-        // Saving Level 1 position and rotation
-        Vector3 pos = _currentTower.transform.position;
-        Quaternion rot = _currentTower.transform.rotation;
-
-        if (_levelUpgrade == 1)
-        {
-            if (_currentTower != null)
-            {
-                Destroy(_currentTower);
-            }
-
-            _currentTower = Instantiate(_towerLevel2, pos, rot, transform);
-
-            //Instantiate(_upgradeFXLvl2, pos, rot);
-
-            _levelUpgrade = 2;
-        }
+        // Start the animation
+        StartCoroutine(UpgradeSequence(_towerLevel2, 2));
     }
     #endregion
 
-   #region Level 3 Upgrade
+#region Level 3 Upgrade
     public void UpgradeTowerLevel3()
     {
-        ReplaceLvl3();
-        if (_isTripleMelTower == true)
-        {
+        // Don't upgrade if already building
+        if (_isBuilding) return;
+
+        // Pay the cost
+        if (_isTripleMelTower)
             GameManager.Instance.LoseRedBlueprint(_blueprintCostLvl3);
-        }
-
-        else if (_isBigBettyTower == true)
-        {
+        else if (_isBigBettyTower)
             GameManager.Instance.LoseGreenBlueprint(_blueprintCostLvl3);
-        }
-        else if (_isSimpleLizaTower == true)
-        {
+        else if (_isSimpleLizaTower)
             GameManager.Instance.LoseYellowBlueprint(_blueprintCostLvl3);
-        }
-    }
 
-    void ReplaceLvl3()
-    {
-        Vector3 pos1 = _currentTower.transform.position;
-        Quaternion rot1 = _currentTower.transform.rotation;
-
-
-        if (_levelUpgrade == 2)
-        {
-            if (_currentTower != null)
-            {
-                Destroy(_currentTower);
-            }
-            
-            _currentTower = Instantiate(_towerLevel3, pos1, rot1, transform);
-            
-            //Instantiate(_upgradeFXLvl3, pos1, rot1);
-
-
-            _levelUpgrade = 3;
-        }
+        // Start the animation
+        StartCoroutine(UpgradeSequence(_towerLevel3, 3));
     }
     #endregion
-}
+    }
