@@ -16,7 +16,7 @@ public class Nexus : MonoBehaviour
 
     void Update()
     {
-        // 🔥 Nettoie automatiquement les ennemis morts ou supprimés
+        // Nettoie automatiquement les ennemis morts ou supprimés
         enemiesInRange.RemoveAll(e => e == null);
 
         // Infliger des dégâts aux ennemis

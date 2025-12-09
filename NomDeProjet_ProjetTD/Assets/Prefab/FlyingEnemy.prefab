@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3200218359593891638}
   - component: {fileID: 2918237578287464853}
   - component: {fileID: 6315953662901445857}
+  - component: {fileID: -5463712529436315611}
   m_Layer: 7
   m_Name: FlyingEnemy
   m_TagString: EnemyAir
@@ -105,12 +106,24 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5206046423004978037}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e35d7f38e2931ee4ca0d22ee60a838b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waypoints: []
+  speed: 5
+--- !u!114 &-5463712529436315611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5206046423004978037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b22847aa186ee3c4fa607f9b0ca79028, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   speed: 5
 --- !u!1001 &4532872872232207286
 PrefabInstance:

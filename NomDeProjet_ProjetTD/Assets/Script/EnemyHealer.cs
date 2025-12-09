@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+[RequireComponent(typeof(EnemyNav))]
 public class EnemyHealer : MonoBehaviour
 {
     [Header("Healing Settings")]

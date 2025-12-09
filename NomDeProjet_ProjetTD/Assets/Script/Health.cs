@@ -3,10 +3,13 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
     [Header("Stats")]
-    public float maxHealth;
+    [SerializeField] public float maxHealth = 100f;
     public float currentHealth;
 
-    void Start()
+    // Ajout d'un événement pour que d'autres scripts puissent réagir à la mort
+    public event System.Action OnDie;
+
+    void Awake()
     {
         currentHealth = maxHealth;
     }
@@ -21,9 +24,11 @@ public class Health : MonoBehaviour
         }
     }
 
-    protected virtual void Die()
+    // Changé en public virtual pour que les enfants (Nexus, Enemy) puissent l'étendre
+    public virtual void Die()
     {
-        Destroy(gameObject); 
+        OnDie?.Invoke(); // Déclenche l'événement
+        Destroy(gameObject);
     }
 
     public void Heal(float amount)
@@ -31,10 +36,8 @@ public class Health : MonoBehaviour
         currentHealth = Mathf.Min(currentHealth + amount, maxHealth);
     }
 
-
-
-
     public float GetCurrentHealth() => currentHealth;
     public float GetMaxHealth() => maxHealth;
+    public bool IsAlive() => currentHealth > 0;
 }
 
