@@ -579,6 +579,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1751305805076889782, guid: a589def116864a04098637f2b0fcf6a2, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 826
+      objectReference: {fileID: 0}
+    - target: {fileID: 1751305805076889782, guid: a589def116864a04098637f2b0fcf6a2, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -391
+      objectReference: {fileID: 0}
+    - target: {fileID: 2005457251193878484, guid: a589def116864a04098637f2b0fcf6a2, type: 3}
+      propertyPath: m_Name
+      value: UI_HUD_EnergyBarFrame
+      objectReference: {fileID: 0}
+    - target: {fileID: 3155550180989641799, guid: a589def116864a04098637f2b0fcf6a2, type: 3}
+      propertyPath: m_Name
+      value: UI_HUD_Resources
+      objectReference: {fileID: 0}
     - target: {fileID: 4609689883979838114, guid: a589def116864a04098637f2b0fcf6a2, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -659,9 +675,49 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5678187624319820905, guid: a589def116864a04098637f2b0fcf6a2, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 250
+      objectReference: {fileID: 0}
+    - target: {fileID: 5678187624319820905, guid: a589def116864a04098637f2b0fcf6a2, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 250
+      objectReference: {fileID: 0}
+    - target: {fileID: 5678187624319820905, guid: a589def116864a04098637f2b0fcf6a2, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 738
+      objectReference: {fileID: 0}
+    - target: {fileID: 5678187624319820905, guid: a589def116864a04098637f2b0fcf6a2, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -476.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6079476663985788236, guid: a589def116864a04098637f2b0fcf6a2, type: 3}
+      propertyPath: m_Name
+      value: UI_HUD_LifeBar
+      objectReference: {fileID: 0}
+    - target: {fileID: 6634382014095896823, guid: a589def116864a04098637f2b0fcf6a2, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 827
+      objectReference: {fileID: 0}
+    - target: {fileID: 6634382014095896823, guid: a589def116864a04098637f2b0fcf6a2, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -396
+      objectReference: {fileID: 0}
     - target: {fileID: 7272109259662161209, guid: a589def116864a04098637f2b0fcf6a2, type: 3}
       propertyPath: m_Name
       value: UI_Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 8388301974459265135, guid: a589def116864a04098637f2b0fcf6a2, type: 3}
+      propertyPath: m_Name
+      value: UI_HUD_ReactorSpell
+      objectReference: {fileID: 0}
+    - target: {fileID: 8969693925112093587, guid: a589def116864a04098637f2b0fcf6a2, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 5c09a9be00d297548a88f6060a595257, type: 3}
+    - target: {fileID: 8995143493138737547, guid: a589def116864a04098637f2b0fcf6a2, type: 3}
+      propertyPath: m_Name
+      value: UI_HUD_LifeBarFrame
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
