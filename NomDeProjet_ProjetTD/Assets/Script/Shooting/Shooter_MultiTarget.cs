@@ -79,6 +79,7 @@ public class Shooter_MultiTarget : MonoBehaviour
         }
     }
 
+    #region orientation of turret
     private GameObject FindTargetForCannon(Cannon cannon, List<GameObject> allTargets)
     {
         // Only one enemy, then both shoot same
@@ -123,6 +124,7 @@ public class Shooter_MultiTarget : MonoBehaviour
             }
         }
     }
+    #endregion
 
     private void Shoot(Cannon cannon)   
     {
@@ -158,4 +160,16 @@ public class Shooter_MultiTarget : MonoBehaviour
             yield return new WaitForSeconds(_shootingCooldown);
         }
     }
+
+    #region worker buff
+    public void BuffDamage()
+    {
+        _damageAmount *= 2;
+    }
+
+    public void StopBuff()
+    {
+        _damageAmount /= 2;
+    }
+    #endregion
 }

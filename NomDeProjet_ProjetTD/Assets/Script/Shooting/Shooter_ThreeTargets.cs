@@ -1,4 +1,4 @@
-using System.Collections;
+    using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -42,6 +42,7 @@ public class Shooter_ThreeTargets : MonoBehaviour
         RotateCannons();
     }
 
+    #region tower orientation
     private void AssignTargets()
     {
         // Gather all valid enemies
@@ -90,6 +91,7 @@ public class Shooter_ThreeTargets : MonoBehaviour
             }
         }
     }
+    #endregion
 
     private void Shoot(Cannon cannon)
     {
@@ -126,4 +128,16 @@ public class Shooter_ThreeTargets : MonoBehaviour
             yield return new WaitForSeconds(_shootingCooldown);
         }
     }
+
+    #region worker buff
+    public void BuffDamage()
+    {
+        _damageAmount *= 2;
+    }
+
+    public void StopBuff()
+    {
+        _damageAmount /= 2;
+    }
+    #endregion
 }

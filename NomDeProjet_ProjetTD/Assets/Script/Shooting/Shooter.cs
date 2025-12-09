@@ -99,6 +99,17 @@ public class Shooter : MonoBehaviour
         _target = closestBot;
     }
 
+    #region worker buff
+    public void BuffDamage()
+    {
+        _damageAmount *= 2;
+    }
+
+    public void StopBuff()
+    {
+        _damageAmount /= 2;
+    }
+    #endregion
 
     void Shooting()
     {
