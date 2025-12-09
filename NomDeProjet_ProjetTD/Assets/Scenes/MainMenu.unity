@@ -119,17 +119,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!114 &494264441 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2584682983977187736, guid: 9eb32f8bb071c544b8542b10c1c4df07, type: 3}
-  m_PrefabInstance: {fileID: 4108339492669613488}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1221661469
 GameObject:
   m_ObjectHideFlags: 0
@@ -209,17 +198,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1742403027 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8239794528722370728, guid: 9eb32f8bb071c544b8542b10c1c4df07, type: 3}
-  m_PrefabInstance: {fileID: 4108339492669613488}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &4108339492669613488
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -228,9 +206,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 659774921923091602, guid: 9eb32f8bb071c544b8542b10c1c4df07, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: BackButton
+    - target: {fileID: 1745691271673462863, guid: 9eb32f8bb071c544b8542b10c1c4df07, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 445.88
+      objectReference: {fileID: 0}
+    - target: {fileID: 1745691271673462863, guid: 9eb32f8bb071c544b8542b10c1c4df07, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -622.94
       objectReference: {fileID: 0}
     - target: {fileID: 2222473056724435831, guid: 9eb32f8bb071c544b8542b10c1c4df07, type: 3}
       propertyPath: m_Pivot.x
@@ -312,14 +294,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2584682983977187736, guid: 9eb32f8bb071c544b8542b10c1c4df07, type: 3}
-      propertyPath: m_text
-      value: XXX
-      objectReference: {fileID: 0}
-    - target: {fileID: 2584682983977187736, guid: 9eb32f8bb071c544b8542b10c1c4df07, type: 3}
-      propertyPath: m_fontSize
-      value: 72
-      objectReference: {fileID: 0}
     - target: {fileID: 3484810426975982230, guid: 9eb32f8bb071c544b8542b10c1c4df07, type: 3}
       propertyPath: m_Name
       value: Canvas_MainMenu
@@ -328,17 +302,13 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4281172552366188402, guid: 9eb32f8bb071c544b8542b10c1c4df07, type: 3}
-      propertyPath: _volume
-      value: 
-      objectReference: {fileID: 1742403027}
-    - target: {fileID: 4281172552366188402, guid: 9eb32f8bb071c544b8542b10c1c4df07, type: 3}
-      propertyPath: _textUIFullscreenWindowed
-      value: 
-      objectReference: {fileID: 494264441}
-    - target: {fileID: 7648459630714824133, guid: 9eb32f8bb071c544b8542b10c1c4df07, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: FullscreenOnOff
+    - target: {fileID: 8319954147341152823, guid: 9eb32f8bb071c544b8542b10c1c4df07, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -622.94
+      objectReference: {fileID: 0}
+    - target: {fileID: 8319954147341152823, guid: 9eb32f8bb071c544b8542b10c1c4df07, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -298
       objectReference: {fileID: 0}
     - target: {fileID: 8500441874634161304, guid: 9eb32f8bb071c544b8542b10c1c4df07, type: 3}
       propertyPath: m_AnchorMax.y
