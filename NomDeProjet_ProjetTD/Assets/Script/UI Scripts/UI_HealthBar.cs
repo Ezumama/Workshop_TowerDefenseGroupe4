@@ -27,8 +27,15 @@ public class UI_HealthBar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _currentHp = _health.currentHealth;
+        if (_health == null)
+        {
+            // Si la cible est morte, détruire la barre de santé ou arrêter l'exécution.
+            // On détruit l'objet UI_HealthBar, qui est l'objet courant (this.gameObject).
+            //Destroy(gameObject);
+            return;
+        }
 
+        _currentHp = _health.currentHealth;
         _hpBar.fillAmount = _currentHp / _maxHp;
 
         if (_currentHp > (_maxHp / 2))
