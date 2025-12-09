@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class OptionMenu_UI : MonoBehaviour
 {
-    [SerializeField] private GameObject optionPanel;
+    private GameObject optionPanel;
     [SerializeField] private Slider _volume;
     [SerializeField] private AudioSource _gameMusic;
     [SerializeField] private Toggle _fullscreenTog, _vsyncTog;
@@ -18,6 +18,7 @@ public class OptionMenu_UI : MonoBehaviour
 
     private void Start()
     {
+        optionPanel = gameObject;
         _fullscreenTog.isOn = Screen.fullScreen;
 
         if(QualitySettings.vSyncCount == 0)
