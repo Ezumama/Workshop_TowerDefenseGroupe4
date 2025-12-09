@@ -29,7 +29,7 @@ public class PathManager : MonoBehaviour
     {
         if (instance != null)
         {
-            Destroy(gameObject);
+            //Destroy(gameObject);
             return;
         }
         instance = this;

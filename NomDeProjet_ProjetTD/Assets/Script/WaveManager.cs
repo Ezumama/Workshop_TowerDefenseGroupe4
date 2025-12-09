@@ -7,9 +7,10 @@ public class WaveManager : MonoBehaviour
 {
     public static WaveManager instance;
 
-    // --- Configurations de la Vague ---
+    // --- Structures de Configuration ---
+
     [System.Serializable]
-    public class EnemySpawn
+    public class EnemyBatch
     {
         public GameObject enemyPrefab;
         public int count = 5;
@@ -17,38 +18,44 @@ public class WaveManager : MonoBehaviour
     }
 
     [System.Serializable]
-    public class Wave
+    public class PathGroup
     {
-        public EnemySpawn[] enemies;
-        [Tooltip("Indices des SpawnPoints autorisés (dans le tableau 'spawnPointsData' du PathManager). Laisser vide pour TOUS.")]
-        public int[] allowedSpawnPoints;
+        [Tooltip("Index du SpawnPoint dans le PathManager.spawnPointsData (e.g., 0 pour Path 1, 1 pour Path 2, etc.)")]
+        public int pathManagerIndex;
+
+        [Tooltip("Les lots d'ennemis qui vont spawner sur ce chemin.")]
+        public EnemyBatch[] enemies;
     }
 
+    [System.Serializable]
+    public class Wave
+    {
+        public PathGroup[] pathGroups;
+    }
+
+    // --- Variables du Manager ---
+
     public Wave[] waves;
-    [Tooltip("Les 4 points de spawn pour les ennemis volants.")]
+    [Tooltip("Les points de spawn pour les ennemis volants. DOIVENT ÊTRE DANS LE MÊME ORDRE QUE LES CHEMINS DU PATHMANAGER.")]
     public Transform[] airSpawnPoints;
     public float timeBetweenWaves = 2f;
 
     [Header("Référence au PathManager")]
-    // **Correction CS0103** : Assure que la référence est là.
     public PathManager pathManager;
 
     // --- État du Manager ---
     private int currentWave = 0;
-    // **Correction CS0103** : Utilisation du nom correct 'aliveEnemies'.
     private int aliveEnemies = 0;
 
 
     void Awake()
     {
-        if (instance != null) { //Destroy(gameObject)
-                                ; return; }
+        if (instance != null) { return; }
         instance = this;
     }
 
     void Start()
     {
-        // Vérification des dépendances cruciales
         if (pathManager == null)
         {
             Debug.LogError("[WaveManager] Le PathManager n'est pas assigné ! Le système de vagues ne peut pas démarrer.");
@@ -67,27 +74,21 @@ public class WaveManager : MonoBehaviour
     public void UnregisterEnemy()
     {
         aliveEnemies--;
-
-        // Logique de fin de vague
-        if (aliveEnemies <= 0 && currentWave < waves.Length)
-        {
-            // La dernière vague n'est pas forcément terminée, mais cela permet de passer à la suite si tous les ennemis sont morts.
-            // Une logique plus robuste impliquerait un décompte des ennemis à spawner vs ennemis spammés et morts.
-        }
     }
+
+    // --- Logique des Vagues ---
 
     IEnumerator StartWaves()
     {
-        // Utilisation du nom correct 'currentWave'
         while (currentWave < waves.Length)
         {
-            //Debug.Log($"🚀 Début de la vague {currentWave + 1}...");
+            Debug.Log($"🚀 Début de la vague {currentWave + 1}...");
             yield return StartCoroutine(SpawnWave(waves[currentWave]));
 
-            // Attendre que tous les ennemis soient morts avant de passer à la vague suivante (logique classique de TD)
             yield return new WaitUntil(() => aliveEnemies <= 0);
 
             currentWave++;
+            Debug.Log($"⏸️ Pause avant la vague {currentWave + 1}");
             yield return new WaitForSeconds(timeBetweenWaves);
         }
 
@@ -96,79 +97,100 @@ public class WaveManager : MonoBehaviour
 
     IEnumerator SpawnWave(Wave wave)
     {
-        // 1. Déterminer les indices des SpawnPoints utilisables
-        int[] usableSpawnIndexes = wave.allowedSpawnPoints.Length > 0
-            ? wave.allowedSpawnPoints
-            : Enumerable.Range(0, pathManager.spawnPointsData.Length).ToArray();
+        List<Coroutine> pathSpawners = new List<Coroutine>();
 
-        // S'assurer qu'il y a des chemins configurés et utilisables
-        if (usableSpawnIndexes.Length == 0)
+        foreach (var pathGroup in wave.pathGroups)
         {
-            //Debug.LogError("[WaveManager] Aucun SpawnPoint autorisé ou configuré dans le PathManager.");
+            Coroutine spawner = StartCoroutine(SpawnPathGroup(pathGroup));
+            pathSpawners.Add(spawner);
+        }
+
+        foreach (Coroutine spawner in pathSpawners)
+        {
+            yield return spawner;
+        }
+    }
+
+    IEnumerator SpawnPathGroup(PathGroup pathGroup)
+    {
+        int pathIndex = pathGroup.pathManagerIndex;
+
+        // --- 1. Récupérer les données du chemin (Path) et des points ---
+
+        if (pathIndex < 0 || pathIndex >= pathManager.spawnPointsData.Length)
+        {
+            Debug.LogError($"[WaveManager] Index de chemin invalide : {pathIndex}. Assurez-vous qu'il existe dans le PathManager.");
             yield break;
         }
 
-        foreach (var group in wave.enemies)
-        {
-            for (int i = 0; i < group.count; i++)
-            {
-                // Tenter de récupérer un script de mouvement pour déterminer le type
-                bool isFlying = group.enemyPrefab.GetComponent<EnemyAir>() != null;
-                bool isGrounded = group.enemyPrefab.GetComponent<EnemyNav>() != null;
+        PathManager.SpawnPointData spData = pathManager.spawnPointsData[pathIndex];
+        Transform spawnPointTransform = spData.spawnPointTransform;
 
-                Transform spawn = null;
+        if (spData.waypoints == null || spData.waypoints.Length == 0)
+        {
+            Debug.LogWarning($"[WaveManager] Le SpawnPoint {spawnPointTransform.name} (index {pathIndex}) n'a pas de Nœuds de chemin (waypoints) configurés !");
+            yield break;
+        }
+
+        Transform[] availableNodes = spData.waypoints;
+
+
+        // --- 2. Parcourir tous les lots d'ennemis pour ce chemin et les spawner ---
+
+        foreach (var batch in pathGroup.enemies)
+        {
+            for (int i = 0; i < batch.count; i++)
+            {
+                bool isFlying = batch.enemyPrefab.GetComponent<EnemyAir>() != null;
+                bool isGrounded = batch.enemyPrefab.GetComponent<EnemyNav>() != null;
+
                 GameObject obj = null;
                 bool enemySpawned = false;
 
                 if (isFlying)
                 {
-                    // Ennemi volant → spawn aléatoire sur un AirSpawnPoint
+                    // 🔥 CORRECTION : Utiliser le point de spawn aérien correspondant à l'index du chemin 🔥
                     if (airSpawnPoints != null && airSpawnPoints.Length > 0)
                     {
-                        spawn = airSpawnPoints[Random.Range(0, airSpawnPoints.Length)];
-                        obj = Instantiate(group.enemyPrefab, spawn.position, spawn.rotation);
-                        // Les ennemis volants utilisent leur propre logique EnemyAir
-                        enemySpawned = true;
+                        Transform airSpawn = null;
+
+                        // Assure-toi que l'index existe dans le tableau des points aériens
+                        if (pathIndex >= 0 && pathIndex < airSpawnPoints.Length)
+                        {
+                            airSpawn = airSpawnPoints[pathIndex];
+                        }
+                        else
+                        {
+                            // Sauvegarde si le tableau airSpawnPoints est plus petit que spawnPointsData
+                            airSpawn = airSpawnPoints[0];
+                        }
+
+                        if (airSpawn != null)
+                        {
+                            obj = Instantiate(batch.enemyPrefab, airSpawn.position, airSpawn.rotation);
+                            enemySpawned = true;
+                        }
                     }
                 }
                 else if (isGrounded)
                 {
-                    // --- 1. Choisir le SpawnPoint autorisé ---
-                    int index = usableSpawnIndexes[Random.Range(0, usableSpawnIndexes.Length)];
+                    // Logique pour les ennemis au sol (EnemyNav)
 
-                    // Assure-toi que SpawnPointData est bien une classe publique dans PathManager
-                    PathManager.SpawnPointData spData = pathManager.spawnPointsData[index];
+                    Transform selectedNode = availableNodes[Random.Range(0, availableNodes.Length)];
 
-                    if (spData.waypoints == null || spData.waypoints.Length == 0)
-                    {
-                        //Debug.LogWarning($"SpawnPoint {spData.spawnPointTransform.name} n'a pas de Nœuds de chemin (Node) configurés !");
-                        continue;
-                    }
-
-                    // --- 2. Choisir aléatoirement une seule Node (le chemin) ---
-                    Transform selectedNode = spData.waypoints[Random.Range(0, spData.waypoints.Length)];
-
-                    // --- 3. Extraire TOUS les points enfants de cette Node ---
                     List<Transform> pathPoints = new List<Transform>();
-
-                    // Récupère les vrais points (Point 1, Point 2, ...) dans l'ordre de la hiérarchie
                     foreach (Transform point in selectedNode)
                     {
-                        // S'assurer que le Transform est un point de passage et non un autre parent
                         pathPoints.Add(point);
                     }
 
                     if (pathPoints.Count == 0)
                     {
-                        //Debug.LogWarning($"Le Nœud sélectionné ({selectedNode.name}) ne contient aucun point de chemin !");
+                        Debug.LogWarning($"Le Nœud sélectionné ({selectedNode.name}) ne contient aucun point de chemin !");
                         continue;
                     }
 
-                    // Point de spawn
-                    spawn = spData.spawnPointTransform;
-
-                    // --- 4. Instancier et assigner le chemin ---
-                    obj = Instantiate(group.enemyPrefab, spawn.position, spawn.rotation);
+                    obj = Instantiate(batch.enemyPrefab, spawnPointTransform.position, spawnPointTransform.rotation);
 
                     EnemyNav nav = obj.GetComponent<EnemyNav>();
                     if (nav != null)
@@ -178,7 +200,7 @@ public class WaveManager : MonoBehaviour
                     }
                     else
                     {
-                        //Debug.LogError($"L'ennemi au sol {group.enemyPrefab.name} n'a pas de composant EnemyNav !");
+                        Debug.LogError($"L'ennemi au sol {batch.enemyPrefab.name} n'a pas de composant EnemyNav !");
                     }
                 }
 
@@ -187,12 +209,11 @@ public class WaveManager : MonoBehaviour
                     RegisterEnemy();
                 }
 
-                yield return new WaitForSeconds(group.spawnInterval);
+                yield return new WaitForSeconds(batch.spawnInterval);
             }
         }
     }
 }
-
 
 
 
