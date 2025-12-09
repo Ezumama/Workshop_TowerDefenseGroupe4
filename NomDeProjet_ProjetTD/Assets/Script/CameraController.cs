@@ -20,8 +20,9 @@ public class CameraController : MonoBehaviour
 
     [Header("Zoom (camera moves forward/back on XZ plane)")]
     public float zoomSpeed = 20f;
-    public float minDistance = 5f;   // distance minimale (en unités XZ) depuis startPositionXZ
-    public float maxDistance = 60f;  // distance maximale (en unités XZ) depuis startPositionXZ
+    // Ces valeurs devraient être les limites en Y de la caméra.
+    public float minDistance = 5f;   // Hauteur minimale (Zoom In Max)
+    public float maxDistance = 60f;  // Hauteur maximale (Dézoom Max)
 
     [Header("Limits on world plane (X,Z)")]
     public Vector2 limitX = new Vector2(-50f, 50f);
@@ -29,7 +30,7 @@ public class CameraController : MonoBehaviour
 
     Camera cam;
     Vector3 targetPosition;
-    Vector3 velocityPos;
+    Vector3 velocityPos; // Utilisée par Vector3.SmoothDamp
     Vector2 lastMousePos;
 
     // position initiale projetée en XZ, utilisée pour clamp de zoom (optionnel)
@@ -43,6 +44,9 @@ public class CameraController : MonoBehaviour
             transform.rotation = Quaternion.Euler(tilt, rotationY, 0f);
 
         targetPosition = transform.position;
+        // On s'assure que la cible Y de départ est dans les limites
+        targetPosition.y = Mathf.Clamp(targetPosition.y, minDistance, maxDistance);
+
         startPositionXZ = new Vector2(transform.position.x, transform.position.z);
     }
 
@@ -97,7 +101,7 @@ public class CameraController : MonoBehaviour
             Vector3 camRight = transform.right; camRight.y = 0f; camRight.Normalize();
 
             Vector3 move = (camRight * input.x + camForward * input.z).normalized *
-                           keyboardSpeed * Time.deltaTime;
+                            keyboardSpeed * Time.deltaTime;
 
             targetPosition += move;
         }
@@ -108,15 +112,34 @@ public class CameraController : MonoBehaviour
         float scroll = Input.GetAxis("Mouse ScrollWheel");
         if (Mathf.Abs(scroll) < 0.00001f) return;
 
-        // Déplacement de la caméra le long de son axe local Y (forward incliné)
-        Vector3 zoomDelta = transform.forward * scroll * zoomSpeed;
+        // 0.01f est un petit epsilon pour compenser l'imprécision des flottants
 
+        // Blocage au Dézoom Max (scroller vers l'arrière, scroll < 0, hauteur max atteinte)
+        bool isBlockedAtMax = (targetPosition.y >= maxDistance - 0.01f && scroll < 0);
+
+        // Blocage au Zoom Max (scroller vers l'avant, scroll > 0, hauteur min atteinte)
+        bool isBlockedAtMin = (targetPosition.y <= minDistance + 0.01f && scroll > 0);
+
+        if (isBlockedAtMin || isBlockedAtMax)
+        {
+            // Annuler l'inertie sur les 3 axes pour stopper tout glissement (y compris xz)
+            // L'inertie XZ vient souvent du drag, mais si le zoom est bloqué, l'inertie peut devenir visible.
+            velocityPos = Vector3.zero;
+
+            // On s'assure que targetPosition.y est sur la limite.
+            targetPosition.y = Mathf.Clamp(targetPosition.y, minDistance, maxDistance);
+
+            // Bloquer la molette : on quitte sans appliquer le zoomDelta.
+            return;
+        }
+
+        // --- Si non bloqué, on applique le mouvement ---
+
+        Vector3 zoomDelta = transform.forward * scroll * zoomSpeed;
         targetPosition += zoomDelta;
 
-        // Si tu veux limiter la distance, tu peux clamp la hauteur locale
         targetPosition.y = Mathf.Clamp(targetPosition.y, minDistance, maxDistance);
     }
-
 
 
     void ApplySmoothing()
@@ -127,13 +150,26 @@ public class CameraController : MonoBehaviour
 
     void ClampPosition()
     {
+        float targetXBeforeClamp = targetPosition.x;
+        float targetZBeforeClamp = targetPosition.z;
+
+        targetPosition.x = Mathf.Clamp(targetPosition.x, limitX.x, limitX.y);
+        targetPosition.z = Mathf.Clamp(targetPosition.z, limitZ.x, limitZ.y);
+
+        // Annuler la vélocité XZ si la limite de la carte (X/Z) a été atteinte (pour stopper le glissement du drag aux limites XZ)
+        if (Mathf.Abs(targetPosition.x - targetXBeforeClamp) > 0.001f)
+        {
+            velocityPos.x = 0f;
+        }
+        if (Mathf.Abs(targetPosition.z - targetZBeforeClamp) > 0.001f)
+        {
+            velocityPos.z = 0f;
+        }
+
         Vector3 pos = transform.position;
         pos.x = Mathf.Clamp(pos.x, limitX.x, limitX.y);
         pos.z = Mathf.Clamp(pos.z, limitZ.x, limitZ.y);
         transform.position = pos;
-
-        targetPosition.x = Mathf.Clamp(targetPosition.x, limitX.x, limitX.y);
-        targetPosition.z = Mathf.Clamp(targetPosition.z, limitZ.x, limitZ.y);
     }
 
     // Centrer la caméra sur un point (préserve la hauteur/current Y)
