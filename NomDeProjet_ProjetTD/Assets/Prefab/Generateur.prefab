@@ -82,8 +82,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e68a8bdb35f18946b9216418ca060e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageToEnemiesPerSecond: 5
-  damageToNexusPerSecond: 2
+  damageToEnemiesPerSecond: 20
+  damageToNexusPerSecond: 10
 --- !u!1001 &5914059112035762763
 PrefabInstance:
   m_ObjectHideFlags: 0
