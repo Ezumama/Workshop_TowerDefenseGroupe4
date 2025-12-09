@@ -20,8 +20,9 @@ public class TowerChoiceUI : MonoBehaviour
         _towerSpawnerScript.TeslaChoice();
     }
 
-    //public void AirClicked()
-    //{
-    //    _towerSpawnerScript.AirChoice();
-    //}
+    public void AirClicked()
+    {
+        Debug.Log("cheese");
+        //_towerSpawnerScript.AirChoice();
+    }
 }
