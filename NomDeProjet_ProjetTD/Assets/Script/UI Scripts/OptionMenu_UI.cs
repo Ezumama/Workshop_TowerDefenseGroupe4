@@ -28,6 +28,29 @@ public class OptionMenu_UI : MonoBehaviour
         {
             _vsyncTog.isOn= true;
         }
+
+        bool _foundRes = false;
+        for(int i = 0; i < resolutions.Count; i++)
+        {
+            if(Screen.width == resolutions[i].horizontal && Screen.height == resolutions[i].vertical)
+            {
+                _foundRes = true;
+                _selectedResolution = i;
+                UpdateResLabel();
+            }
+        }
+
+        if(!_foundRes)
+        {
+            ResItem newRes = new ResItem();
+            newRes.horizontal = Screen.width;
+            newRes.vertical = Screen.height;
+
+            resolutions.Add(newRes);
+            _selectedResolution = resolutions.Count - 1;
+
+            UpdateResLabel();
+        }
     }
     
     public void BackButton()
