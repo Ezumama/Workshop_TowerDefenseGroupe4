@@ -4,12 +4,18 @@
 public class EnemyHealer : MonoBehaviour
 {
     [Header("Healing Settings")]
-    public float healRadius = 5f;     // rayon du cylindre (XZ)
-    public float healHeight = 3f;     // hauteur du cylindre (Y)
+    public float healRadius = 5f;      // rayon du cylindre (XZ)
+    public float healHeight = 3f;      // hauteur du cylindre (Y)
     public float healAmount = 10f;
     public float healInterval = 2f;
 
     private float healTimer = 0f;
+
+    // --- Tags attendus pour la guérison ---
+    // Assurez-vous que ces tags existent dans votre projet Unity (Edit -> Project Settings -> Tags and Layers)
+    private const string EnemyAirTag = "EnemyAir";
+    private const string EnemyGroundTag = "EnemyGround";
+
 
     void Update()
     {
@@ -24,14 +30,22 @@ public class EnemyHealer : MonoBehaviour
 
     void HealNearbyEnemies()
     {
-        // On récupère LARGE puis on filtre nous-même par forme cylindrique
+        // On récupère LARGE (Sphere) puis on filtre
         Collider[] hits = Physics.OverlapSphere(transform.position, healRadius);
 
         foreach (var hit in hits)
         {
+            // Vérification 1 : Est-ce que l'objet a un composant Health ?
             Health enemy = hit.GetComponent<Health>();
 
+            // Si l'objet n'a pas de Health ou si c'est l'ennemi soigneur lui-même, on passe au suivant.
             if (enemy == null || enemy.gameObject == this.gameObject)
+                continue;
+
+            // 🔥 CORRECTION : Vérification du tag
+            // L'ennemi doit être marqué comme "EnemyAir" OU "EnemyGround"
+            string targetTag = hit.gameObject.tag;
+            if (targetTag != EnemyAirTag && targetTag != EnemyGroundTag)
                 continue;
 
             // 1) Vérification horizontale (cercle)
@@ -44,16 +58,19 @@ public class EnemyHealer : MonoBehaviour
                 continue;
 
             // 2) Vérification verticale (hauteur du cylindre)
+            // Correction : Utilisation de la hauteur complète pour le calcul du centre
             float verticalDist = Mathf.Abs(hit.transform.position.y - transform.position.y);
 
+            // Vérifie si la distance verticale est inférieure à la moitié de la hauteur (distance du centre)
             if (verticalDist > healHeight * 0.5f)
                 continue;
 
-            // → L’ennemi est DANS LE CYLINDRE → HEAL
+            // → L’ennemi est DANS LE CYLINDRE et a le bon tag → HEAL
             enemy.Heal(healAmount);
         }
     }
 
+    // Le code des Gizmos (OnDrawGizmosSelected et DrawCircle) n'a pas été modifié.
     private void OnDrawGizmosSelected()
     {
         // Gizmo du cylindre (approximation)
@@ -71,7 +88,6 @@ public class EnemyHealer : MonoBehaviour
                         transform.position + new Vector3(-healRadius, -healHeight * 0.5f, 0));
     }
 
-    // Fonction pour dessiner un cercle Gizmo
     void DrawCircle(Vector3 center, float radius)
     {
         int segments = 40;
@@ -90,6 +106,5 @@ public class EnemyHealer : MonoBehaviour
         }
     }
 }
-
 
 

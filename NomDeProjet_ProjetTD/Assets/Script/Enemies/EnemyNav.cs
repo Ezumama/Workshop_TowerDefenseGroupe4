@@ -45,14 +45,14 @@ public class EnemyNav : EnemyBase // Hérite maintenant de EnemyBase
         if (currentIndex < currentPath.Length && agent.remainingDistance <= agent.stoppingDistance)
         {
             // 1. L'ennemi a atteint le point currentIndex
-            Debug.Log($"[EnemyNav] Atteint le point {currentPath[currentIndex].name}. Passage au suivant.");
+            //Debug.Log($"[EnemyNav] Atteint le point {currentPath[currentIndex].name}. Passage au suivant.");
             currentIndex++; // On passe au point suivant
 
             if (currentIndex < currentPath.Length)
             {
                 // 2. Il y a un point suivant : On assigne la nouvelle destination.
                 agent.SetDestination(currentPath[currentIndex].position);
-                Debug.Log($"[EnemyNav] Nouvelle destination: {currentPath[currentIndex].name}.");
+                //Debug.Log($"[EnemyNav] Nouvelle destination: {currentPath[currentIndex].name}.");
             }
             else
             {
@@ -73,7 +73,7 @@ public class EnemyNav : EnemyBase // Hérite maintenant de EnemyBase
         {
             currentIndex = 0;
             agent.SetDestination(currentPath[0].position);
-            Debug.Log($"[EnemyNav] {name} commence sur un path de {currentPath.Length} points. Prochain point: {currentPath[0].name}.");
+            //Debug.Log($"[EnemyNav] {name} commence sur un path de {currentPath.Length} points. Prochain point: {currentPath[0].name}.");
         }
     }
 

@@ -43,6 +43,7 @@ public abstract class EnemyBase : MonoBehaviour
 
         // Le Health.Die() détruit déjà le GameObject, mais on peut le faire ici aussi si besoin
         if (health.IsAlive() && gameObject != null) // Vérifie si pas déjà détruit par Die()
-            Destroy(gameObject);
+            //Destroy(gameObject);
+            return;
     }
 }

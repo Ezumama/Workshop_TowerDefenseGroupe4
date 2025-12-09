@@ -41,7 +41,8 @@ public class WaveManager : MonoBehaviour
 
     void Awake()
     {
-        if (instance != null) { Destroy(gameObject); return; }
+        if (instance != null) { //Destroy(gameObject)
+                                ; return; }
         instance = this;
     }
 
@@ -80,7 +81,7 @@ public class WaveManager : MonoBehaviour
         // Utilisation du nom correct 'currentWave'
         while (currentWave < waves.Length)
         {
-            Debug.Log($"🚀 Début de la vague {currentWave + 1}...");
+            //Debug.Log($"🚀 Début de la vague {currentWave + 1}...");
             yield return StartCoroutine(SpawnWave(waves[currentWave]));
 
             // Attendre que tous les ennemis soient morts avant de passer à la vague suivante (logique classique de TD)
@@ -103,7 +104,7 @@ public class WaveManager : MonoBehaviour
         // S'assurer qu'il y a des chemins configurés et utilisables
         if (usableSpawnIndexes.Length == 0)
         {
-            Debug.LogError("[WaveManager] Aucun SpawnPoint autorisé ou configuré dans le PathManager.");
+            //Debug.LogError("[WaveManager] Aucun SpawnPoint autorisé ou configuré dans le PathManager.");
             yield break;
         }
 
