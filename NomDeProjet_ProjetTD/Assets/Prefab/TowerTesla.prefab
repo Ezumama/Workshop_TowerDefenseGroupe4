@@ -51,8 +51,8 @@ MonoBehaviour:
   _feedbackFXOut: {fileID: 1376696033527059834, guid: 88108968e5b7c5d4b8820ffca0d86646, type: 3}
   _towerShootingHead: {fileID: 1634227893720734}
   _towerBody: {fileID: 3498616460457262473}
-  _damageAmount: 10
-  _shootingCooldown: 0.5
+  _damageAmount: 25
+  _shootingCooldown: 1
   _isBigBetty: 1
   _tag1: EnemyGround
   _tag2: EnemyAir
