@@ -4,8 +4,9 @@ using System.Linq;
 
 // This script calculates "smoothed" normals (averaging normals of vertices at the same position)
 // and stores them into the Mesh Tangents.
+// This is commonly used for Outline Shaders or Toon Shading to prevent broken edges.
 
-public class SmoothNormalBakerv2 : MonoBehaviour
+public class SmoothNormalBaker : MonoBehaviour
 {
     [Tooltip("If true, the calculation runs automatically when the game starts.")]
     public bool runOnAwake = true;
@@ -25,31 +26,39 @@ public class SmoothNormalBakerv2 : MonoBehaviour
     [ContextMenu("Bake Smooth Normals to Tangents")]
     public void CalculateAndStoreSmoothNormals()
     {
-        // Get all MeshFilters in the hierarchy
+        // 1. Handle Static Meshes (MeshFilter)
         MeshFilter[] meshFilters = GetComponentsInChildren<MeshFilter>();
-        
-        if (meshFilters.Length == 0)
-        {
-            Debug.LogError("No MeshFilters found in hierarchy!");
-            return;
-        }
-
         foreach (var mf in meshFilters)
         {
-            BakeMesh(mf);
+            ProcessMeshFilter(mf);
         }
 
-        Debug.Log($"<color=cyan>Smooth Normals Baked</color> for {meshFilters.Length} meshes in hierarchy: {name}");
+        // 2. Handle Rigged Meshes (SkinnedMeshRenderer)
+        SkinnedMeshRenderer[] skinnedMeshRenderers = GetComponentsInChildren<SkinnedMeshRenderer>();
+        foreach (var smr in skinnedMeshRenderers)
+        {
+            ProcessSkinnedMeshRenderer(smr);
+        }
+
+        int totalMeshes = meshFilters.Length + skinnedMeshRenderers.Length;
+        if (totalMeshes > 0)
+        {
+            Debug.Log($"<color=cyan>Smooth Normals Baked</color> for {totalMeshes} meshes in hierarchy: {name}");
+        }
+        else
+        {
+            Debug.LogWarning("No MeshFilter or SkinnedMeshRenderer found in hierarchy.");
+        }
     }
 
-    private void BakeMesh(MeshFilter mf)
+    private void ProcessMeshFilter(MeshFilter mf)
     {
-        Mesh mesh;
+        Mesh mesh = null;
 
         // Handle Mesh Instance vs Shared Mesh
         if (Application.isPlaying && cloneMesh)
         {
-            // Clone the mesh to don't modify the source mesh
+            // Accessing .mesh on a MeshFilter automatically instantiates a copy
             mesh = mf.mesh; 
         }
         else
@@ -58,11 +67,34 @@ public class SmoothNormalBakerv2 : MonoBehaviour
             mesh = mf.sharedMesh;
         }
 
-        if (mesh == null)
+        if (mesh != null)
         {
-            return;
+            BakeSmoothNormalsForMesh(mesh);
         }
+    }
 
+    private void ProcessSkinnedMeshRenderer(SkinnedMeshRenderer smr)
+    {
+        Mesh mesh = smr.sharedMesh;
+
+        if (mesh == null) return;
+
+        // Handle Cloning for Skinned Meshes
+        if (Application.isPlaying && cloneMesh)
+        {
+            // SkinnedMeshRenderer does not have a .mesh property that auto-clones.
+            // We must manually instantiate it and assign it back.
+            Mesh clonedMesh = Instantiate(mesh);
+            smr.sharedMesh = clonedMesh;
+            mesh = clonedMesh;
+        }
+        // If not cloning, we just modify the sharedMesh directly (modifies the asset)
+
+        BakeSmoothNormalsForMesh(mesh);
+    }
+
+    private void BakeSmoothNormalsForMesh(Mesh mesh)
+    {
         // 1. Get current data
         Vector3[] vertices = mesh.vertices;
         Vector3[] normals = mesh.normals;
@@ -84,9 +116,7 @@ public class SmoothNormalBakerv2 : MonoBehaviour
             }
         }
 
-        // 3. Normalize the averaged vectors
-        // We cannot modify the dictionary while iterating, so we can just normalize on the fly in step 4
-        // or re-assign keys here. It's efficient enough to just normalize during assignment.
+        // 3. Normalize the averaged vectors is handled implicitly during assignment below
 
         // 4. Assign the smooth normal to the Tangent channel
         Vector4[] tangents = new Vector4[vertices.Length];
@@ -98,8 +128,7 @@ public class SmoothNormalBakerv2 : MonoBehaviour
 
             // Store in Tangent. Tangents are Vector4. 
             // We store the normal in XYZ. W is usually 1 or -1 for binormal, we set to 0 here.
-            // If used with standard normal mapping shaders, w should be ±1
-            tangents[i] = new Vector4(smoothNormal.x, smoothNormal.y, smoothNormal.z, 1f);
+            tangents[i] = new Vector4(smoothNormal.x, smoothNormal.y, smoothNormal.z, 0f);
         }
 
         // 5. Apply back to mesh
