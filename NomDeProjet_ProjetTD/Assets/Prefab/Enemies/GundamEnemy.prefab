@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 8815659026268160381}
   - component: {fileID: 4686606586350124053}
   - component: {fileID: 2660903683958464846}
-  - component: {fileID: 8782292378449878240}
   - component: {fileID: 7081999416396789214}
+  - component: {fileID: -250993189039672450}
   m_Layer: 7
   m_Name: GundamEnemy
   m_TagString: EnemyGround
@@ -122,20 +122,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 30
   currentHealth: 0
---- !u!114 &8782292378449878240
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2927193264793797084}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6f125c9e6bb58e4f9ac218a14538358, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 4
-  targetPoint: {fileID: 0}
 --- !u!114 &7081999416396789214
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -148,6 +134,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c75cab9957d4d8d469d33b71b65c0dae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-250993189039672450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2927193264793797084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a011dc33b0b5721459a098d9004afb20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageToNexus: 5
+  attackCooldown: 1
 --- !u!1001 &78434672107418618
 PrefabInstance:
   m_ObjectHideFlags: 0
