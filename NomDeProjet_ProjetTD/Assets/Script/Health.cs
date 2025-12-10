@@ -29,6 +29,10 @@ public class Health : MonoBehaviour
     public virtual void Die()
     {
         OnDie?.Invoke(); // Déclenche l'événement
+        if (WaveManager.instance != null)
+        {
+            WaveManager.instance.UnregisterEnemy();
+        }
         Destroy(gameObject);
     }
 

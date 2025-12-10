@@ -7,7 +7,7 @@ public class WaveManager : MonoBehaviour
 {
     public static WaveManager instance;
 
-    // --- Structures de Configuration ---
+    // --- Structures de Configuration (Inch.) ---
 
     [System.Serializable]
     public class EnemyBatch
@@ -33,7 +33,7 @@ public class WaveManager : MonoBehaviour
         public PathGroup[] pathGroups;
     }
 
-    // --- Variables du Manager ---
+    // --- Variables du Manager (Inch.) ---
 
     public Wave[] waves;
     [Tooltip("Les points de spawn pour les ennemis volants. DOIVENT ÊTRE DANS LE MÊME ORDRE QUE LES CHEMINS DU PATHMANAGER.")]
@@ -46,6 +46,7 @@ public class WaveManager : MonoBehaviour
     // --- État du Manager ---
     private int currentWave = 0;
     private int aliveEnemies = 0;
+    private bool isSpawning = false; // 🔥 NOUVEAU : Indique si l'instanciation est en cours
 
 
     void Awake()
@@ -66,6 +67,8 @@ public class WaveManager : MonoBehaviour
         StartCoroutine(StartWaves());
     }
 
+    // --- Gestion des Ennemis ---
+
     public void RegisterEnemy()
     {
         aliveEnemies++;
@@ -73,7 +76,16 @@ public class WaveManager : MonoBehaviour
 
     public void UnregisterEnemy()
     {
-        aliveEnemies--;
+        // 🔥 CORRECTION : Vérification pour éviter de décrémenter sous zéro.
+        if (aliveEnemies > 0)
+        {
+            aliveEnemies--;
+        }
+        else
+        {
+            // Ceci peut aider au débogage si un ennemi tente de se désenregistrer deux fois.
+            Debug.LogWarning("[WaveManager] Tentative de désenregistrer un ennemi alors que le compteur est déjà à zéro.");
+        }
     }
 
     // --- Logique des Vagues ---
@@ -83,9 +95,15 @@ public class WaveManager : MonoBehaviour
         while (currentWave < waves.Length)
         {
             Debug.Log($"🚀 Début de la vague {currentWave + 1}...");
-            yield return StartCoroutine(SpawnWave(waves[currentWave]));
 
-            yield return new WaitUntil(() => aliveEnemies <= 0);
+            isSpawning = true; // Début de l'instanciation
+            yield return StartCoroutine(SpawnWave(waves[currentWave]));
+            isSpawning = false; // Fin de l'instanciation (toutes les coroutines SpawnPathGroup ont terminé)
+
+
+            // 🔥 CORRECTION CRUCIALE : On attend que le spawn soit terminé ET que tous les ennemis soient morts.
+            yield return new WaitUntil(() => !isSpawning && aliveEnemies <= 0);
+            // Si aliveEnemies reste > 0 ici, le problème est dans les scripts EnemyNav/EnemyAir.
 
             currentWave++;
             Debug.Log($"⏸️ Pause avant la vague {currentWave + 1}");
@@ -149,19 +167,17 @@ public class WaveManager : MonoBehaviour
 
                 if (isFlying)
                 {
-                    // 🔥 CORRECTION : Utiliser le point de spawn aérien correspondant à l'index du chemin 🔥
+                    // Logique pour Volants (utilise l'index du chemin)
                     if (airSpawnPoints != null && airSpawnPoints.Length > 0)
                     {
                         Transform airSpawn = null;
 
-                        // Assure-toi que l'index existe dans le tableau des points aériens
                         if (pathIndex >= 0 && pathIndex < airSpawnPoints.Length)
                         {
                             airSpawn = airSpawnPoints[pathIndex];
                         }
                         else
                         {
-                            // Sauvegarde si le tableau airSpawnPoints est plus petit que spawnPointsData
                             airSpawn = airSpawnPoints[0];
                         }
 
@@ -174,7 +190,7 @@ public class WaveManager : MonoBehaviour
                 }
                 else if (isGrounded)
                 {
-                    // Logique pour les ennemis au sol (EnemyNav)
+                    // Logique pour les ennemis au sol (EnemyNav, chemin aléatoire)
 
                     Transform selectedNode = availableNodes[Random.Range(0, availableNodes.Length)];
 
